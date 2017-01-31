@@ -1,8 +1,8 @@
 ---
-layout: page
-title: Data munging part 2
-subtitle: joins and reshaping
-comments: true
+title: "Tidy data (continued)"
+menu: 
+  main:
+    weight: 50
 ---
 
 ## Outline for today

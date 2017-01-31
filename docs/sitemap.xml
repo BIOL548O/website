@@ -12,13 +12,8 @@
   </url>
   
   <url>
-    <loc>/page/assert/</loc>
+    <loc>/page/06_assert/</loc>
     <lastmod>2017-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/page/VersionControl/</loc>
-    <lastmod>2017-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -39,27 +34,19 @@
   </url>
   
   <url>
-    <loc>/page/munge01/</loc>
+    <loc>/page/03_github/</loc>
   </url>
   
   <url>
-    <loc>/page/munge02/</loc>
+    <loc>/page/05_Homework_2/</loc>
   </url>
   
   <url>
-    <loc>/page/github/</loc>
+    <loc>/page/07_Homework_3/</loc>
   </url>
   
   <url>
-    <loc>/page/Homework_2/</loc>
-  </url>
-  
-  <url>
-    <loc>/page/Homework_3/</loc>
-  </url>
-  
-  <url>
-    <loc>/page/installation/</loc>
+    <loc>/page/01_installation/</loc>
   </url>
   
   <url>
@@ -67,7 +54,7 @@
   </url>
   
   <url>
-    <loc>/page/metadata/</loc>
+    <loc>/page/07_metadata/</loc>
   </url>
   
   <url>
@@ -75,19 +62,31 @@
   </url>
   
   <url>
-    <loc>/page/Repositories/</loc>
+    <loc>/page/08_Repositories/</loc>
   </url>
   
   <url>
-    <loc>/page/PeerReview_2/</loc>
+    <loc>/page/06_PeerReview_2/</loc>
   </url>
   
   <url>
-    <loc>/page/PeerReview_3/</loc>
+    <loc>/page/08_PeerReview_3/</loc>
   </url>
   
   <url>
-    <loc>/page/final/</loc>
+    <loc>/page/04_munge01/</loc>
+  </url>
+  
+  <url>
+    <loc>/page/05_munge02/</loc>
+  </url>
+  
+  <url>
+    <loc>/page/02_VersionControl/</loc>
+  </url>
+  
+  <url>
+    <loc>/page/08_final/</loc>
   </url>
   
   <url>

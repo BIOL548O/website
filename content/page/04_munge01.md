@@ -1,8 +1,8 @@
 ---
-layout: page
-title: Data munging
-subtitle: using R to make data **tidy**
-comments: true
+title: "Tidy data"
+menu: 
+  main:
+    weight: 40
 ---
 
 ## Outline for today

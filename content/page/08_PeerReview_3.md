@@ -1,8 +1,9 @@
 ---
-layout: page
-title: Peer Review 3
+title: "Peer Review 3"
 subtitle: Code and Data review
-comments: true
+menu: 
+  main:
+    weight: 85
 ---
 
 The goal of this Peer Review is twofold: 

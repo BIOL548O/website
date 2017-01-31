@@ -1,8 +1,8 @@
 ---
-layout: page
-title: Homework 2
-subtitle: Tidying your data with an R script.
-comments: true
+title: "Homework 2"
+menu: 
+  main:
+    weight: 55
 ---
 
 The goal of this week's homework is take your raw data and produce some **tidy** data, using only R to perform any manipulations. Remember:

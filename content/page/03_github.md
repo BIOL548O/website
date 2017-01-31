@@ -1,8 +1,9 @@
 ---
-layout: page
-title: GitHub and project setup
-subtitle: the infrastructure of collaboration
-comments: true
+title: "GitHub and project setup"
+subtitle: "the infrastructure of collaboration"
+menu: 
+  main:
+    weight: 30
 ---
 
 ## Content outline

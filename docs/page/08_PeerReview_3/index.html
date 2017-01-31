@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Introduce yourself to Git &middot; Dealing with Data</title>
+  <title>Peer Review 3 &middot; Dealing with Data</title>
 
   
   <link rel="stylesheet" href="../../css/poole.css">
@@ -101,45 +101,90 @@
 
 <div class="content container">
   <div class="post">
-    <h1 class="post-title">Introduce yourself to Git</h1>
+    <h1 class="post-title">Peer Review 3</h1>
     
 
-<p><strong>You only have to set this up once per machine.</strong></p>
+<p>The goal of this Peer Review is twofold:</p>
 
-<h3 id="tl-dr">TL;DR</h3>
+<ul>
+<li>To help our colleagues perform &ldquo;quality control&rdquo; on their <em>tidy data</em>, and to document that data with clear metadata.</li>
+<li>To practice applying your own data skills to unfamiliar data.</li>
+</ul>
 
-<pre><code class="language-sh">git config --global user.name 'Ralph Yorke'
-git config --global user.email 'ralph.yorke@zoology.ubc.ca'
-git config --global --list
+<p>A template for your Review is below. <strong>Copy and paste this in response to the GitHub Issue that announces your review</strong></p>
+
+<h3 id="reusing-your-reviewee-s-data">reusing your reviewee&rsquo;s data!</h3>
+
+<ul>
+<li>To demonstrate that their metadata is complete by interpreting their data without asking them questions</li>
+<li>To practice your dplyr and tidyr skills on a new and unfamiliar dataset</li>
+<li>FUN!</li>
+</ul>
+
+<p>Here are some ideas of what you can do:</p>
+
+<ul>
+<li>Write a few new assertions</li>
+<li>Do some statistics (anova, linear regression &ndash; very simple is fine)</li>
+<li>Visualize their data</li>
+<li>use <code>dplyr</code> to calculate some new summary statistics</li>
+</ul>
+
+<blockquote>
+<p>Tip: format your R code so that it looks good on the issue! put a row of three backticks right before your code and right after it. This is called a fenced code block <a href="https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks">see this link for more info</a>.</p>
+
+<p>Tip: you can <a href="http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github">link to specific lines of code</a> on GitHub by clicking on them and using the new URL</p>
+</blockquote>
+
+<p><em>Please don&rsquo;t keep a copy of your reviewee&rsquo;s data!</em></p>
+
+<h2 id="template">Template:</h2>
+
+<pre><code>## organization
+
+*Did your reviewee follow the directory naming convention that we are using? Was it easy to find the different R scripts?*
+
+YOUR WORDS HERE
+
+## documentation
+
+*Review the code that performs the assertions. Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?*
+
+YOUR WORDS HERE
+
+## Assertions
+
+*what things does your reviewee test for in the assertions? Is anything missing? Suggest an improvement to their quality control*
+
+YOUR WORDS HERE
+
+## Metadata (two parts)
+
+### clear and human-readable
+
+*Is the metadata thorough? When, where and how was this work done? Do you have any questions about what the data mean?* 
+
+YOUR WORDS HERE
+
+### correct and machine-readable
+
+*Choose one from below (depending on what your reviewee has done) and describe how to fix any problems you find:*
+
+* `EML` -- use the function `eml_read()` from the `EML` package. Will it read into R?
+* `csvy` -- copy and paste the YAML information into [this validator](http://codebeautify.org/yaml-validator) and click &quot;Validate&quot;.
+* `datapackage` -- copy and paste the `datapackage.json` file into [this validator](http://jsonlint.com/) and click &quot;Validate&quot;
+
+YOUR WORDS HERE
+
+# Reuse your colleagues data
+
+*Do something with your reviewee's data! Write an R script that reads the data in, then does something. Don't forget to write comments!*  
+*Paste the entire R script you wrote below, inside a fenced code block*  
+*If you've made a plot, you can add that in a separate comment*
+
+YOUR CODE HERE
+
 </code></pre>
-
-<p>In words &hellip;</p>
-
-<p>From RStudio, go to <em>Tools &gt; Shell</em> and tell <code>git</code> your name and <strong>GitHub email</strong> by typing (use your own name and email):</p>
-
-<ul>
-<li><p><code>git config --global user.name 'Ralph Yorke'</code></p>
-
-<ul>
-<li>This does <strong>NOT</strong> have to be your GitHub username, although it can be. Another good option is your actual first name and last name. Your commits will be labelled with this name, so this should be informative to potential collaborators.</li>
-</ul></li>
-
-<li><p><code>git config --global user.email 'ralph.yorke@zoology.ubc.ca'</code></p>
-
-<ul>
-<li>This <strong>must</strong> be the email that you used to sign up for GitHub.</li>
-</ul></li>
-
-<li><p><code>git config --global core.editor 'nano'</code></p></li>
-</ul>
-
-<p>These commands return nothing. You can check that <code>git</code> understood what you typed by looking at the output of <code>git config --global --list</code>.</p>
-
-<p>Resources:</p>
-
-<ul>
-<li><a href="https://help.github.com/articles/set-up-git">GitHub&rsquo;s advice</a>.</li>
-</ul>
 
   </div>
 </div>

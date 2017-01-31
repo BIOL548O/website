@@ -1,8 +1,9 @@
 ---
-layout: page
-title: Online Repositories
+title: "Online Repositories"
 subtitle: Sharing your data with the world!
-comments: true
+menu: 
+  main:
+    weight: 80
 ---
 
 ## Outline for today

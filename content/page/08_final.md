@@ -1,8 +1,9 @@
 ---
-layout: page
-title: filling up the corners
+title: "filling up the corners"
 subtitle: a last few details
-comments: true
+menu: 
+  main:
+    weight: 87
 ---
 
 ## Timeline

@@ -217,10 +217,10 @@ datapackage_init(df = gapminder, meta = meta_list)
     
     <item>
       <title>Assertions in R</title>
-      <link>/page/assert/</link>
+      <link>/page/06_assert/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/page/assert/</guid>
+      <guid>/page/06_assert/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -393,61 +393,6 @@ gm_fac &amp;lt;- gapminder %&amp;gt;%
 Let’s check this data before we combine it with the official dataset:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Step 1&lt;/strong&gt;: write down some assertions which pass for all of gapminder&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Step 2&lt;/strong&gt;: download &lt;a href=&#34;SuppMatt/gapminder_2016.csv&#34;&gt;this file&lt;/a&gt; and see if you can find all the errors!&lt;/p&gt;
-&lt;/div&gt;
-
-
-&lt;!-- BLOGDOWN-HEAD
-
-
-
-
-/BLOGDOWN-HEAD --&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>01 Version Control</title>
-      <link>/page/VersionControl/</link>
-      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/page/VersionControl/</guid>
-      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
-
-/BLOGDOWN-BODY-BEFORE --&gt;
-
-&lt;div id=&#34;lecture-outline&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Lecture outline&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Introduction to what the class will be about &lt;a href=&#34;../slides/01_Introduction.html&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;introduction to version control with git&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div id=&#34;getting-started-with-git&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Getting started with git&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;slides/git_slides.pdf&#34;&gt;slides about git&lt;/a&gt; courtesy of &lt;a href=&#34;http://swcarpentry.github.io/git-novice&#34;&gt;Software Carpentry&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;01_git_introduce&#34;&gt;Introduce yourself to git&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;here is a list of &lt;a href=&#34;SuppMatt/the_shell&#34;&gt;handy shell commands&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;video-explanation-of-what-this-course-is-about&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Video explanation of what this course is about&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=N2zK3sAtr-4&#34;&gt;Data Sharing and Management Snafu in 3 Short Acts&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;reading-for-thursday&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Reading for Thursday&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;http://scfbm.biomedcentral.com/articles/10.1186/1751-0473-8-7&#34;&gt;Ram, K. 2013. Git can facilitate greater reproducibility and increased transparency in science. Source Code for Biology and Medicine&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668&#34;&gt;Blischak et al, 2016, A Quick Introduction to Version Control with Git and GitHub, PLOS comp bio&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;optional-next-steps-might-have-to-be-on-your-own-time&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Optional next steps (might have to be on your own time)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;01_git_cache&#34;&gt;cache your credentials&lt;/a&gt; so that you don’t have to log in every time that you want to push to github&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Resources:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/set-up-git&#34;&gt;GitHub’s advice&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 
 
@@ -2362,126 +2307,11 @@ kable(A_arranged)
     </item>
     
     <item>
-      <title>Data munging</title>
-      <link>/page/munge01/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/munge01/</guid>
-      <description>
-
-&lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;slides/munge_slides.html&#34;&gt;Today&amp;rsquo;s slides&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;SuppMatt/09_02_2016_notes.R&#34;&gt;What Andrew typed in today&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;intro-to-tidy-data&#34;&gt;Intro to tidy data&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;step 1&lt;/em&gt; download &lt;a href=&#34;https://www.dropbox.com/s/5ncuacnd3arjitc/survey_data_tabs.xls?dl=0&#34;&gt;this data&lt;/a&gt;&lt;br /&gt;
-&lt;em&gt;step 2&lt;/em&gt; &amp;ldquo;tidy it up&amp;rdquo;&lt;br /&gt;
-&lt;em&gt;courtesy of Data Carpentry&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;intro-to-r&#34;&gt;Intro to R&lt;/h3&gt;
-
-&lt;p&gt;I&amp;rsquo;m assuming that you have had some exposure to R already. However, let&amp;rsquo;s review some of the particular tools that we&amp;rsquo;re going to be using&lt;/p&gt;
-
-&lt;h3 id=&#34;ceci-ce-n-est-pas-un-pipe&#34;&gt;&lt;em&gt;Ceci ce n&amp;rsquo;est pas un pipe&lt;/em&gt;&lt;/h3&gt;
-
-&lt;p&gt;The pipe operator &lt;code&gt;%&amp;gt;%&lt;/code&gt; was recently introduced to R and created shockwaves:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;foo_foo &amp;lt;- little_bunny()
-
-## orthodox R style
-bop_on(scoop_up(hop_through(foo_foo, forest), field_mouse), head)
-
-## novel pipe syntax
-foo_foo %&amp;gt;%
-  hop_through(forest) %&amp;gt;%
-  scoop_up(field_mouse) %&amp;gt;%
-  bop_on(head)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Based on this, how do you think it works?&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;tidyr&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;some project setup&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;recommended-reading&#34;&gt;recommended reading&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://vita.had.co.nz/papers/tidy-data.pdf&#34;&gt;Tidy data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html&#34;&gt;&lt;code&gt;dplyr&lt;/code&gt; vignette&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.seascapemodels.org/rstats/rspatial/2015/11/13/data-commandments.html&#34;&gt;ten commandments of entering data for R&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can also see these from Rstudio if you type &lt;code&gt;browseVignettes(package = &amp;quot;dplyr&amp;quot;)&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;homework-2-is-coming-up&#34;&gt;Homework 2 is coming up!&lt;/h2&gt;
-
-&lt;p&gt;Come next class (Thursday) with the most &lt;em&gt;raw&lt;/em&gt; version of your data you can find. This might be the spreadsheet you typed in when you recorded your data, or which was emailed to you. It may be a series of text files that you received from your instrument. It might even be a link to a shared folder on Dropbox, or some other online source of information.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Data munging part 2</title>
-      <link>/page/munge02/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/munge02/</guid>
-      <description>
-
-&lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;slides/munge_slides02.html&#34;&gt;slides for today&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;review of the basics, and intro to &lt;code&gt;tidyr&lt;/code&gt;: &lt;a href=&#34;tidyr.html&#34;&gt;basic data manipulations&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;we&amp;rsquo;ll practice tidying data with &lt;a href=&#34;SuppMatt/gapminder_wide.csv&#34;&gt;wide format gapminder&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;joins&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;tidyr&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;some project setup&lt;/li&gt;
-&lt;li&gt;start work on Homework 2&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;how-can-i-tell-if-my-data-is-tidy&#34;&gt;How can I tell if my data is &amp;ldquo;Tidy&amp;rdquo;?&lt;/h2&gt;
-
-&lt;p&gt;There are two basic principles to look for when deciding how to organize a dataset:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;There should be one observation per row, and one variable per column&lt;/li&gt;
-&lt;li&gt;Rows should be repeated as little as possible. If you have a lot of repeated rows, consider separating the data into two groups and using a &lt;em&gt;join&lt;/em&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;when-do-use-different-columns-and-when-to-use-a-single-factor&#34;&gt;When do use different columns, and when to use a single factor?&lt;/h2&gt;
-
-&lt;p&gt;Today we&amp;rsquo;ll be practicing a lot with two functions from &lt;code&gt;tidyr&lt;/code&gt;: &lt;code&gt;gather()&lt;/code&gt; and &lt;code&gt;spread()&lt;/code&gt;. These functions move data back and forth between what is often called &amp;ldquo;wide&amp;rdquo; and &amp;ldquo;long&amp;rdquo; format. It can be tricky to determine if your data is, or should be, wide or long. Is a group of columns a series of different variables, or are they actually different observations of the same variable? Here is a quote from Wickham&amp;rsquo;s &lt;code&gt;tidyr&lt;/code&gt; vignette:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;A general rule of thumb is that it is easier to describe functional relationships between variables (e.g., &lt;code&gt;z&lt;/code&gt; is a linear combination of &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt;, &lt;code&gt;density&lt;/code&gt; is the ratio of &lt;code&gt;weight&lt;/code&gt; to &lt;code&gt;volume&lt;/code&gt;) than between rows, and it is easier to make comparisons between groups of observations (e.g., average of group a vs. average of group b) than between groups of columns.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In biology, the variables that describe groups are often physical location (e.g. site or block) and/or experimental treatment. Keep this kind of information as values in the same column (i.e. as different levels of a factor &amp;ldquo;Site_name&amp;rdquo; or Block&amp;rdquo;). This makes it easy to compare averages across, say, different sites.&lt;/p&gt;
-
-&lt;p&gt;We also often measure the different responses for each of our study units. For example, you might measure the surface area and mass of a leaf. Keep these as the names of separate columns. This makes it easy to do calculations (e.g. SLA = mass / area)&lt;/p&gt;
-
-&lt;p&gt;Sometimes, it is harder to tell. Then, you have to rely on your knowledge as a biologist &amp;ndash; what are you planning on doing with these data? that will shape your analysis.&lt;/p&gt;
-
-&lt;h2 id=&#34;homework-2&#34;&gt;Homework 2&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;clean your data&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The goal that I want to achieve for &lt;em&gt;everyone&lt;/em&gt; with this assignment is how to process data with code accurately. However, where you end up will depend a lot on where you begin.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>GitHub and project setup</title>
-      <link>/page/github/</link>
+      <link>/page/03_github/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/github/</guid>
+      <guid>/page/03_github/</guid>
       <description>
 
 &lt;h2 id=&#34;content-outline&#34;&gt;Content outline&lt;/h2&gt;
@@ -2587,10 +2417,10 @@ SOFTWARE.
     
     <item>
       <title>Homework 2</title>
-      <link>/page/Homework_2/</link>
+      <link>/page/05_Homework_2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/Homework_2/</guid>
+      <guid>/page/05_Homework_2/</guid>
       <description>
 
 &lt;p&gt;The goal of this week&amp;rsquo;s homework is take your raw data and produce some &lt;strong&gt;tidy&lt;/strong&gt; data, using only R to perform any manipulations. Remember:&lt;/p&gt;
@@ -2704,10 +2534,10 @@ SOFTWARE.
     
     <item>
       <title>Homework 3</title>
-      <link>/page/Homework_3/</link>
+      <link>/page/07_Homework_3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/Homework_3/</guid>
+      <guid>/page/07_Homework_3/</guid>
       <description>
 
 &lt;h3 id=&#34;first-part-respond-to-your-reviewers-from-last-week&#34;&gt;First part &amp;ndash; respond to your reviewers from last week.&lt;/h3&gt;
@@ -2744,10 +2574,10 @@ SOFTWARE.
     
     <item>
       <title>Installation</title>
-      <link>/page/installation/</link>
+      <link>/page/01_installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/installation/</guid>
+      <guid>/page/01_installation/</guid>
       <description>
 
 &lt;h2 id=&#34;installing-software&#34;&gt;Installing software&lt;/h2&gt;
@@ -2961,10 +2791,10 @@ git config --global --list
     
     <item>
       <title>Metadata</title>
-      <link>/page/metadata/</link>
+      <link>/page/07_metadata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/metadata/</guid>
+      <guid>/page/07_metadata/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -3202,6 +3032,179 @@ I like that. This way, they can have ownership of this repository: they could ev
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Online Repositories</title>
+      <link>/page/08_Repositories/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/08_Repositories/</guid>
+      <description>
+
+&lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A review of different metadata techniques, using examples from class.&lt;/li&gt;
+&lt;li&gt;some &lt;a href=&#34;slides/review_slides.html&#34;&gt;Review Slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Introduction to a three online data repositories&lt;/li&gt;
+&lt;li&gt;live demonstration of online repository use!&lt;/li&gt;
+&lt;li&gt;getting started on peer reviews/ homework&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Peer Review 2</title>
+      <link>/page/06_PeerReview_2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/06_PeerReview_2/</guid>
+      <description>&lt;p&gt;The goal of this Peer Review is to help our colleagues to write &lt;em&gt;clear, readable code&lt;/em&gt; which creates &lt;em&gt;tidy data&lt;/em&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;tip: suggest new code to your reviewee by typing three backticks before and after your suggestion&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;tip: you can &lt;a href=&#34;http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github&#34;&gt;link to specific lines of code&lt;/a&gt; on GitHub by clicking on them and using the new URL&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Please don&amp;rsquo;t keep a copy of your reviewee&amp;rsquo;s data!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is a template for Peer Review 2. &lt;strong&gt;Copy and paste this in response to the GitHub Issue that announces your review&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;## organization
+
+Did your reviewee follow the directory naming convention that we are using? Was it easy to find the data cleaning script?
+
+YOUR WORDS HERE
+
+## reproducible
+
+Open the data cleaning script and run it all, either by sourcing or by highlighting and click Run all
+
+What happened? Did the final data file recreate itself? Why or why not? What changes need to be made to the script to allow it to run on your machine?
+
+YOUR WORDS HERE
+
+## documented
+
+Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?
+
+YOUR WORDS HERE
+
+## efficient
+
+What transformations or manipulations is your reviewee performing? Are any done with more code than is necessary? For example, are they using their own code to solve a problem that is already handled in `dplyr` or `tidyr`? **suggest something they could do differently**
+
+YOUR WORDS HERE
+
+
+## output is tidy
+
+Tidy data has one observation in each row, and one variable in each column. Does that appear to be true of your reviewee&#39;s dataset? Is there another form you could suggest?
+
+YOUR WORDS HERE
+
+## output is correct
+
+check either on Github or via a real CSV validator such as [csvlint.io](http://csvlint.io/) and/or [CSVfingerprint](http://setosa.io/csv-fingerprint/)
+
+YOUR WORDS HERE
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Peer Review 3</title>
+      <link>/page/08_PeerReview_3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/08_PeerReview_3/</guid>
+      <description>
+
+&lt;p&gt;The goal of this Peer Review is twofold:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To help our colleagues perform &amp;ldquo;quality control&amp;rdquo; on their &lt;em&gt;tidy data&lt;/em&gt;, and to document that data with clear metadata.&lt;/li&gt;
+&lt;li&gt;To practice applying your own data skills to unfamiliar data.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A template for your Review is below. &lt;strong&gt;Copy and paste this in response to the GitHub Issue that announces your review&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;reusing-your-reviewee-s-data&#34;&gt;reusing your reviewee&amp;rsquo;s data!&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To demonstrate that their metadata is complete by interpreting their data without asking them questions&lt;/li&gt;
+&lt;li&gt;To practice your dplyr and tidyr skills on a new and unfamiliar dataset&lt;/li&gt;
+&lt;li&gt;FUN!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are some ideas of what you can do:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Write a few new assertions&lt;/li&gt;
+&lt;li&gt;Do some statistics (anova, linear regression &amp;ndash; very simple is fine)&lt;/li&gt;
+&lt;li&gt;Visualize their data&lt;/li&gt;
+&lt;li&gt;use &lt;code&gt;dplyr&lt;/code&gt; to calculate some new summary statistics&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Tip: format your R code so that it looks good on the issue! put a row of three backticks right before your code and right after it. This is called a fenced code block &lt;a href=&#34;https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks&#34;&gt;see this link for more info&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tip: you can &lt;a href=&#34;http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github&#34;&gt;link to specific lines of code&lt;/a&gt; on GitHub by clicking on them and using the new URL&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Please don&amp;rsquo;t keep a copy of your reviewee&amp;rsquo;s data!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;template&#34;&gt;Template:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;## organization
+
+*Did your reviewee follow the directory naming convention that we are using? Was it easy to find the different R scripts?*
+
+YOUR WORDS HERE
+
+## documentation
+
+*Review the code that performs the assertions. Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?*
+
+YOUR WORDS HERE
+
+## Assertions
+
+*what things does your reviewee test for in the assertions? Is anything missing? Suggest an improvement to their quality control*
+
+YOUR WORDS HERE
+
+## Metadata (two parts)
+
+### clear and human-readable
+
+*Is the metadata thorough? When, where and how was this work done? Do you have any questions about what the data mean?* 
+
+YOUR WORDS HERE
+
+### correct and machine-readable
+
+*Choose one from below (depending on what your reviewee has done) and describe how to fix any problems you find:*
+
+* `EML` -- use the function `eml_read()` from the `EML` package. Will it read into R?
+* `csvy` -- copy and paste the YAML information into [this validator](http://codebeautify.org/yaml-validator) and click &amp;quot;Validate&amp;quot;.
+* `datapackage` -- copy and paste the `datapackage.json` file into [this validator](http://jsonlint.com/) and click &amp;quot;Validate&amp;quot;
+
+YOUR WORDS HERE
+
+# Reuse your colleagues data
+
+*Do something with your reviewee&#39;s data! Write an R script that reads the data in, then does something. Don&#39;t forget to write comments!*  
+*Paste the entire R script you wrote below, inside a fenced code block*  
+*If you&#39;ve made a plot, you can add that in a separate comment*
+
+YOUR CODE HERE
+
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

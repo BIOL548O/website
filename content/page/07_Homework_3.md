@@ -1,8 +1,8 @@
 ---
-layout: page
-title: Homework 3
-subtitle: Assertions and Metadata
-comments: true
+title: "Homework 3"
+menu: 
+  main:
+    weight: 75
 ---
 
 ### First part -- respond to your reviewers from last week.

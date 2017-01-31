@@ -1,8 +1,9 @@
 ---
-layout: page
-title: Metadata
-subtitle: Has anyone seen my keys?
-comments: true
+title: "Metadata"
+subtitle: "Has anyone seen my keys?"
+menu: 
+  main:
+    weight: 70
 ---
 
 ## Outline for today
