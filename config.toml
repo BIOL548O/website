@@ -1,0 +1,10 @@
+theme = "hyde"
+baseurl = "http://replace-this-with-your-hugo-site.com/"
+title = "Dealing with Data"
+languageCode = "en-us"
+
+[params]
+  themeColor = "theme-base-0b"
+  description = "BIOL548O is a zoology graduate module at the University of British Columbia"
+  copyright = "© Andrew MacDonald 2017"
+
