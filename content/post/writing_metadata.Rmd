@@ -1,9 +1,11 @@
 ---
-output: github_document
+title: "Writing metadata"
+author: "Andrew MacDonald"
+date: 2017-02-15
+menu: main
 ---
 
 Metadata is _data about data_
-
 
 ## hand-made artisanal metadata
 
@@ -177,7 +179,7 @@ We're going to focus on this process, (but not on the constraints)
 
 Let's start by using `rio` to write the data out:
 
-```{r}
+```{r, eval = FALSE}
 library(rio)
 
 attributes(gapminder)[1:2]

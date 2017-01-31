@@ -1,8 +1,16 @@
 ---
 title: "Assertions in R"
+subtitle: "Hey are you sure about that data"
 author: "Andrew MacDonald"
-output: github_document
+date: 2017-02-14
+menu: main
 ---
+
+## Outline for today
+
+* Review of the Homework -- any interesting challenges or questions?
+* an [Introduction to `assertr`](assert.html)
+* Outline of the [Peer Review 2 process](http://biol548o.github.io/PeerReview_2)
 
 ## Introduction
 
