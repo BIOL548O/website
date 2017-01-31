@@ -1,10 +1,9 @@
 ---
-title: "Basic Manipulation"
+title: "Basic Data Manipulation"
 author: "Andrew MacDonald"
 date: "February 9, 2016"
-output: github_document
+menu: main
 ---
-
 
 
 Many years ago, I was introduced to R by [Cam Webb ](http://camwebb.info/).  At the time, his website contained a list of common data manipulations (original [here](http://camwebb.info/blog/2014-04-29/)).  This list dated from Cam's early experience with R, and contained the R-help mailing list responses to a series of data manipulations.  For a long time, I kept this file as a handy reference.  I printed it out.  I recommended it to friends.

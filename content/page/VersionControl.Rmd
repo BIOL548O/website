@@ -1,8 +1,8 @@
 ---
-layout: page
-title: Version control
-subtitle: tracking all the changes
-comments: true
+title: "01 Version Control"
+author: "Andrew MacDonald"
+date: 2017-01-31
+menu: main
 ---
 
 ## Lecture outline

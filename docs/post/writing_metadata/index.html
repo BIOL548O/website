@@ -1,99 +1,120 @@
-	<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.17" />
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  
-  <title>Metadata &middot; Dealing with Data</title>
-  
+  <title>Writing metadata &middot; Dealing with Data</title>
 
   
   <link rel="stylesheet" href="../../css/poole.css">
-  <link rel="stylesheet" href="../../css/syntax.css">
   <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="../../css/poole-overrides.css">
+  <link rel="stylesheet" href="../../css/hyde-overrides.css">
+  <link rel="stylesheet" href="../../css/hyde-x.css">
+  <link rel="stylesheet" href="../../css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="../../favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../touch-icon-144-precomposed.png">
+  <link href="../../favicon.png" rel="icon">
 
   
-  <link href="" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+
+
+
+
 </head>
-
-	<body class="theme-base-0b ">
-		<div class="sidebar">
+<body class="theme-base-0b">
+<div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="../../"><h1>Dealing with Data</h1></a>
-      <p class="lead">
-       BIOL548O is a zoology graduate module at the University of British Columbia 
-      </p>
+      
+      <h1>Dealing with Data</h1>
+      <p class="lead">BIOL548O</p>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="../../">Home</a> </li>
+      <li class="sidebar-nav-item"><a href="../../">About this course</a></li>
       
-        <li><a href="../../post/assert/"> Assertions in R </a></li>
+      <li class="sidebar-nav-item"><a href="../../post/VersionControl/">01 Version Control</a></li>
       
-        <li><a href="../../post/writing_metadata/"> Writing metadata </a></li>
+      <li class="sidebar-nav-item"><a href="../../page/tidyr/">Basic Data Manipulation</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../post/writing_metadata/">Writing metadata</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../post/assert/">Assertions in R</a></li>
       
     </ul>
 
-    <p>© Andrew MacDonald 2017</p>
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2017 <a href="../../license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
   </div>
 </div>
 
 
-		<div class="content container">
-			<div class="post">
-			 	<h1>Metadata</h1>
-			  <span class="post-date">Mon, Jan 1, 0001</span>
-			      
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Writing metadata</h1>
+    <span class="post-date">Feb 15, 2017 &middot; 4 minute read
+    </span>
+
 
 <p>Metadata is <em>data about data</em></p>
-
-<h2 id="hand-made-artisanal-metadata">hand-made artisanal metadata</h2>
-
+<div id="hand-made-artisanal-metadata" class="section level2">
+<h2>hand-made artisanal metadata</h2>
 <p>You can also do this simply by simple text (<code>.txt</code> or <code>.rtf</code>) with your own hands:</p>
-
-<p><img src="img/bromeliad_metadata.png" alt="brom" /></p>
-
+<div class="figure">
+<img src="img/bromeliad_metadata.png" alt="brom" />
+<p class="caption">brom</p>
+</div>
 <p>Alternatively, you could write it in a CSV format:</p>
-
 <pre><code>field,description
 country,&quot;countries of the world&quot;&quot;
 continent,&quot;continents of the world&quot;
 year,&quot;the year AD&quot;
 lifeExp,&quot;lifeExp in years&quot;
 pop,&quot;population in humans&quot;
-gdpPercap,&quot;gdp per capita, measured in PPP&quot;
-</code></pre>
-
-<p>This is convenient, but has no standard whatsoever. This makes it difficult for machines to read. An increasing number of scientists are experimenting with new ways of creating metadata that satisfies our &ldquo;write data for machines&rdquo; principle.</p>
-
-<p>Many of these methods are novel, and rather experimental. We&rsquo;re going to be using some Very Modern Packages in today&rsquo;s exercises. We&rsquo;ll need to install versions of packages that are newer than what is available on CRAN (via <code>install.packages()</code>). We&rsquo;ll use a small package called <code>ghit</code> to do the job:</p>
-
-<pre><code class="language-r"># install.packages(&quot;ghit&quot;)
-</code></pre>
-
+gdpPercap,&quot;gdp per capita, measured in PPP&quot;</code></pre>
+<p>This is convenient, but has no standard whatsoever. This makes it difficult for machines to read. An increasing number of scientists are experimenting with new ways of creating metadata that satisfies our “write data for machines” principle.</p>
+<p>Many of these methods are novel, and rather experimental. We’re going to be using some Very Modern Packages in today’s exercises. We’ll need to install versions of packages that are newer than what is available on CRAN (via <code>install.packages()</code>). We’ll use a small package called <code>ghit</code> to do the job:</p>
+<pre class="r"><code># install.packages(&quot;ghit&quot;)</code></pre>
 <p>As usual, our gapminder dataset will supply some good examples:</p>
-
-<pre><code class="language-r">library(gapminder)
-</code></pre>
-
-<h2 id="intro-to-json-and-xml-and-yaml">intro to JSON and XML (and YAML)</h2>
-
+<pre class="r"><code>library(gapminder)</code></pre>
+</div>
+<div id="intro-to-json-and-xml-and-yaml" class="section level2">
+<h2>intro to JSON and XML (and YAML)</h2>
 <p>These are the two common languages of the internet: <strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation and e<strong>X</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage.</p>
-
-<p>Here&rsquo;s an example of JSON: from <a href="https://zapier.com/learn/apis/chapter-3-data-formats/">this wonderful site</a></p>
-
-<pre><code class="language-javascript">{
+<p>Here’s an example of JSON: from <a href="https://zapier.com/learn/apis/chapter-3-data-formats/">this wonderful site</a></p>
+<pre class="javascript"><code>{
   &quot;crust&quot;: &quot;original&quot;,
   &quot;toppings&quot;: [&quot;cheese&quot;, &quot;pepperoni&quot;, &quot;garlic&quot;],
   &quot;status&quot;: &quot;cooking&quot;,
@@ -101,12 +122,9 @@ gdpPercap,&quot;gdp per capita, measured in PPP&quot;
     &quot;name&quot;: &quot;Brian&quot;,
     &quot;phone&quot;: &quot;573-111-1111&quot;
   }
-}
-</code></pre>
-
+}</code></pre>
 <p>And here is XML:</p>
-
-<pre><code class="language-xml">&lt;order&gt;
+<pre class="xml"><code>&lt;order&gt;
     &lt;crust&gt;original&lt;/crust&gt;
     &lt;toppings&gt;
         &lt;topping&gt;cheese&lt;/topping&gt;
@@ -114,31 +132,23 @@ gdpPercap,&quot;gdp per capita, measured in PPP&quot;
         &lt;topping&gt;garlic&lt;/topping&gt;
     &lt;/toppings&gt;
     &lt;status&gt;cooking&lt;/status&gt;
-&lt;/order&gt;
-</code></pre>
-
-<p>and finally, *Y*et *A*nother *M*arkup *L*anguage:</p>
-
+&lt;/order&gt;</code></pre>
+<p>and finally, <em>Y</em>et <em>A</em>nother <em>M</em>arkup <em>L</em>anguage:</p>
 <pre><code>order:
   - crust: original
      topping: 
         - cheese
         - pepperoni
-        - garlic
-</code></pre>
-
-<h2 id="the-classic-approach-the-ecological-metadata-language-eml">the classic approach: the Ecological Metadata Language (<code>EML</code>)</h2>
-
+        - garlic</code></pre>
+</div>
+<div id="the-classic-approach-the-ecological-metadata-language-eml" class="section level2">
+<h2>the classic approach: the Ecological Metadata Language (<code>EML</code>)</h2>
 <p>EML is a classic metadata approach. There is a <a href="http://im.lternet.edu/sites/im.lternet.edu/files/emlHandbook.pdf">large amount of documentation</a>.</p>
-
 <p>It is used in the Knowledge Network for Biocomplexity</p>
-
 <pre><code>library(ghit)
 install_github(&quot;ropensci/EML&quot;, dependencies=c(&quot;Depends&quot;, &quot;Imports&quot;))
-library(EML)
-</code></pre>
-
-<pre><code class="language-r">dat &lt;- data.frame(river = factor(c(&quot;SAC&quot;,  
+library(EML)</code></pre>
+<pre class="r"><code>dat &lt;- data.frame(river = factor(c(&quot;SAC&quot;,  
                                    &quot;SAC&quot;,   
                                    &quot;AM&quot;)),
                   spp   = c(&quot;Oncorhynchus tshawytscha&quot;,  
@@ -155,12 +165,9 @@ library(EML)
                   day   = as.Date(c(&quot;2013-09-01&quot;, 
                                     &quot;2013-09-1&quot;, 
                                     &quot;2013-09-02&quot;)),
-                  stringsAsFactors = FALSE)
-</code></pre>
-
+                  stringsAsFactors = FALSE)</code></pre>
 <p>now we define the column units:</p>
-
-<pre><code class="language-r">col.defs &lt;- c(&quot;River site used for collection&quot;,
+<pre class="r"><code>col.defs &lt;- c(&quot;River site used for collection&quot;,
               &quot;Species scientific name&quot;,
               &quot;Life Stage&quot;, 
               &quot;count of live fish in traps&quot;,
@@ -177,22 +184,17 @@ unit.defs &lt;- list(
     precision = 1, 
     bounds = c(0, Inf)),              # Integer
   c(format = &quot;YYYY-MM-DD&quot;,            # Date
-    precision = 1))
-</code></pre>
-
+    precision = 1))</code></pre>
 <p>And finally, we write it out:</p>
-
-<pre><code class="language-r">eml_write(dat, 
+<pre class="r"><code>eml_write(dat, 
           col.defs = col.defs, 
           unit.defs = unit.defs, 
           creator = &quot;Carl Boettiger &lt;cboettig@ropensci.org&gt;&quot;, 
-          file = &quot;EML_example.xml&quot;)
-</code></pre>
-
-<h2 id="get-the-computer-to-write-it-csvy">get the computer to write it: <code>CSVY</code></h2>
-
+          file = &quot;EML_example.xml&quot;)</code></pre>
+</div>
+<div id="get-the-computer-to-write-it-csvy" class="section level2">
+<h2>get the computer to write it: <code>CSVY</code></h2>
 <p>CSVY is a new idea, that embeds the metadata file into the very <code>.csv</code> file. The whole idea is described on <a href="http://csvy.org/">csvy.org</a>. It uses a metadata standard called <code>YAML</code>:</p>
-
 <pre><code>---
 name: my-dataset
 fields:
@@ -211,90 +213,57 @@ fields:
 ---
 var1,var2,var3
 A,1,2.5
-B,3,4.3
-</code></pre>
-
-<p>We&rsquo;re going to focus on this process, (but not on the constraints)</p>
-
-<p>Let&rsquo;s start by using <code>rio</code> to write the data out:</p>
-
-<pre><code class="language-r">library(rio)
+B,3,4.3</code></pre>
+<p>We’re going to focus on this process, (but not on the constraints)</p>
+<p>Let’s start by using <code>rio</code> to write the data out:</p>
+<pre class="r"><code>library(rio)
 
 attributes(gapminder)[1:2]
-</code></pre>
 
-<pre><code>## $names
-## [1] &quot;country&quot;   &quot;continent&quot; &quot;year&quot;      &quot;lifeExp&quot;   &quot;pop&quot;       &quot;gdpPercap&quot;
-## 
-## $class
-## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
-</code></pre>
+export(gapminder, &quot;gapminder.csvy&quot;, format = &quot;csvy&quot;, comment_header = FALSE)
 
-<pre><code class="language-r">export(gapminder, &quot;gapminder.csvy&quot;, format = &quot;csvy&quot;, comment_header = FALSE)
-</code></pre>
-
-<pre><code>## Warning in write.table(x, file = file, sep = sep, row.names = row.names, :
-## appending column names to file
-</code></pre>
-
-<pre><code class="language-r">head(import(&quot;gapminder.csvy&quot;))
-</code></pre>
-
-<pre><code>##       country continent year lifeExp      pop gdpPercap
-## 1 Afghanistan      Asia 1952  28.801  8425333  779.4453
-## 2 Afghanistan      Asia 1957  30.332  9240934  820.8530
-## 3 Afghanistan      Asia 1962  31.997 10267083  853.1007
-## 4 Afghanistan      Asia 1967  34.020 11537966  836.1971
-## 5 Afghanistan      Asia 1972  36.088 13079460  739.9811
-## 6 Afghanistan      Asia 1977  38.438 14880372  786.1134
-</code></pre>
-
-<p>now let&rsquo;s edit it by hand.</p>
-
-<h3 id="note-the-json-table-schema">Note: the JSON table schema</h3>
-
+head(import(&quot;gapminder.csvy&quot;))</code></pre>
+<p>now let’s edit it by hand.</p>
+<div id="note-the-json-table-schema" class="section level3">
+<h3>Note: the JSON table schema</h3>
 <pre><code> field     field
    |         |
    |         |
    V         V
-
+ 
   A     |    B    |    C    |    D      &lt;--- Row
   ------------------------------------
   valA  |   valB  |  valC   |   valD    &lt;--- Row
   ...
 </code></pre>
-
-<p>We&rsquo;re going to work with <strong>field descriptors</strong></p>
-
-<pre><code class="language-json">  &quot;name&quot;: &quot;name of field (e.g. column name)&quot;,
+<p>We’re going to work with <strong>field descriptors</strong></p>
+<pre class="json"><code>  &quot;name&quot;: &quot;name of field (e.g. column name)&quot;,
   &quot;title&quot;: &quot;A nicer human readable label or title for the field&quot;,
   &quot;type&quot;: &quot;A string specifying the type&quot;,
   &quot;format&quot;: &quot;A string specifying a format&quot;,
-  &quot;description&quot;: &quot;A description for the field&quot;
-</code></pre>
-
+  &quot;description&quot;: &quot;A description for the field&quot;</code></pre>
 <p>Note that there are no quotes when we use YAML.</p>
-
-<h2 id="datapackage">datapackage</h2>
-
+</div>
+</div>
+<div id="datapackage" class="section level2">
+<h2>datapackage</h2>
 <p>Using the R package <a href="https://github.com/christophergandrud/dpmr"><code>dmpr</code></a>. It creates data packages after the standard described in <a href="http://data.okfn.org/doc/tabular-data-package">datapackage</a></p>
-
-<pre><code class="language-r">#install.package(&quot;dpmr&quot;)
+<pre class="r"><code>#install.package(&quot;dpmr&quot;)
 
 library(dpmr)
-meta_list &lt;- list(name = 'gapminder_data',
-                    title = 'the data of Gapminder',
+meta_list &lt;- list(name = &#39;gapminder_data&#39;,
+                    title = &#39;the data of Gapminder&#39;,
                     last_updated = Sys.Date(),
-                    version = '0.1',
-                    license = data.frame(type = 'PDDL-1.0',
-                            url = 'http://opendatacommons.org/licenses/pddl/')
+                    version = &#39;0.1&#39;,
+                    license = data.frame(type = &#39;PDDL-1.0&#39;,
+                            url = &#39;http://opendatacommons.org/licenses/pddl/&#39;)
                             )
 
 datapackage_init(df = gapminder, meta = meta_list) 
 </code></pre>
-
-<h2 id="resources">Resources</h2>
-
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
 <ul>
 <li><a href="http://www.ands.org.au/guides/metadata-working.html">Metadata Guide</a> from Australian National Data Service (ANDS)</li>
 <li><a href="http://rd-alliance.github.io/metadata-directory/">Metadata Directory</a> from Research Data Alliance</li>
@@ -302,11 +271,19 @@ datapackage_init(df = gapminder, meta = meta_list)
 <li><a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003542">Ten Simple Rules for the Care and Feeding of Scientific Data</a> by Goodman et al</li>
 <li>[Challenges to Open Data and How to Respond] (04c_OpenDataChallengesQuickInfoSheet.md)</li>
 </ul>
+</div>
 
-			</div>
 
-			
-		</div>
 
-  </body>
+  </div>
+  
+</div>
+
+
+
+
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
 </html>
+

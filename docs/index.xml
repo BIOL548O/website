@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dealing with Data</title>
+    <title></title>
     <link>/index.xml</link>
-    <description>Recent content on Dealing with Data</description>
+    <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Andrew MacDonald 2017</copyright>
@@ -12,10 +12,10 @@
     
     <item>
       <title>Writing metadata</title>
-      <link>/post/writing_metadata/</link>
+      <link>/page/writing_metadata/</link>
       <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/writing_metadata/</guid>
+      <guid>/page/writing_metadata/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -217,10 +217,10 @@ datapackage_init(df = gapminder, meta = meta_list)
     
     <item>
       <title>Assertions in R</title>
-      <link>/post/assert/</link>
+      <link>/page/assert/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/assert/</guid>
+      <guid>/page/assert/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -406,11 +406,86 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     </item>
     
     <item>
+      <title>01 Version Control</title>
+      <link>/page/VersionControl/</link>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/page/VersionControl/</guid>
+      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
+
+/BLOGDOWN-BODY-BEFORE --&gt;
+
+&lt;div id=&#34;lecture-outline&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Lecture outline&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction to what the class will be about &lt;a href=&#34;../slides/01_Introduction.html&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;introduction to version control with git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;getting-started-with-git&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Getting started with git&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;slides/git_slides.pdf&#34;&gt;slides about git&lt;/a&gt; courtesy of &lt;a href=&#34;http://swcarpentry.github.io/git-novice&#34;&gt;Software Carpentry&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;01_git_introduce&#34;&gt;Introduce yourself to git&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;here is a list of &lt;a href=&#34;SuppMatt/the_shell&#34;&gt;handy shell commands&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;video-explanation-of-what-this-course-is-about&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Video explanation of what this course is about&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=N2zK3sAtr-4&#34;&gt;Data Sharing and Management Snafu in 3 Short Acts&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reading-for-thursday&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Reading for Thursday&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://scfbm.biomedcentral.com/articles/10.1186/1751-0473-8-7&#34;&gt;Ram, K. 2013. Git can facilitate greater reproducibility and increased transparency in science. Source Code for Biology and Medicine&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668&#34;&gt;Blischak et al, 2016, A Quick Introduction to Version Control with Git and GitHub, PLOS comp bio&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;optional-next-steps-might-have-to-be-on-your-own-time&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Optional next steps (might have to be on your own time)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;01_git_cache&#34;&gt;cache your credentials&lt;/a&gt; so that you don’t have to log in every time that you want to push to github&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/set-up-git&#34;&gt;GitHub’s advice&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;!-- BLOGDOWN-HEAD
+
+
+
+
+/BLOGDOWN-HEAD --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About this course</title>
+      <link>/post/2017-01-31-about-this-course/</link>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017-01-31-about-this-course/</guid>
+      <description>
+
+&lt;p&gt;This course teaches tools for sharing data.&lt;/p&gt;
+
+&lt;h2 id=&#34;resources&#34;&gt;Resources&lt;/h2&gt;
+
+&lt;p&gt;The content here is based on several excellent sources.&lt;/p&gt;
+
+&lt;p&gt;SWC
+DAta carpentry
+Ethan&amp;rsquo;s course&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title></title>
-      <link>/post/nextPRsheet/</link>
+      <link>/page/nextPRsheet/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/nextPRsheet/</guid>
+      <guid>/page/nextPRsheet/</guid>
       <description>
 
 &lt;p&gt;for this next peer review:&lt;/p&gt;
@@ -477,29 +552,11 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     </item>
     
     <item>
-      <title>Assertions in R</title>
-      <link>/post/Assertions/</link>
+      <title>Basic Data Manipulation</title>
+      <link>/page/tidyr/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/Assertions/</guid>
-      <description>
-
-&lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Review of the Homework &amp;ndash; any interesting challenges or questions?&lt;/li&gt;
-&lt;li&gt;an &lt;a href=&#34;assert.html&#34;&gt;Introduction to &lt;code&gt;assertr&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Outline of the &lt;a href=&#34;http://biol548o.github.io/PeerReview_2&#34;&gt;Peer Review 2 process&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Basic Manipulation</title>
-      <link>/post/tidyr/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/tidyr/</guid>
+      <guid>/page/tidyr/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -1339,10 +1396,10 @@ kable(A_arranged)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Basic Manipulation</title>
-      <link>/post/tidyr/</link>
+      <link>/page/tidyr/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/tidyr/</guid>
+      <guid>/page/tidyr/</guid>
       <description>
 
 &lt;p&gt;Many years ago, I was introduced to R by &lt;a href=&#34;http://camwebb.info/&#34;&gt;Cam Webb&lt;/a&gt;. At the time, his website contained a list of common data manipulations (original &lt;a href=&#34;http://camwebb.info/blog/2014-04-29/&#34;&gt;here&lt;/a&gt;). This list dated from Cam&amp;rsquo;s early experience with R, and contained the R-help mailing list responses to a series of data manipulations. For a long time, I kept this file as a handy reference. I printed it out. I recommended it to friends.&lt;/p&gt;
@@ -2326,10 +2383,10 @@ kable(A_arranged)
     
     <item>
       <title>Data munging</title>
-      <link>/post/munge01/</link>
+      <link>/page/munge01/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/munge01/</guid>
+      <guid>/page/munge01/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -2390,10 +2447,10 @@ foo_foo %&amp;gt;%
     
     <item>
       <title>Data munging part 2</title>
-      <link>/post/munge02/</link>
+      <link>/page/munge02/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/munge02/</guid>
+      <guid>/page/munge02/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -2441,10 +2498,10 @@ foo_foo %&amp;gt;%
     
     <item>
       <title>GitHub and project setup</title>
-      <link>/post/github/</link>
+      <link>/page/github/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/github/</guid>
+      <guid>/page/github/</guid>
       <description>
 
 &lt;h2 id=&#34;content-outline&#34;&gt;Content outline&lt;/h2&gt;
@@ -2550,10 +2607,10 @@ SOFTWARE.
     
     <item>
       <title>Homework 2</title>
-      <link>/post/Homework_2/</link>
+      <link>/page/Homework_2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/Homework_2/</guid>
+      <guid>/page/Homework_2/</guid>
       <description>
 
 &lt;p&gt;The goal of this week&amp;rsquo;s homework is take your raw data and produce some &lt;strong&gt;tidy&lt;/strong&gt; data, using only R to perform any manipulations. Remember:&lt;/p&gt;
@@ -2667,10 +2724,10 @@ SOFTWARE.
     
     <item>
       <title>Homework 3</title>
-      <link>/post/Homework_3/</link>
+      <link>/page/Homework_3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/Homework_3/</guid>
+      <guid>/page/Homework_3/</guid>
       <description>
 
 &lt;h3 id=&#34;first-part-respond-to-your-reviewers-from-last-week&#34;&gt;First part &amp;ndash; respond to your reviewers from last week.&lt;/h3&gt;
@@ -2707,10 +2764,10 @@ SOFTWARE.
     
     <item>
       <title>Installation</title>
-      <link>/post/installation/</link>
+      <link>/page/installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/installation/</guid>
+      <guid>/page/installation/</guid>
       <description>
 
 &lt;h2 id=&#34;installing-software&#34;&gt;Installing software&lt;/h2&gt;
@@ -2877,10 +2934,10 @@ SOFTWARE.
     
     <item>
       <title>Introduce yourself to Git</title>
-      <link>/post/01_git_introduce/</link>
+      <link>/page/01_git_introduce/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/01_git_introduce/</guid>
+      <guid>/page/01_git_introduce/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;You only have to set this up once per machine.&lt;/strong&gt;&lt;/p&gt;
@@ -2924,10 +2981,10 @@ git config --global --list
     
     <item>
       <title>Metadata</title>
-      <link>/post/metadata/</link>
+      <link>/page/metadata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/metadata/</guid>
+      <guid>/page/metadata/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -2949,263 +3006,6 @@ git config --global --list
 &lt;/ol&gt;
 
 &lt;p&gt;Add your responses to &lt;a href=&#34;https://etherpad.wikimedia.org/p/BIO548O&#34;&gt;This Etherpad Document&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Metadata</title>
-      <link>/post/writing_metadata/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/writing_metadata/</guid>
-      <description>
-
-&lt;p&gt;Metadata is &lt;em&gt;data about data&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;hand-made-artisanal-metadata&#34;&gt;hand-made artisanal metadata&lt;/h2&gt;
-
-&lt;p&gt;You can also do this simply by simple text (&lt;code&gt;.txt&lt;/code&gt; or &lt;code&gt;.rtf&lt;/code&gt;) with your own hands:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/bromeliad_metadata.png&#34; alt=&#34;brom&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Alternatively, you could write it in a CSV format:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;field,description
-country,&amp;quot;countries of the world&amp;quot;&amp;quot;
-continent,&amp;quot;continents of the world&amp;quot;
-year,&amp;quot;the year AD&amp;quot;
-lifeExp,&amp;quot;lifeExp in years&amp;quot;
-pop,&amp;quot;population in humans&amp;quot;
-gdpPercap,&amp;quot;gdp per capita, measured in PPP&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is convenient, but has no standard whatsoever. This makes it difficult for machines to read. An increasing number of scientists are experimenting with new ways of creating metadata that satisfies our &amp;ldquo;write data for machines&amp;rdquo; principle.&lt;/p&gt;
-
-&lt;p&gt;Many of these methods are novel, and rather experimental. We&amp;rsquo;re going to be using some Very Modern Packages in today&amp;rsquo;s exercises. We&amp;rsquo;ll need to install versions of packages that are newer than what is available on CRAN (via &lt;code&gt;install.packages()&lt;/code&gt;). We&amp;rsquo;ll use a small package called &lt;code&gt;ghit&lt;/code&gt; to do the job:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# install.packages(&amp;quot;ghit&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As usual, our gapminder dataset will supply some good examples:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(gapminder)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;intro-to-json-and-xml-and-yaml&#34;&gt;intro to JSON and XML (and YAML)&lt;/h2&gt;
-
-&lt;p&gt;These are the two common languages of the internet: &lt;strong&gt;J&lt;/strong&gt;ava&lt;strong&gt;S&lt;/strong&gt;cript &lt;strong&gt;O&lt;/strong&gt;bject &lt;strong&gt;N&lt;/strong&gt;otation and e&lt;strong&gt;X&lt;/strong&gt;tensible &lt;strong&gt;M&lt;/strong&gt;arkup &lt;strong&gt;L&lt;/strong&gt;anguage.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s an example of JSON: from &lt;a href=&#34;https://zapier.com/learn/apis/chapter-3-data-formats/&#34;&gt;this wonderful site&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
-  &amp;quot;crust&amp;quot;: &amp;quot;original&amp;quot;,
-  &amp;quot;toppings&amp;quot;: [&amp;quot;cheese&amp;quot;, &amp;quot;pepperoni&amp;quot;, &amp;quot;garlic&amp;quot;],
-  &amp;quot;status&amp;quot;: &amp;quot;cooking&amp;quot;,
-  &amp;quot;customer&amp;quot;: {
-    &amp;quot;name&amp;quot;: &amp;quot;Brian&amp;quot;,
-    &amp;quot;phone&amp;quot;: &amp;quot;573-111-1111&amp;quot;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And here is XML:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;order&amp;gt;
-    &amp;lt;crust&amp;gt;original&amp;lt;/crust&amp;gt;
-    &amp;lt;toppings&amp;gt;
-        &amp;lt;topping&amp;gt;cheese&amp;lt;/topping&amp;gt;
-        &amp;lt;topping&amp;gt;pepperoni&amp;lt;/topping&amp;gt;
-        &amp;lt;topping&amp;gt;garlic&amp;lt;/topping&amp;gt;
-    &amp;lt;/toppings&amp;gt;
-    &amp;lt;status&amp;gt;cooking&amp;lt;/status&amp;gt;
-&amp;lt;/order&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and finally, *Y*et *A*nother *M*arkup *L*anguage:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;order:
-  - crust: original
-     topping: 
-        - cheese
-        - pepperoni
-        - garlic
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;the-classic-approach-the-ecological-metadata-language-eml&#34;&gt;the classic approach: the Ecological Metadata Language (&lt;code&gt;EML&lt;/code&gt;)&lt;/h2&gt;
-
-&lt;p&gt;EML is a classic metadata approach. There is a &lt;a href=&#34;http://im.lternet.edu/sites/im.lternet.edu/files/emlHandbook.pdf&#34;&gt;large amount of documentation&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It is used in the Knowledge Network for Biocomplexity&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;library(ghit)
-install_github(&amp;quot;ropensci/EML&amp;quot;, dependencies=c(&amp;quot;Depends&amp;quot;, &amp;quot;Imports&amp;quot;))
-library(EML)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dat &amp;lt;- data.frame(river = factor(c(&amp;quot;SAC&amp;quot;,  
-                                   &amp;quot;SAC&amp;quot;,   
-                                   &amp;quot;AM&amp;quot;)),
-                  spp   = c(&amp;quot;Oncorhynchus tshawytscha&amp;quot;,  
-                            &amp;quot;Oncorhynchus tshawytscha&amp;quot;, 
-                            &amp;quot;Oncorhynchus kisutch&amp;quot;),
-                  stg   = ordered(c(&amp;quot;smolt&amp;quot;, 
-                                    &amp;quot;parr&amp;quot;, 
-                                    &amp;quot;smolt&amp;quot;), 
-                                  levels=c(&amp;quot;parr&amp;quot;, 
-                                           &amp;quot;smolt&amp;quot;)), # =&amp;gt; parr &amp;lt; smolt
-                  ct    = c(293L,    
-                            410L,    
-                            210L),
-                  day   = as.Date(c(&amp;quot;2013-09-01&amp;quot;, 
-                                    &amp;quot;2013-09-1&amp;quot;, 
-                                    &amp;quot;2013-09-02&amp;quot;)),
-                  stringsAsFactors = FALSE)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;now we define the column units:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;col.defs &amp;lt;- c(&amp;quot;River site used for collection&amp;quot;,
-              &amp;quot;Species scientific name&amp;quot;,
-              &amp;quot;Life Stage&amp;quot;, 
-              &amp;quot;count of live fish in traps&amp;quot;,
-              &amp;quot;The day on which traps were sampled&amp;quot;)
-
-
-unit.defs &amp;lt;- list(
-  c(SAC = &amp;quot;The Sacramento River&amp;quot;,     # Factor 
-    AM = &amp;quot;The American River&amp;quot;),
- &amp;quot;Scientific name&amp;quot;,                   # Character string 
-  c(parr = &amp;quot;third life stage&amp;quot;,        # Ordered factor 
-    smolt = &amp;quot;fourth life stage&amp;quot;),
-  c(unit = &amp;quot;number&amp;quot;, 
-    precision = 1, 
-    bounds = c(0, Inf)),              # Integer
-  c(format = &amp;quot;YYYY-MM-DD&amp;quot;,            # Date
-    precision = 1))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And finally, we write it out:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;eml_write(dat, 
-          col.defs = col.defs, 
-          unit.defs = unit.defs, 
-          creator = &amp;quot;Carl Boettiger &amp;lt;cboettig@ropensci.org&amp;gt;&amp;quot;, 
-          file = &amp;quot;EML_example.xml&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;get-the-computer-to-write-it-csvy&#34;&gt;get the computer to write it: &lt;code&gt;CSVY&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;CSVY is a new idea, that embeds the metadata file into the very &lt;code&gt;.csv&lt;/code&gt; file. The whole idea is described on &lt;a href=&#34;http://csvy.org/&#34;&gt;csvy.org&lt;/a&gt;. It uses a metadata standard called &lt;code&gt;YAML&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;---
-name: my-dataset
-fields:
-  - name: var1
-    title: variable 1
-    type: string
-    description: explaining var1
-    constraints:
-      - required: true
-  - name: var2
-    title: variable 2
-    type: integer
-  - name: var3
-    title: variable 3
-    type: number
----
-var1,var2,var3
-A,1,2.5
-B,3,4.3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We&amp;rsquo;re going to focus on this process, (but not on the constraints)&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s start by using &lt;code&gt;rio&lt;/code&gt; to write the data out:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(rio)
-
-attributes(gapminder)[1:2]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## $names
-## [1] &amp;quot;country&amp;quot;   &amp;quot;continent&amp;quot; &amp;quot;year&amp;quot;      &amp;quot;lifeExp&amp;quot;   &amp;quot;pop&amp;quot;       &amp;quot;gdpPercap&amp;quot;
-## 
-## $class
-## [1] &amp;quot;tbl_df&amp;quot;     &amp;quot;tbl&amp;quot;        &amp;quot;data.frame&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;export(gapminder, &amp;quot;gapminder.csvy&amp;quot;, format = &amp;quot;csvy&amp;quot;, comment_header = FALSE)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## Warning in write.table(x, file = file, sep = sep, row.names = row.names, :
-## appending column names to file
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;head(import(&amp;quot;gapminder.csvy&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;##       country continent year lifeExp      pop gdpPercap
-## 1 Afghanistan      Asia 1952  28.801  8425333  779.4453
-## 2 Afghanistan      Asia 1957  30.332  9240934  820.8530
-## 3 Afghanistan      Asia 1962  31.997 10267083  853.1007
-## 4 Afghanistan      Asia 1967  34.020 11537966  836.1971
-## 5 Afghanistan      Asia 1972  36.088 13079460  739.9811
-## 6 Afghanistan      Asia 1977  38.438 14880372  786.1134
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;now let&amp;rsquo;s edit it by hand.&lt;/p&gt;
-
-&lt;h3 id=&#34;note-the-json-table-schema&#34;&gt;Note: the JSON table schema&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt; field     field
-   |         |
-   |         |
-   V         V
-
-  A     |    B    |    C    |    D      &amp;lt;--- Row
-  ------------------------------------
-  valA  |   valB  |  valC   |   valD    &amp;lt;--- Row
-  ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We&amp;rsquo;re going to work with &lt;strong&gt;field descriptors&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;  &amp;quot;name&amp;quot;: &amp;quot;name of field (e.g. column name)&amp;quot;,
-  &amp;quot;title&amp;quot;: &amp;quot;A nicer human readable label or title for the field&amp;quot;,
-  &amp;quot;type&amp;quot;: &amp;quot;A string specifying the type&amp;quot;,
-  &amp;quot;format&amp;quot;: &amp;quot;A string specifying a format&amp;quot;,
-  &amp;quot;description&amp;quot;: &amp;quot;A description for the field&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that there are no quotes when we use YAML.&lt;/p&gt;
-
-&lt;h2 id=&#34;datapackage&#34;&gt;datapackage&lt;/h2&gt;
-
-&lt;p&gt;Using the R package &lt;a href=&#34;https://github.com/christophergandrud/dpmr&#34;&gt;&lt;code&gt;dmpr&lt;/code&gt;&lt;/a&gt;. It creates data packages after the standard described in &lt;a href=&#34;http://data.okfn.org/doc/tabular-data-package&#34;&gt;datapackage&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#install.package(&amp;quot;dpmr&amp;quot;)
-
-library(dpmr)
-meta_list &amp;lt;- list(name = &#39;gapminder_data&#39;,
-                    title = &#39;the data of Gapminder&#39;,
-                    last_updated = Sys.Date(),
-                    version = &#39;0.1&#39;,
-                    license = data.frame(type = &#39;PDDL-1.0&#39;,
-                            url = &#39;http://opendatacommons.org/licenses/pddl/&#39;)
-                            )
-
-datapackage_init(df = gapminder, meta = meta_list) 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;resources&#34;&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.ands.org.au/guides/metadata-working.html&#34;&gt;Metadata Guide&lt;/a&gt; from Australian National Data Service (ANDS)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://rd-alliance.github.io/metadata-directory/&#34;&gt;Metadata Directory&lt;/a&gt; from Research Data Alliance&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.dataone.org/sites/all/documents/DataONE_BP_Primer_020212.pdf&#34;&gt;Best Practices for Data Management&lt;/a&gt; from DataONE&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003542&#34;&gt;Ten Simple Rules for the Care and Feeding of Scientific Data&lt;/a&gt; by Goodman et al&lt;/li&gt;
-&lt;li&gt;[Challenges to Open Data and How to Respond] (04c_OpenDataChallengesQuickInfoSheet.md)&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

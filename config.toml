@@ -1,12 +1,24 @@
-theme = "hyde"
-baseurl = "http://replace-this-with-your-hugo-site.com/"
-title = "Dealing with Data"
+theme = "hyde-x"
+baseurl = "http://biol548o.github.io/"
 languageCode = "en-us"
 publishDir = "docs"
 publishdir = "docs"
+#disqusShortname = "your_disqus_shortname"
+
+[author]
+    name = "Dealing with Data"
 
 [params]
-  themeColor = "theme-base-0b"
-  description = "BIOL548O is a zoology graduate module at the University of British Columbia"
+  theme = "theme-base-0b"
+  tagline = "BIOL548O"
   copyright = "© Andrew MacDonald 2017"
+  highlight = "sunburst"
+  home = "About this course"
+  truncate = false
+
+  # Hide estimated reading time for posts.
+  # Default (if omitted) is false.
+  hideReadingTime = true
+
+
 

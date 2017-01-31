@@ -7,93 +7,91 @@
   </url>
   
   <url>
-    <loc>/post/writing_metadata/</loc>
+    <loc>/page/writing_metadata/</loc>
     <lastmod>2017-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/assert/</loc>
+    <loc>/page/assert/</loc>
     <lastmod>2017-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/nextPRsheet/</loc>
+    <loc>/page/VersionControl/</loc>
+    <lastmod>2017-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/Assertions/</loc>
+    <loc>/post/2017-01-31-about-this-course/</loc>
+    <lastmod>2017-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/tidyr/</loc>
+    <loc>/page/nextPRsheet/</loc>
   </url>
   
   <url>
-    <loc>/post/tidyr/</loc>
+    <loc>/page/tidyr/</loc>
   </url>
   
   <url>
-    <loc>/post/munge01/</loc>
+    <loc>/page/tidyr/</loc>
   </url>
   
   <url>
-    <loc>/post/munge02/</loc>
+    <loc>/page/munge01/</loc>
   </url>
   
   <url>
-    <loc>/post/github/</loc>
+    <loc>/page/munge02/</loc>
   </url>
   
   <url>
-    <loc>/post/Homework_2/</loc>
+    <loc>/page/github/</loc>
   </url>
   
   <url>
-    <loc>/post/Homework_3/</loc>
+    <loc>/page/Homework_2/</loc>
   </url>
   
   <url>
-    <loc>/post/installation/</loc>
+    <loc>/page/Homework_3/</loc>
   </url>
   
   <url>
-    <loc>/post/01_git_introduce/</loc>
+    <loc>/page/installation/</loc>
   </url>
   
   <url>
-    <loc>/post/metadata/</loc>
+    <loc>/page/01_git_introduce/</loc>
   </url>
   
   <url>
-    <loc>/post/writing_metadata/</loc>
+    <loc>/page/metadata/</loc>
   </url>
   
   <url>
-    <loc>/post/github_howto/</loc>
+    <loc>/page/github_howto/</loc>
   </url>
   
   <url>
-    <loc>/post/Repositories/</loc>
+    <loc>/page/Repositories/</loc>
   </url>
   
   <url>
-    <loc>/post/PeerReview_2/</loc>
+    <loc>/page/PeerReview_2/</loc>
   </url>
   
   <url>
-    <loc>/post/PeerReview_3/</loc>
+    <loc>/page/PeerReview_3/</loc>
   </url>
   
   <url>
-    <loc>/post/VersionControl/</loc>
+    <loc>/page/final/</loc>
   </url>
   
   <url>
-    <loc>/post/final/</loc>
-  </url>
-  
-  <url>
-    <loc>/post/01_git_cache/</loc>
+    <loc>/page/01_git_cache/</loc>
   </url>
   
 </urlset>
