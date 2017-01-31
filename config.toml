@@ -2,6 +2,8 @@ theme = "hyde"
 baseurl = "http://replace-this-with-your-hugo-site.com/"
 title = "Dealing with Data"
 languageCode = "en-us"
+publishDir = "docs"
+publishdir = "docs"
 
 [params]
   themeColor = "theme-base-0b"
