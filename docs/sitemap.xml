@@ -2,13 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://replace-this-with-your-hugo-site.com/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2017-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://replace-this-with-your-hugo-site.com/post/2015-07-23-r-rmarkdown/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <loc>/post/writing_metadata/</loc>
+    <lastmod>2017-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/assert/</loc>
+    <lastmod>2017-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/nextPRsheet/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/Assertions/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/tidyr/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/tidyr/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/munge01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/munge02/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/github/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/Homework_2/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/Homework_3/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/installation/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/01_git_introduce/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/metadata/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/writing_metadata/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/github_howto/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/Repositories/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/PeerReview_2/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/PeerReview_3/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/VersionControl/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/final/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/01_git_cache/</loc>
   </url>
   
 </urlset>

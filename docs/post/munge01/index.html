@@ -1,0 +1,119 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.17" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>Data munging &middot; Dealing with Data</title>
+  
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="../../favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
+</head>
+
+	<body class="theme-base-0b ">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="../../"><h1>Dealing with Data</h1></a>
+      <p class="lead">
+       BIOL548O is a zoology graduate module at the University of British Columbia 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="../../">Home</a> </li>
+      
+        <li><a href="../../post/assert/"> Assertions in R </a></li>
+      
+        <li><a href="../../post/writing_metadata/"> Writing metadata </a></li>
+      
+    </ul>
+
+    <p>© Andrew MacDonald 2017</p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>Data munging</h1>
+			  <span class="post-date">Mon, Jan 1, 0001</span>
+			      
+
+<h2 id="outline-for-today">Outline for today</h2>
+
+<ul>
+<li><a href="slides/munge_slides.html">Today&rsquo;s slides</a><br /></li>
+<li><a href="SuppMatt/09_02_2016_notes.R">What Andrew typed in today</a></li>
+</ul>
+
+<h3 id="intro-to-tidy-data">Intro to tidy data</h3>
+
+<p><em>step 1</em> download <a href="https://www.dropbox.com/s/5ncuacnd3arjitc/survey_data_tabs.xls?dl=0">this data</a><br />
+<em>step 2</em> &ldquo;tidy it up&rdquo;<br />
+<em>courtesy of Data Carpentry</em></p>
+
+<h3 id="intro-to-r">Intro to R</h3>
+
+<p>I&rsquo;m assuming that you have had some exposure to R already. However, let&rsquo;s review some of the particular tools that we&rsquo;re going to be using</p>
+
+<h3 id="ceci-ce-n-est-pas-un-pipe"><em>Ceci ce n&rsquo;est pas un pipe</em></h3>
+
+<p>The pipe operator <code>%&gt;%</code> was recently introduced to R and created shockwaves:</p>
+
+<pre><code>foo_foo &lt;- little_bunny()
+
+## orthodox R style
+bop_on(scoop_up(hop_through(foo_foo, forest), field_mouse), head)
+
+## novel pipe syntax
+foo_foo %&gt;%
+  hop_through(forest) %&gt;%
+  scoop_up(field_mouse) %&gt;%
+  bop_on(head)
+</code></pre>
+
+<p>Based on this, how do you think it works?</p>
+
+<ul>
+<li><code>tidyr</code></li>
+<li>some project setup</li>
+</ul>
+
+<h2 id="recommended-reading">recommended reading</h2>
+
+<ul>
+<li><a href="http://vita.had.co.nz/papers/tidy-data.pdf">Tidy data</a></li>
+<li><a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html"><code>dplyr</code> vignette</a></li>
+<li><a href="http://www.seascapemodels.org/rstats/rspatial/2015/11/13/data-commandments.html">ten commandments of entering data for R</a></li>
+</ul>
+
+<p>You can also see these from Rstudio if you type <code>browseVignettes(package = &quot;dplyr&quot;)</code></p>
+
+<h2 id="homework-2-is-coming-up">Homework 2 is coming up!</h2>
+
+<p>Come next class (Thursday) with the most <em>raw</em> version of your data you can find. This might be the spreadsheet you typed in when you recorded your data, or which was emailed to you. It may be a series of text files that you received from your instrument. It might even be a link to a shared folder on Dropbox, or some other online source of information.</p>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>

@@ -1,0 +1,271 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.17" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>Notes on running a class on github &middot; Dealing with Data</title>
+  
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="../../favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
+</head>
+
+	<body class="theme-base-0b ">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="../../"><h1>Dealing with Data</h1></a>
+      <p class="lead">
+       BIOL548O is a zoology graduate module at the University of British Columbia 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="../../">Home</a> </li>
+      
+        <li><a href="../../post/assert/"> Assertions in R </a></li>
+      
+        <li><a href="../../post/writing_metadata/"> Writing metadata </a></li>
+      
+    </ul>
+
+    <p>© Andrew MacDonald 2017</p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>Notes on running a class on github</h1>
+			  <span class="post-date">Mon, Jan 1, 0001</span>
+			      
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The first run of BIOL548O (&ldquo;Dealing with Data&rdquo;) is being taught entirely through GitHub. This is an approach inspired by STAT545/547. In both courses, the intention is that students will get practical experience in creating and managing their projects via git. It also has the potential to help the course instructor manage assignments and grades, etc.</p>
+
+<p>This document is for notes that I am taking about using GitHub in the classroom. I mean it mostly as a personal reference, but also as a place to discuss with instructors of other courses. It will eventually serve as a guide for whoever takes this course over from me, should they wish to apply the same approach in the future.</p>
+
+<h2 id="organization-setup">organization setup</h2>
+
+<ul>
+<li>created the organization on github, added other course Instructor (there are two this year, myself and Diane) as owners.</li>
+<li>applied for the GitHub educational discount for the course. asked for a large number of private repositories (more than i would need, 30 or 50 i forget exactly how many)</li>
+<li>How can you find out how many private repositories you have? You go to <code>Settings &gt; Billing</code>. As of 2016, GitHub granted BIOL548O a &ldquo;Gold&rdquo; plan, giving us 50 private repositories.</li>
+</ul>
+
+<h2 id="adding-people-to-the-github-organization">adding people to the github organization</h2>
+
+<ul>
+<li>In STAT545, data about each student was collected in a Shiny app &ndash; including their GitHub username. I considered doing that here as well, or using a Google Form</li>
+<li>Instead, I decided on the Human Touch &ndash; on the 2nd lecture, I asked the students to take turns introducing themselves and stating<br />
+
+<ul>
+<li>their actual name</li>
+<li>their github username</li>
+<li>what kind of data they deal with</li>
+</ul></li>
+<li>As each student introduced themselves, I manually added them to the organization. This led to me typing on the screen while the student was talking about themselves.</li>
+<li>Pros and cons of this approach
+
+<ul>
+<li><em>PRO</em>
+
+<ul>
+<li>I actually got to meet everyone. Adding the username gave the proceedings a bit of practical significance, instead of the rote &ldquo;name/lab/thesis&rdquo; introduction we are all used to giving.</li>
+<li>other students got to hear their peer&rsquo;s usernames. Since online collaboration is an important part of this course, its important that they know who they are dealing with.</li>
+<li>So easy! it allowed me to defer studying the GitHub API</li>
+</ul></li>
+<li><em>CON</em>
+
+<ul>
+<li>Would scale TERRIBLY. This was only possible because about 20 people are involved.</li>
+<li>Weird typos, either in original usernames or in my typing of them, slowed down that process.</li>
+</ul></li>
+</ul></li>
+<li>I added <em>everybody</em> to this course. Literally everybody. Students and Instructors, of course, but also auditors, unofficial auditors, friendly postdocs, interested grad students, and one colleague in another country.
+
+<ul>
+<li>my motivation for liberal course membership: Keeping track of <em>all</em> interested parties, to spare myself having to coordinate things through &ldquo;connect&rdquo; (the UBC course management thing). This list is incomplete (ie doesn&rsquo;t catch those impermanent groups). Also I find the UI for Connect a little stressful (why are there so many menus! v distressing)</li>
+</ul></li>
+</ul>
+
+<h2 id="github-api-stuff-permissions-teams">Github API stuff &ndash; permissions, teams</h2>
+
+<ul>
+<li>I started trying to learn the <a href="https://developer.github.com/v3/">github API</a>, especially as expressed in R by <a href="https://github.com/gaborcsardi/gh">Gabor Csardi&rsquo;s R package <code>gh</code></a></li>
+<li>I quickly realized that decisions about the entire course organization need to be taken before you start organizing people. That&rsquo;s why i wanted to write everything down now: to record those decisions.</li>
+</ul>
+
+<p>Here is a running list of all the Clicky Business you need to do to set up an organization like this:
+    * Get yourself <a href="https://github.com/settings/tokens">a very permissive and powerful github API token</a>. The only thing I left off of my token was &ldquo;Delete&rdquo;, because Future Andrew is an imperfect fellow.
+    * Manually add students to the organization: go to the <a href="https://github.com/orgs/BIOL548O/people">people tab</a> of the organization and click &ldquo;Invite member&rdquo;
+    * <em>this is the stage where they created their own repositories</em>
+    * Go to <code>BIOL548O &gt; Settings &gt; Member Privileges</code> and under <code>Default repository permission</code> set it to <strong>&ldquo;None&rdquo;</strong>.</p>
+
+<h3 id="how-to-see-what-is-going-on">how to see what is going on</h3>
+
+<p><em>who can see this repo</em>: go to a repo, click <code>Settings &gt; Collaborators &amp; teams</code> and it shows up there.</p>
+
+<p>In the setup I described above, you end up with (at least at the beginning) students having Admin access for one repo only: the one they created. Presumably they can also Read any public repository (just as anyone could) but they can&rsquo;t push commits anywhere else.<br />
+I like that. This way, they can have ownership of this repository: they could even (i think?) add an outside person (supervisor, friend) if they wanted.</p>
+
+<p><em>what can this individual see</em>: go to &ldquo;People&rdquo; and click &ldquo;manage access&rdquo; next to their name. You can see here what repositories they have access to. You can also click on the (very confusingly named) &ldquo;manage access&rdquo; button (how far does this rabbithole go?) to see <em>why</em> they have access to it. I like that, too.</p>
+
+<h3 id="private-repositories-student-created">Private repositories &ndash; student created</h3>
+
+<ul>
+<li>I wanted each student to create their own private repository. I felt it was important that they experience the workflow (rather than have a repository handed to them). That happened in Lecture 2</li>
+<li>Well, it <em>seemed</em> OK. But there were Problems:
+
+<ul>
+<li>I asked students to keep their repositories in a standard format: <code>lastname_firstname</code>. In a room of 20 people at least one person wrote their name down as <code>lastname-firstname</code>. Potentially a snag for later when I am using R to process course stuff (the worse because at least one student has a hyphenated last name, so splitting repos base on <code>-</code> OR <code>_</code> will give the wrong answer). Will report back here.
+
+<ul>
+<li>What should I do when students give their repos inconsistent names? Ask the student to correct their error? That <em>might</em> work, but would cause headaches. Because of our workflow, the student would need to modify the name of their repository, the name of the folder and the RStudio project file name, too. Then Rstudio would get confused, and the student would get confused..</li>
+</ul></li>
+<li>When we looked at the MIT Licence after cloning our repositories, it said (to my dismay) that the copyright was to the Organization name (&ldquo;BIOL548O&rdquo;). I had hoped that it would be the student&rsquo;s name. However, only <em>teams</em> can own repos in GitHub. That brings me to my next point:</li>
+</ul></li>
+</ul>
+
+<h3 id="teams-and-permissions">Teams and permissions</h3>
+
+<ul>
+<li>When i added the students to the organization, and asked them to create private repositories, I noticed later that the default setting is that all members can see all private repos.
+
+<ul>
+<li><em>why that&rsquo;s bad</em>
+
+<ul>
+<li>Compromises privacy quite a bit (it is one thing for students to review each other&rsquo;s work, but perhaps too much for all students to see all work all the time)</li>
+<li>Enables copying and plagiarism (not, of course, that I think this is possible/probable in a course of about a dozen close colleagues. But if this were to scale it would be a problem)</li>
+<li>no privacy for Instructors! for those things that an Instructor would like to have in private. Like their kludgy GitHub API code manipulation. Or, idk, minor things like <strong><em>student marks</em></strong></li>
+</ul></li>
+<li><em>why its sort of OK</em>
+
+<ul>
+<li>It looks a bit more like how a lab would organize itself. I mean within a lab it makes sense that everyone should be able to read (and perhaps even modify) all projects. Enabling collaboration even within private repos. So if we&rsquo;re teaching practical skills, why not teach them practically?</li>
+<li>It would certainly be easier to organize peer reviews!</li>
+</ul></li>
+</ul></li>
+<li>Despite the (considerable!) convenience to myself, I decided that it was necessary to shut down access to all private repos.</li>
+</ul>
+
+<h4 id="organizational-teams">Organizational teams</h4>
+
+<p>There are a few teams and things I know for sure I want:</p>
+
+<ul>
+<li><code>all</code> : a team for absolutely everybody. To be used in broadcast announcements.</li>
+<li><code>students</code>: just the students, for announcements that pertain only to actual work.</li>
+<li><code>auditors</code>: just because it seems polite to include em. Even though technically an instructor is not required to actually <em>do</em> anything with auditors, so I guess there is no official need to interact with them as a group.</li>
+<li><code>instructors</code>: for access to the student grades / &ldquo;instructorsonly&rdquo; repository</li>
+</ul>
+
+<h4 id="student-teams">Student teams</h4>
+
+<ul>
+<li>in STAT545, each student was on a singleton team, just for them. That team was the owner of their own repo. I want to try to import this system here:</li>
+<li>I <em>think</em> that marking proceeded like this:
+
+<ul>
+<li><em>STUDENT</em>
+
+<ul>
+<li>Student does homework, pushes to their repo (owned by their team. they have push access)</li>
+</ul></li>
+<li><em>Instructor</em>
+
+<ul>
+<li>Peer reviewer is selected by random process: <code>combn(students, 2)</code> etc, with perhaps some finesse to make sure that duplicates are impossible</li>
+<li>peer reviewer&rsquo;s team is added to repository (or rather, that repository is added to reviewer&rsquo;s team)</li>
+</ul></li>
+<li>Issue is opened on <em>student&rsquo;s</em> repo: &ldquo;Peer review of <code>&lt;student&gt;</code> by <code>&lt;reviewer&gt;</code>&rdquo;, and reviewer is assigned.  This issue contains:
+
+<ul>
+<li>Hi (reviwer name) (maybe reviwer github handle)</li>
+<li>link to general rubric + general rules for review (be nice, don&rsquo;t plagarize, etc)</li>
+<li>specific information about what this review should be</li>
+<li>due date</li>
+</ul></li>
+<li>Issue given tags &ldquo;homework&rdquo; with number and &ldquo;peer review&rdquo; with number?</li>
+<li><em>REVIEWER</em>
+
+<ul>
+<li>reviewer submits marks and feedback &ndash; on the issue? in a google form? if the former then should be in som standard format. If the latter, should be also communicated to student somehow (could be simply in an unstructured form on the issue)</li>
+<li>both issue and form feedback need to be done by the due date.</li>
+</ul></li>
+<li><em>INSTRUCTOR AGAIN</em>
+
+<ul>
+<li>closes issue.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Alternatively:</p>
+
+<ul>
+<li><em>STUDENT</em>
+
+<ul>
+<li>students push a branch containing their changes since last homework was completed</li>
+<li>students open a PR. that counts as their &ldquo;submission&rdquo; of the homework.</li>
+</ul></li>
+<li><em>INSTRUCTOR</em>
+
+<ul>
+<li>reviewr randomly assigned (as above) and assigned to issue.</li>
+</ul></li>
+<li><em>REVIEWER</em>
+
+<ul>
+<li>reviewer submits comments as both comments on the issue and inline comments on the diff.</li>
+</ul></li>
+<li><em>STUDENT (possibly optional)</em>
+
+<ul>
+<li>student responds to those comments</li>
+</ul></li>
+<li><em>INSTRUCTOR</em>
+
+<ul>
+<li>instructor confirms that
+
+<ol>
+<li>reviewer comments are done</li>
+<li>reviewer grade is registered on a form.</li>
+</ol></li>
+<li>creates comment, acknowledging review is complete and informing student they can merge
+
+<ul>
+<li>make sure you merge before next assignment.</li>
+<li>delete your branches</li>
+<li>reviewer, remember to delete your clone (if any).</li>
+</ul></li>
+</ul></li>
+</ul>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>

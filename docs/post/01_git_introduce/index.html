@@ -1,0 +1,102 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.17" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>Introduce yourself to Git &middot; Dealing with Data</title>
+  
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="../../favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
+</head>
+
+	<body class="theme-base-0b ">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="../../"><h1>Dealing with Data</h1></a>
+      <p class="lead">
+       BIOL548O is a zoology graduate module at the University of British Columbia 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="../../">Home</a> </li>
+      
+        <li><a href="../../post/assert/"> Assertions in R </a></li>
+      
+        <li><a href="../../post/writing_metadata/"> Writing metadata </a></li>
+      
+    </ul>
+
+    <p>© Andrew MacDonald 2017</p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>Introduce yourself to Git</h1>
+			  <span class="post-date">Mon, Jan 1, 0001</span>
+			      
+
+<p><strong>You only have to set this up once per machine.</strong></p>
+
+<h3 id="tl-dr">TL;DR</h3>
+
+<pre><code class="language-sh">git config --global user.name 'Ralph Yorke'
+git config --global user.email 'ralph.yorke@zoology.ubc.ca'
+git config --global --list
+</code></pre>
+
+<p>In words &hellip;</p>
+
+<p>From RStudio, go to <em>Tools &gt; Shell</em> and tell <code>git</code> your name and <strong>GitHub email</strong> by typing (use your own name and email):</p>
+
+<ul>
+<li><p><code>git config --global user.name 'Ralph Yorke'</code></p>
+
+<ul>
+<li>This does <strong>NOT</strong> have to be your GitHub username, although it can be. Another good option is your actual first name and last name. Your commits will be labelled with this name, so this should be informative to potential collaborators.</li>
+</ul></li>
+
+<li><p><code>git config --global user.email 'ralph.yorke@zoology.ubc.ca'</code></p>
+
+<ul>
+<li>This <strong>must</strong> be the email that you used to sign up for GitHub.</li>
+</ul></li>
+
+<li><p><code>git config --global core.editor 'nano'</code></p></li>
+</ul>
+
+<p>These commands return nothing. You can check that <code>git</code> understood what you typed by looking at the output of <code>git config --global --list</code>.</p>
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://help.github.com/articles/set-up-git">GitHub&rsquo;s advice</a>.</li>
+</ul>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>

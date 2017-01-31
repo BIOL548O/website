@@ -1,0 +1,172 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.17" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>Homework 2 &middot; Dealing with Data</title>
+  
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="../../favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
+</head>
+
+	<body class="theme-base-0b ">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="../../"><h1>Dealing with Data</h1></a>
+      <p class="lead">
+       BIOL548O is a zoology graduate module at the University of British Columbia 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="../../">Home</a> </li>
+      
+        <li><a href="../../post/assert/"> Assertions in R </a></li>
+      
+        <li><a href="../../post/writing_metadata/"> Writing metadata </a></li>
+      
+    </ul>
+
+    <p>© Andrew MacDonald 2017</p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>Homework 2</h1>
+			  <span class="post-date">Mon, Jan 1, 0001</span>
+			      
+
+<p>The goal of this week&rsquo;s homework is take your raw data and produce some <strong>tidy</strong> data, using only R to perform any manipulations. Remember:</p>
+
+<blockquote>
+<p>Tidy data has one variable per column, and one observation per row.</p>
+</blockquote>
+
+<p>You will begin with your original data file, in the most raw and untouched form available to you. Here are some steps to follow.</p>
+
+<ol>
+<li>create the following directory structure in your project:</li>
+</ol>
+
+<pre><code>lastname_firstname
+ |
+ |--data/
+ |--data-raw/
+ |--Rscripts/
+</code></pre>
+
+<ol>
+<li><p>Put your raw data file into your <code>data-raw</code> directory. (e.g. <code>2015 Field Season.xls</code>). You may choose to rename it to remove spaces in the filenames (<code>2015_Field_season.xls</code>). <strong>this is the only modification to this file you get to make</strong>. Some people will even modify the file permissions to make it &ldquo;write only&rdquo;.</p></li>
+
+<li><p>Start an R script in the <code>Rscripts/</code> directory. Call it something intuitive (like <code>01_data_preparation.R</code>). I like prefacing my <code>.R</code> files with numbers, expressing the order in which they are meant to be run. <strong>don&rsquo;t forget to commit and push as you are writing this file!</strong></p></li>
+
+<li><p>read your data in, modify it to make it tidy, then write it out into the <code>data/</code> folder. Give it a meaningful name: <code>data/bromeliad_nitrogen_experiment_2015.csv</code> for example.</p></li>
+
+<li><p>commit and push your tidy data file.</p></li>
+</ol>
+
+<h2 id="what-kind-of-things-should-i-do">What kind of things should I do?</h2>
+
+<p>Here are a few ideas for you to think of while you tidy your data up:</p>
+
+<ul>
+<li><p>Do I have any repetitive variables? Were some of these variables calculated from others? use <code>dplyr::select()</code> to drop any columns that do not represent actual measurements &ndash; these can be re-calculated later</p></li>
+
+<li><p>Are my variable names sensible? Good variable names are expressive but brief. something like <code>mass_mg</code> or <code>body_mass</code> is good, something like <code>total_dry_mass_of_animal</code> or <code>m</code> is bad.  Check out <code>dplyr::rename()</code></p></li>
+
+<li><p>Are my column titles actually variables? It&rsquo;s not uncommon to see one (or more!) variables stored in column names:</p></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="center">male_junvenile</th>
+<th align="center">male_adult</th>
+<th align="center">female_juvenile</th>
+<th align="center">female_adult</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">2</td>
+<td align="center">14</td>
+<td align="center">7</td>
+<td align="center">20</td>
+</tr>
+</tbody>
+</table>
+
+<p>use <code>tidyr::gather()</code> and <code>separate</code> to fix this</p>
+
+<ul>
+<li>Do I have too many repeated rows? You might find that your data would make more sense separated into more than one table, which you could then combine with <code>dplyr::left_join()</code></li>
+</ul>
+
+<p>There are many ways in which a dataset can be untidy. Feel free to ask an Instructor or to confer with each other as you are making these decisions!</p>
+
+<h2 id="peer-review">Peer Review</h2>
+
+<p>This work will be graded in much the same way &ndash; by a randomly assigned person from the class. They will clone your repository to their computer, read and run all your code, and examine your tidy data. Here are some things they&rsquo;ll be on the lookout for:</p>
+
+<h4 id="well-commented">well commented</h4>
+
+<p>Write lots of comments. What are you doing, when and why should all be easy to understand by reading your <code>.R</code> files. You can also use the project&rsquo;s README to direct your reviewer to the necessary files!</p>
+
+<h4 id="reproducible">reproducible</h4>
+
+<p>You peer reviewer will re-runs your script, to see if they get the same result (i.e. the csv file in <code>/data</code> should be writtin anew). They should find that it is recreated <strong>just as it was before</strong> (i.e. git thinks that the file is unchanged.)</p>
+
+<p>In order for this to happen, the paths you use must be <em>relative</em>: that is, they should start from the project working directory. That means where the rstudio project file lives. e.g. for a folder setup like this:</p>
+
+<pre><code>lastname_firstname
+ |
+ | lastname_firstname.Rproj
+ |--/data
+ |--/data-raw
+ |--/Rscripts
+            |
+            |--01_tidying.R
+</code></pre>
+
+<p>the file <code>01_tidying.R</code> starts with reading in data: a relative path like this:</p>
+
+<p><code>treedata &lt;- read.csv(&quot;data-raw/rawdata.csv&quot;)</code></p>
+
+<h4 id="tidy">tidy</h4>
+
+<p>What <em>exactly</em> that means for your dataset will partly depend on your definitions &ldquo;observation&rdquo; and &ldquo;variable&rdquo; for your purposes. When in doubt, describe your choices in comments in the data-cleaning file, in the projects README.md or in a README inside <code>data</code>. You can never have too much documentation.</p>
+
+<h4 id="correct">correct</h4>
+
+<p>One simple way of validating your CSV file is to show that it displays nicely on github.</p>
+
+<p>If you CSV is very large, that approach might not work. In such cases you (and your reviewer) can check your CSV on sites such as <a href="http://csvlint.io/">csvlint.io</a> and/or <a href="http://setosa.io/csv-fingerprint/">CSVfingerprint</a></p>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>

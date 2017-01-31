@@ -1,0 +1,95 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.17" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>Homework 3 &middot; Dealing with Data</title>
+  
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="../../favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
+</head>
+
+	<body class="theme-base-0b ">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="../../"><h1>Dealing with Data</h1></a>
+      <p class="lead">
+       BIOL548O is a zoology graduate module at the University of British Columbia 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="../../">Home</a> </li>
+      
+        <li><a href="../../post/assert/"> Assertions in R </a></li>
+      
+        <li><a href="../../post/writing_metadata/"> Writing metadata </a></li>
+      
+    </ul>
+
+    <p>© Andrew MacDonald 2017</p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>Homework 3</h1>
+			  <span class="post-date">Mon, Jan 1, 0001</span>
+			      
+
+<h3 id="first-part-respond-to-your-reviewers-from-last-week">First part &ndash; respond to your reviewers from last week.</h3>
+
+<p>Peer reviewers probably raised a couple of very important points in the process of reviewing  your work. Try to address these: edit your code and re-run it. Commit and push both the modified code and the new data (if it actually different).</p>
+
+<p>In particular, be wary of doing things that make your R code irreproducible: <code>setwd()</code>, <code>attach</code>, and setting an absolute path e.g. <code>read.csv(&quot;/home/andrew/Documents/projects/BIOL548O/BIOL548O.github.io/gapminder.csv&quot;)</code> rather than a relative path (e.g. assuming the project directory is <code>/home/andrew/Documents/projects/BIOL548O</code>, you only need to specify the remaining (relative) part of the path: <code>read.csv(&quot;BIOL548O.github.io/gapminder.csv&quot;)</code>).  The project directory is already set to your <code>lastname_firstname</code> folder, because that is where the <code>.Rproj</code> file is!</p>
+
+<h3 id="second-part-assertions-and-metadata">Second part &ndash; Assertions and metadata</h3>
+
+<p>In the last two classes we practiced writing assertions and metadata. Apply these skills to your dataset to test and document it.</p>
+
+<ul>
+<li>add another file to your <code>Rscripts</code> directory. This is a good time to start thinking about your file naming convention. A popular approach is to preface R scripts with <code>01_</code> and <code>02_</code> etc, to indicate the order in which they are meant to be run.</li>
+<li>This R script can have two parts (after the normal reading in of data): first write some assertions, then write the metadata. (alternatively, split it into two parts).</li>
+<li><em>Writing Assertions</em> Use the <code>assertr</code> package to write some simple statements about your study. These are especially useful if they describe what <em>another, uncollected</em> dataset would look like. (ie if somebody repeats your study, or if more observations are collected in the same way). Here&rsquo;s some ideas:
+
+<ul>
+<li>Species names come from the correct set</li>
+<li>Measurement values fall in a biologically realistic range</li>
+<li>Dates are in a plausible range</li>
+<li>Columns have correct types</li>
+</ul></li>
+<li><em>Writing metadata</em> Use one of the machine-readable data formats we discussed in class.
+
+<ul>
+<li>EML</li>
+<li>CSVY</li>
+<li>datapackage</li>
+</ul></li>
+</ul>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>

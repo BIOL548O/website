@@ -1,0 +1,116 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.17" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+  <title>Peer Review 2 &middot; Dealing with Data</title>
+  
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/syntax.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="../../favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
+</head>
+
+	<body class="theme-base-0b ">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="../../"><h1>Dealing with Data</h1></a>
+      <p class="lead">
+       BIOL548O is a zoology graduate module at the University of British Columbia 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="../../">Home</a> </li>
+      
+        <li><a href="../../post/assert/"> Assertions in R </a></li>
+      
+        <li><a href="../../post/writing_metadata/"> Writing metadata </a></li>
+      
+    </ul>
+
+    <p>© Andrew MacDonald 2017</p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>Peer Review 2</h1>
+			  <span class="post-date">Mon, Jan 1, 0001</span>
+			      <p>The goal of this Peer Review is to help our colleagues to write <em>clear, readable code</em> which creates <em>tidy data</em>.</p>
+
+<blockquote>
+<p><em>tip: suggest new code to your reviewee by typing three backticks before and after your suggestion</em></p>
+
+<p><em>tip: you can <a href="http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github">link to specific lines of code</a> on GitHub by clicking on them and using the new URL</em></p>
+</blockquote>
+
+<p><em>Please don&rsquo;t keep a copy of your reviewee&rsquo;s data!</em></p>
+
+<p>Here is a template for Peer Review 2. <strong>Copy and paste this in response to the GitHub Issue that announces your review</strong></p>
+
+<pre><code>## organization
+
+Did your reviewee follow the directory naming convention that we are using? Was it easy to find the data cleaning script?
+
+YOUR WORDS HERE
+
+## reproducible
+
+Open the data cleaning script and run it all, either by sourcing or by highlighting and click Run all
+
+What happened? Did the final data file recreate itself? Why or why not? What changes need to be made to the script to allow it to run on your machine?
+
+YOUR WORDS HERE
+
+## documented
+
+Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?
+
+YOUR WORDS HERE
+
+## efficient
+
+What transformations or manipulations is your reviewee performing? Are any done with more code than is necessary? For example, are they using their own code to solve a problem that is already handled in `dplyr` or `tidyr`? **suggest something they could do differently**
+
+YOUR WORDS HERE
+
+
+## output is tidy
+
+Tidy data has one observation in each row, and one variable in each column. Does that appear to be true of your reviewee's dataset? Is there another form you could suggest?
+
+YOUR WORDS HERE
+
+## output is correct
+
+check either on Github or via a real CSV validator such as [csvlint.io](http://csvlint.io/) and/or [CSVfingerprint](http://setosa.io/csv-fingerprint/)
+
+YOUR WORDS HERE
+
+</code></pre>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>

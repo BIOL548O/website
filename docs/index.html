@@ -13,17 +13,17 @@
   
 
   
-  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/poole.css">
-  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/syntax.css">
-  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/hyde.css">
+  <link rel="stylesheet" href="./css/poole.css">
+  <link rel="stylesheet" href="./css/syntax.css">
+  <link rel="stylesheet" href="./css/hyde.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="./favicon.png">
 
   
-  <link href="http://replace-this-with-your-hugo-site.com/index.xml" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
+  <link href="./index.xml" rel="alternate" type="application/rss+xml" title="Dealing with Data" />
 
 
 
@@ -35,16 +35,18 @@
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="http://replace-this-with-your-hugo-site.com/"><h1>Dealing with Data</h1></a>
+      <a href="./"><h1>Dealing with Data</h1></a>
       <p class="lead">
        BIOL548O is a zoology graduate module at the University of British Columbia 
       </p>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="/">Home</a> </li>
+      <li><a href="./">Home</a> </li>
       
-        <li><a href="/post/2015-07-23-r-rmarkdown/"> Hello R Markdown </a></li>
+        <li><a href="./post/assert/"> Assertions in R </a></li>
+      
+        <li><a href="./post/writing_metadata/"> Writing metadata </a></li>
       
     </ul>
 
@@ -59,56 +61,3964 @@
       
   <div class="post">
     <h1 class="post-title">
-      <a href="http://replace-this-with-your-hugo-site.com/post/2015-07-23-r-rmarkdown/">
-        Hello R Markdown
+      <a href="./post/writing_metadata/">
+        Writing metadata
       </a>
     </h1>
 
-    <span class="post-date">Thu, Jul 23, 2015</span>
+    <span class="post-date">Wed, Feb 15, 2017</span>
 
 
 
-<div id="r-markdown" class="section level1">
-<h1>R Markdown</h1>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &lt;- lm(dist ~ speed, data = cars)
-fit
+<p>Metadata is <em>data about data</em></p>
+<div id="hand-made-artisanal-metadata" class="section level2">
+<h2>hand-made artisanal metadata</h2>
+<p>You can also do this simply by simple text (<code>.txt</code> or <code>.rtf</code>) with your own hands:</p>
+<div class="figure">
+<img src="img/bromeliad_metadata.png" alt="brom" />
+<p class="caption">brom</p>
+</div>
+<p>Alternatively, you could write it in a CSV format:</p>
+<pre><code>field,description
+country,&quot;countries of the world&quot;&quot;
+continent,&quot;continents of the world&quot;
+year,&quot;the year AD&quot;
+lifeExp,&quot;lifeExp in years&quot;
+pop,&quot;population in humans&quot;
+gdpPercap,&quot;gdp per capita, measured in PPP&quot;</code></pre>
+<p>This is convenient, but has no standard whatsoever. This makes it difficult for machines to read. An increasing number of scientists are experimenting with new ways of creating metadata that satisfies our “write data for machines” principle.</p>
+<p>Many of these methods are novel, and rather experimental. We’re going to be using some Very Modern Packages in today’s exercises. We’ll need to install versions of packages that are newer than what is available on CRAN (via <code>install.packages()</code>). We’ll use a small package called <code>ghit</code> to do the job:</p>
+<pre class="r"><code># install.packages(&quot;ghit&quot;)</code></pre>
+<p>As usual, our gapminder dataset will supply some good examples:</p>
+<pre class="r"><code>library(gapminder)</code></pre>
+</div>
+<div id="intro-to-json-and-xml-and-yaml" class="section level2">
+<h2>intro to JSON and XML (and YAML)</h2>
+<p>These are the two common languages of the internet: <strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation and e<strong>X</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage.</p>
+<p>Here’s an example of JSON: from <a href="https://zapier.com/learn/apis/chapter-3-data-formats/">this wonderful site</a></p>
+<pre class="javascript"><code>{
+  &quot;crust&quot;: &quot;original&quot;,
+  &quot;toppings&quot;: [&quot;cheese&quot;, &quot;pepperoni&quot;, &quot;garlic&quot;],
+  &quot;status&quot;: &quot;cooking&quot;,
+  &quot;customer&quot;: {
+    &quot;name&quot;: &quot;Brian&quot;,
+    &quot;phone&quot;: &quot;573-111-1111&quot;
+  }
+}</code></pre>
+<p>And here is XML:</p>
+<pre class="xml"><code>&lt;order&gt;
+    &lt;crust&gt;original&lt;/crust&gt;
+    &lt;toppings&gt;
+        &lt;topping&gt;cheese&lt;/topping&gt;
+        &lt;topping&gt;pepperoni&lt;/topping&gt;
+        &lt;topping&gt;garlic&lt;/topping&gt;
+    &lt;/toppings&gt;
+    &lt;status&gt;cooking&lt;/status&gt;
+&lt;/order&gt;</code></pre>
+<p>and finally, <em>Y</em>et <em>A</em>nother <em>M</em>arkup <em>L</em>anguage:</p>
+<pre><code>order:
+  - crust: original
+     topping: 
+        - cheese
+        - pepperoni
+        - garlic</code></pre>
+</div>
+<div id="the-classic-approach-the-ecological-metadata-language-eml" class="section level2">
+<h2>the classic approach: the Ecological Metadata Language (<code>EML</code>)</h2>
+<p>EML is a classic metadata approach. There is a <a href="http://im.lternet.edu/sites/im.lternet.edu/files/emlHandbook.pdf">large amount of documentation</a>.</p>
+<p>It is used in the Knowledge Network for Biocomplexity</p>
+<pre><code>library(ghit)
+install_github(&quot;ropensci/EML&quot;, dependencies=c(&quot;Depends&quot;, &quot;Imports&quot;))
+library(EML)</code></pre>
+<pre class="r"><code>dat &lt;- data.frame(river = factor(c(&quot;SAC&quot;,  
+                                   &quot;SAC&quot;,   
+                                   &quot;AM&quot;)),
+                  spp   = c(&quot;Oncorhynchus tshawytscha&quot;,  
+                            &quot;Oncorhynchus tshawytscha&quot;, 
+                            &quot;Oncorhynchus kisutch&quot;),
+                  stg   = ordered(c(&quot;smolt&quot;, 
+                                    &quot;parr&quot;, 
+                                    &quot;smolt&quot;), 
+                                  levels=c(&quot;parr&quot;, 
+                                           &quot;smolt&quot;)), # =&gt; parr &lt; smolt
+                  ct    = c(293L,    
+                            410L,    
+                            210L),
+                  day   = as.Date(c(&quot;2013-09-01&quot;, 
+                                    &quot;2013-09-1&quot;, 
+                                    &quot;2013-09-02&quot;)),
+                  stringsAsFactors = FALSE)</code></pre>
+<p>now we define the column units:</p>
+<pre class="r"><code>col.defs &lt;- c(&quot;River site used for collection&quot;,
+              &quot;Species scientific name&quot;,
+              &quot;Life Stage&quot;, 
+              &quot;count of live fish in traps&quot;,
+              &quot;The day on which traps were sampled&quot;)
+
+
+unit.defs &lt;- list(
+  c(SAC = &quot;The Sacramento River&quot;,     # Factor 
+    AM = &quot;The American River&quot;),
+ &quot;Scientific name&quot;,                   # Character string 
+  c(parr = &quot;third life stage&quot;,        # Ordered factor 
+    smolt = &quot;fourth life stage&quot;),
+  c(unit = &quot;number&quot;, 
+    precision = 1, 
+    bounds = c(0, Inf)),              # Integer
+  c(format = &quot;YYYY-MM-DD&quot;,            # Date
+    precision = 1))</code></pre>
+<p>And finally, we write it out:</p>
+<pre class="r"><code>eml_write(dat, 
+          col.defs = col.defs, 
+          unit.defs = unit.defs, 
+          creator = &quot;Carl Boettiger &lt;cboettig@ropensci.org&gt;&quot;, 
+          file = &quot;EML_example.xml&quot;)</code></pre>
+</div>
+<div id="get-the-computer-to-write-it-csvy" class="section level2">
+<h2>get the computer to write it: <code>CSVY</code></h2>
+<p>CSVY is a new idea, that embeds the metadata file into the very <code>.csv</code> file. The whole idea is described on <a href="http://csvy.org/">csvy.org</a>. It uses a metadata standard called <code>YAML</code>:</p>
+<pre><code>---
+name: my-dataset
+fields:
+  - name: var1
+    title: variable 1
+    type: string
+    description: explaining var1
+    constraints:
+      - required: true
+  - name: var2
+    title: variable 2
+    type: integer
+  - name: var3
+    title: variable 3
+    type: number
+---
+var1,var2,var3
+A,1,2.5
+B,3,4.3</code></pre>
+<p>We’re going to focus on this process, (but not on the constraints)</p>
+<p>Let’s start by using <code>rio</code> to write the data out:</p>
+<pre class="r"><code>library(rio)
+
+attributes(gapminder)[1:2]
+
+export(gapminder, &quot;gapminder.csvy&quot;, format = &quot;csvy&quot;, comment_header = FALSE)
+
+head(import(&quot;gapminder.csvy&quot;))</code></pre>
+<p>now let’s edit it by hand.</p>
+<div id="note-the-json-table-schema" class="section level3">
+<h3>Note: the JSON table schema</h3>
+<pre><code> field     field
+   |         |
+   |         |
+   V         V
+ 
+  A     |    B    |    C    |    D      &lt;--- Row
+  ------------------------------------
+  valA  |   valB  |  valC   |   valD    &lt;--- Row
+  ...
+</code></pre>
+<p>We’re going to work with <strong>field descriptors</strong></p>
+<pre class="json"><code>  &quot;name&quot;: &quot;name of field (e.g. column name)&quot;,
+  &quot;title&quot;: &quot;A nicer human readable label or title for the field&quot;,
+  &quot;type&quot;: &quot;A string specifying the type&quot;,
+  &quot;format&quot;: &quot;A string specifying a format&quot;,
+  &quot;description&quot;: &quot;A description for the field&quot;</code></pre>
+<p>Note that there are no quotes when we use YAML.</p>
+</div>
+</div>
+<div id="datapackage" class="section level2">
+<h2>datapackage</h2>
+<p>Using the R package <a href="https://github.com/christophergandrud/dpmr"><code>dmpr</code></a>. It creates data packages after the standard described in <a href="http://data.okfn.org/doc/tabular-data-package">datapackage</a></p>
+<pre class="r"><code>#install.package(&quot;dpmr&quot;)
+
+library(dpmr)
+meta_list &lt;- list(name = &#39;gapminder_data&#39;,
+                    title = &#39;the data of Gapminder&#39;,
+                    last_updated = Sys.Date(),
+                    version = &#39;0.1&#39;,
+                    license = data.frame(type = &#39;PDDL-1.0&#39;,
+                            url = &#39;http://opendatacommons.org/licenses/pddl/&#39;)
+                            )
+
+datapackage_init(df = gapminder, meta = meta_list) 
+</code></pre>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<ul>
+<li><a href="http://www.ands.org.au/guides/metadata-working.html">Metadata Guide</a> from Australian National Data Service (ANDS)</li>
+<li><a href="http://rd-alliance.github.io/metadata-directory/">Metadata Directory</a> from Research Data Alliance</li>
+<li><a href="https://www.dataone.org/sites/all/documents/DataONE_BP_Primer_020212.pdf">Best Practices for Data Management</a> from DataONE</li>
+<li><a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003542">Ten Simple Rules for the Care and Feeding of Scientific Data</a> by Goodman et al</li>
+<li>[Challenges to Open Data and How to Respond] (04c_OpenDataChallengesQuickInfoSheet.md)</li>
+</ul>
+</div>
+
+
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/assert/">
+        Assertions in R
+      </a>
+    </h1>
+
+    <span class="post-date">Tue, Feb 14, 2017</span>
+
+
+
+<div id="outline-for-today" class="section level2">
+<h2>Outline for today</h2>
+<ul>
+<li>Review of the Homework – any interesting challenges or questions?</li>
+<li>an <a href="assert.html">Introduction to <code>assertr</code></a></li>
+<li>Outline of the <a href="http://biol548o.github.io/PeerReview_2">Peer Review 2 process</a></li>
+</ul>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>You’ve recently obtained some data. How can you tell if it is correct? What if you have:</p>
+<ul>
+<li>many datasets</li>
+<li>Data produced by many collaborators</li>
+<li>Data from a past project in your lab (“#otherpeoplesdata”)</li>
+<li>meta-analysis datasets</li>
+<li>Internet data, from an API or from scraping</li>
+<li>data from a particularly <em>experimental</em> simulation?</li>
+</ul>
+<p>How can you tell if the numbers you have make any sense? (also called “sanity checking”)</p>
+<p>We’ll try out the practice of asserting data by using the gapminder dataset:</p>
+<pre class="r"><code>library(gapminder)</code></pre>
+<p>And we’ll be using an R package specifically designed to work with data assertions: <code>assertr</code>, by Tony Fischetti (<a href="https://github.com/tonyfischetti/assertr">github page</a> and <a href="https://vimeo.com/141906295">rOpenSci community call with Tony</a>)</p>
+<pre class="r"><code># install.packages(&quot;assertr&quot;)
+# devtools::
+library(assertr)</code></pre>
+</div>
+<div id="what-do-we-know-about-the-dataset" class="section level2">
+<h2>What do we know about the dataset</h2>
+<p>The first step in checking whether we have a problem in a dataset is to try to think of what reasonable properties of the data <em>should</em> be.</p>
+<p>Let’s begin by looking at the top of gapminder:</p>
+<pre class="r"><code>knitr::kable(head(gapminder))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="left">continent</th>
+<th align="right">year</th>
+<th align="right">lifeExp</th>
+<th align="right">pop</th>
+<th align="right">gdpPercap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1952</td>
+<td align="right">28.801</td>
+<td align="right">8425333</td>
+<td align="right">779.4453</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1957</td>
+<td align="right">30.332</td>
+<td align="right">9240934</td>
+<td align="right">820.8530</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1962</td>
+<td align="right">31.997</td>
+<td align="right">10267083</td>
+<td align="right">853.1007</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1967</td>
+<td align="right">34.020</td>
+<td align="right">11537966</td>
+<td align="right">836.1971</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1972</td>
+<td align="right">36.088</td>
+<td align="right">13079460</td>
+<td align="right">739.9811</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1977</td>
+<td align="right">38.438</td>
+<td align="right">14880372</td>
+<td align="right">786.1134</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>country</code>: should probably be a country that exists in the world. Any additions to gapminder should contain the same countries, spelt the same way.</li>
+<li><code>continent</code>: similarly, there are only five continents (Asia, Europe, Africa, Americas, Oceania) and any new data should match those.</li>
+<li><code>lifeExp</code>: must always be a positive real number</li>
+<li><code>pop</code>: always a positive integer</li>
+<li><code>gdpPercap</code>:</li>
+</ul>
+</div>
+<div id="data-checking-in-base-r" class="section level2">
+<h2>Data checking in base R</h2>
+<p>What base R functions exist for checking the same thing?</p>
+<pre class="r"><code>stopifnot(gapminder$lifeExp &gt; 0)</code></pre>
+<p>perfectly good way to test data! However, not perfectly flexible, and rather difficult to chain:</p>
+<pre class="r"><code>library(magrittr)
+
+gapminder %&gt;% 
+  {stopifnot(.[[&quot;lifExp&quot;]] &gt; 0);stopifnot(.[[&quot;pop&quot;]] &gt; 0)}</code></pre>
+<p>.. that’s rather awkward.</p>
+<p>Fortunately, we have <code>assertr</code>!</p>
+<p>Assertr gives us several functions. They take the dataset as the first argument (perfect for piping) and run a test on it. If it fails, the function causes an error. If everything is OK, they return the dataset so that it can be piped to a new test (or into an analysis)</p>
+<div id="verify" class="section level3">
+<h3><code>verify</code></h3>
+<p>The most straightforward function in assertr is <code>verify()</code>. It evaluates a logical expression (<code>&gt;</code> or <code>==</code> or <code>&lt;</code> etc) using a data frame. That lets us check some general properties of a dataset.</p>
+<pre class="r"><code>gm &lt;- gapminder %&gt;% 
+  verify(nrow(.) == 1704) %&gt;% 
+  verify(ncol(.) == 6) %&gt;% 
+  verify(is.factor(.$continent)) %&gt;% 
+  verify(length(levels(.$continent)) == 5)</code></pre>
+<p>So far so good! While this is good for checking the dataset at a coarse level, it doesn’t tell us <em>where</em> the unusual numbers are:</p>
+<pre class="r"><code># gapminder %&gt;% 
+#   verify(lifeExp &gt; 30)</code></pre>
+</div>
+<div id="assert" class="section level3">
+<h3><code>assert</code></h3>
+<p><code>assert</code> evaluates a <em>predicate function</em> on a column of a dataset, and indentifies where the predicate returns <code>FALSE</code>.</p>
+<ul>
+<li>a predicate function is any function that will give you <code>TRUE</code> or <code>FALSE</code> for every element in a vector. <code>is.na()</code> is a common example.</li>
+</ul>
+<p>Here, we can’t write <code>pop &gt; 0</code>, we need to write this in terms of a function. Fortunately, <code>assertr</code> supplies some flexible predicates for us:</p>
+<pre class="r"><code>gm2 &lt;- gapminder %&gt;% 
+  assert(within_bounds(0,Inf), pop)</code></pre>
+</div>
+<div id="assert-has-the-power-of-dplyrselect" class="section level3">
+<h3><code>assert</code> has the Power of <code>dplyr::select</code></h3>
+<p>You can use the same syntax that you are familiar with from <code>dplyr</code> to select columns in <code>assertr</code>. That means less typing!</p>
+<pre class="r"><code>gm2 &lt;- gapminder %&gt;% 
+  assert(within_bounds(0, Inf), lifeExp:gdpPercap)</code></pre>
+<p>Let’s meet the other handy predicates:</p>
+<pre class="r"><code>## let us have a vector of all continents
+all_continents &lt;- levels(gapminder$continent)
+all_continents</code></pre>
+<pre><code>## [1] &quot;Africa&quot;   &quot;Americas&quot; &quot;Asia&quot;     &quot;Europe&quot;   &quot;Oceania&quot;</code></pre>
+<pre class="r"><code>gm2 &lt;- gapminder %&gt;% 
+  ## check for missing values
+  assert(not_na, country:gdpPercap) %&gt;% 
+  ## check that all continents are matching
+  assert(in_set(all_continents), continent) %&gt;% 
+  assert(within_bounds(0, Inf), lifeExp:gdpPercap)</code></pre>
+<p>We can also cook up our own predicate:</p>
+<pre class="r"><code>is_factor &lt;- function(x) is.factor(x)
+
+gm_fac &lt;- gapminder %&gt;% 
+  assert(is_factor, country, continent)</code></pre>
+<blockquote>
+<p><em>challenge!</em> write a function to test if population is an integer. (Note that it is probably not stored as an integer in your present data.frame)</p>
+</blockquote>
+</div>
+</div>
+<div id="final-exercise" class="section level2">
+<h2>final exercise</h2>
+<p><em>Announcement: some new 2016 data has been recorded for gapminder!</em><br />
+Let’s check this data before we combine it with the official dataset:</p>
+<p><strong>Step 1</strong>: write down some assertions which pass for all of gapminder</p>
+<p><strong>Step 2</strong>: download <a href="SuppMatt/gapminder_2016.csv">this file</a> and see if you can find all the errors!</p>
+</div>
+
+
+
+
+
+
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/nextPRsheet/">
+        
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<p>for this next peer review:</p>
+
+<p>copy and paste the following text into the box below this issue (i.e. reply to this issue)</p>
+
+<p>Take the following steps:</p>
+
+<p>Go to the repo you are supposed to review [could even provide link]</p>
+
+<p>Clone this repo to your own computer (quick reminder how to do that: click on the HTTPS clone url, then in Rstudio choose New Project &gt; Existing Project &gt; from Version Control &gt; Git and paste in that link.)</p>
+
+<p>Replace the words <code>YOUR WORDS HERE</code> with your own comments.</p>
+
+<h2 id="organization">organization</h2>
+
+<p>Did your reviewee follow the directory naming convention that we are using? Was it easy to find the data cleaning script?</p>
+
+<p>YOUR WORDS HERE</p>
+
+<h2 id="reproducible">reproducible</h2>
+
+<p>Open the data cleaning script and run it all, either by sourcing or by highlighting and click Run all</p>
+
+<p>What happened? Did the final data file recreate itself? Why or why not? What changes need to be made to the data cleaning code to allow it to run on your machine?</p>
+
+<p>YOUR WORDS HERE</p>
+
+<h2 id="documented">documented</h2>
+
+<p>Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?</p>
+
+<p>YOUR WORDS HERE</p>
+
+<h2 id="efficient">efficient</h2>
+
+<p>What transformations or manipulations is your reviewee performing? Are any done with more code than is necessary? For example, are they using their own code to solve a problem that is already handled in <code>dplyr</code> or <code>tidyr</code>? <strong>suggest something they could do differently</strong></p>
+
+<blockquote>
+<p><em>tip: suggest new code to your reviewee by typing three backticks before and after your suggestion</em>
+<em>tip: linking to lines of code on github</em></p>
+</blockquote>
+
+<p>YOUR WORDS HERE</p>
+
+<h2 id="output-is-tidy">output is tidy</h2>
+
+<p>Tidy data has one observation in each row, and one variable in each column. Does that appear to be true of your reviewee&rsquo;s dataset? Is there another form you could suggest?</p>
+
+<p>YOUR WORDS HERE</p>
+
+<h2 id="output-is-correct">output is correct</h2>
+
+<p>check either on Github or via a real CSV validator.</p>
+
+<p>Finally, go to <em>this google form</em> to submit your grade for this assignment.</p>
+
+<p><strong>don&rsquo;t forget to delete your colleagues project from your computer when you are done!</strong></p>
+
+<p>Before Tuesday:</p>
+
+<p>*evaluate your *</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/Assertions/">
+        Assertions in R
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="outline-for-today">Outline for today</h2>
+
+<ul>
+<li>Review of the Homework &ndash; any interesting challenges or questions?</li>
+<li>an <a href="assert.html">Introduction to <code>assertr</code></a></li>
+<li>Outline of the <a href="http://biol548o.github.io/PeerReview_2">Peer Review 2 process</a></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/tidyr/">
+        Basic Manipulation
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+
+
+<p>Many years ago, I was introduced to R by <a href="http://camwebb.info/">Cam Webb</a>. At the time, his website contained a list of common data manipulations (original <a href="http://camwebb.info/blog/2014-04-29/">here</a>). This list dated from Cam’s early experience with R, and contained the R-help mailing list responses to a series of data manipulations. For a long time, I kept this file as a handy reference. I printed it out. I recommended it to friends.</p>
+<p>Now I have been using R for years, and the state of the art has advanced considerably. Particulary, <a href="https://github.com/hadley">Hadley Wickham’s</a> <code>tidyr</code> and <code>dplyr</code> packages have transformed the way most useRs manipulate their data. I decided that it would be interesting to revisit my favourite resource and try my hand at solving these problems with tools from these two packages.</p>
+<pre class="r"><code>library(tidyr)
+library(dplyr)
+
+## I&#39;m going to use a different package to make tables (so that the data look a bit better on the internet). If you want that package too, do this:
+library(knitr)</code></pre>
+<p><em>note that this document refers to things like “group” and “stack” that are intended to be general names for these operations, and are <strong>NOT</strong> references to functions or terms in R</em></p>
+<div id="group" class="section level2">
+<h2>GROUP</h2>
+<p>Turn this table (A):</p>
+<table>
+<thead>
+<tr class="header">
+<th>c1</th>
+<th>c2</th>
+<th>c3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>a</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>a</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td>a</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>b</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td>b</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>c</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>d</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>into this (B):</p>
+<table>
+<thead>
+<tr class="header">
+<th>Group1</th>
+<th>Group2</th>
+<th>Nrows</th>
+<th>SumOfCol3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>a</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>b</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>c</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>d</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>A &lt;- data.frame(
+       c1 = c(&#39;A&#39;, &#39;A&#39;, &#39;A&#39;, &#39;A&#39;, &#39;A&#39;, &#39;B&#39;, &#39;B&#39;),
+       c2 = c(&#39;a&#39;, &#39;a&#39;, &#39;a&#39;, &#39;b&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;),
+       c3 = c(1, 3, 1, 1, 2, 2, 1))
+
+B &lt;- A %&gt;%
+  group_by(c1,c2) %&gt;%
+  summarize(Nrows=n(),
+            SumOfCol3=sum(c3))
+kable(B)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="left">c2</th>
+<th align="right">Nrows</th>
+<th align="right">SumOfCol3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">3</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">c</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">d</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="split" class="section level2">
+<h2>SPLIT</h2>
+<p>Turn col3 of the second table (B) into this (C):</p>
+<table>
+<thead>
+<tr class="header">
+<th>row</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>3</td>
+<td>2</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>.</td>
+<td>.</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Many original responders suggested the use of <code>table</code>, referring to the original dataset:</p>
+<pre class="r"><code>C_alt &lt;- with(A,table(c1,c2))
+kable(C_alt)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">a</th>
+<th align="right">b</th>
+<th align="right">c</th>
+<th align="right">d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="right">a</th>
+<th align="right">b</th>
+<th align="right">c</th>
+<th align="right">d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>although that solution is not <a href="http://vita.had.co.nz/papers/tidy-data.pdf">“tidy” in the Hadlian sense</a> – i.e., it does not return a <code>data.frame</code>, but rather a <code>table</code> object.</p>
+<pre class="r"><code>class(C_alt)</code></pre>
+<pre><code>## [1] &quot;table&quot;</code></pre>
+<p>You can obtain a data.frame with <code>tidyr::spread()</code> directly:</p>
+<pre class="r"><code>C &lt;- B %&gt;%
+  select(-Nrows) %&gt;% 
+  spread(c2, SumOfCol3) 
+
+kable(C)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="right">a</th>
+<th align="right">b</th>
+<th align="right">c</th>
+<th align="right">d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="stack" class="section level2">
+<h2>STACK</h2>
+<p>Turn the above table (C) into this (D):</p>
+<table>
+<thead>
+<tr class="header">
+<th>c1</th>
+<th>V1</th>
+<th>V2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>a</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>b</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td>c</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>d</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>a</td>
+<td>.</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>b</td>
+<td>.</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>d</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>C %&gt;% 
+  gather(V1, V2, a:d) %&gt;% 
+  arrange(c1, V1)</code></pre>
+<pre><code>## Source: local data frame [8 x 3]
+## Groups: c1 [2]
 ## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
+##       c1    V1    V2
+##   &lt;fctr&gt; &lt;chr&gt; &lt;dbl&gt;
+## 1      A     a     5
+## 2      A     b     3
+## 3      A     c    NA
+## 4      A     d    NA
+## 5      B     a    NA
+## 6      B     b    NA
+## 7      B     c     2
+## 8      B     d     1</code></pre>
+</div>
+<div id="join" class="section level2">
+<h2>JOIN</h2>
+<p>Join these tables (E, F):</p>
+<table>
+<thead>
+<tr class="header">
+<th>c1</th>
+<th>c2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>c1</th>
+<th>c3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>a</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>a</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>a</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>b</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>c</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>b</td>
+</tr>
+</tbody>
+</table>
+<p>to give (G):</p>
+<table>
+<thead>
+<tr class="header">
+<th>c1</th>
+<th>c3</th>
+<th>c2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>a</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>a</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>a</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>b</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>c</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>b</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>We begin by making the data frames in question:</p>
+<pre class="r"><code>E &lt;- data.frame(c1 = c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), c2 = 1:3)
+FF &lt;- data.frame(c1 = c(&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;C&quot;,&quot;A&quot;), c3 = c(&quot;a&quot;,&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;b&quot;))
+G &lt;- left_join(FF, E)</code></pre>
+<pre><code>## Joining, by = &quot;c1&quot;</code></pre>
+<pre class="r"><code>kable(G)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">c</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>the <code>dplyr</code> package supplies <code>left_join()</code>, which preserves the sequence of rows in its left argument. Alternatively, as was originally suggested, one could use <code>merge()</code> :</p>
+<pre class="r"><code>G_merge &lt;- merge(FF,E)
+kable(G_merge)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">c</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">c</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+<p>Although columns now come out sorted.</p>
+</div>
+<div id="subset" class="section level2">
+<h2>SUBSET</h2>
+<p>subset Table G to give H:</p>
+<table>
+<thead>
+<tr class="header">
+<th>c1</th>
+<th>c3</th>
+<th>c2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>a</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>b</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>H &lt;- filter(G,c1==&quot;A&quot;)
+kable(H)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="transpose" class="section level2">
+<h2>TRANSPOSE</h2>
+<p>transpose H to give:</p>
+<table>
+<thead>
+<tr class="header">
+<th>V1</th>
+<th>V2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td>a</td>
+<td>b</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>H_transpose &lt;- data.frame(t(H))
+kable(H_transpose)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">X1</th>
+<th align="left">X2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>c1</td>
+<td align="left">A</td>
+<td align="left">A</td>
+</tr>
+<tr class="even">
+<td>c3</td>
+<td align="left">a</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td>c2</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">X1</th>
+<th align="left">X2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">c1</td>
+<td align="left">A</td>
+<td align="left">A</td>
+</tr>
+<tr class="even">
+<td align="left">c3</td>
+<td align="left">a</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td align="left">c2</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sort" class="section level2">
+<h2>SORT</h2>
+<p>In the original, the question suggested “up to three keys”.</p>
+<pre class="r"><code>A_arranged &lt;- arrange(A,c1,c2,c3)
+kable(A_arranged)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="left">c2</th>
+<th align="right">c3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">c</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">d</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c1</th>
+<th align="left">c2</th>
+<th align="right">c3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">c</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">d</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>To my surprise, each of these was actually a single line. The only exception was the first (GROUP), and that was because there are really two separate steps here – the first to actually group the data, the second to apply summary functions to the data. <code>dplyr</code> automates both tasks, and supplies great readability.</p>
+</div>
+
+
+
+
+
+
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/tidyr/">
+        Basic Manipulation
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<p>Many years ago, I was introduced to R by <a href="http://camwebb.info/">Cam Webb</a>. At the time, his website contained a list of common data manipulations (original <a href="http://camwebb.info/blog/2014-04-29/">here</a>). This list dated from Cam&rsquo;s early experience with R, and contained the R-help mailing list responses to a series of data manipulations. For a long time, I kept this file as a handy reference. I printed it out. I recommended it to friends.</p>
+
+<p>Now I have been using R for years, and the state of the art has advanced considerably. Particulary, <a href="https://github.com/hadley">Hadley Wickham&rsquo;s</a> <code>tidyr</code> and <code>dplyr</code> packages have transformed the way most useRs manipulate their data. I decided that it would be interesting to revisit my favourite resource and try my hand at solving these problems with tools from these two packages.</p>
+
+<pre><code class="language-r">library(tidyr)
+library(dplyr)
+
+## I'm going to use a different package to make tables (so that the data look a bit better on the internet). If you want that package too, do this:
+library(knitr)
+</code></pre>
+
+<p>*note that this document refers to things like &ldquo;group&rdquo; and &ldquo;stack&rdquo; that are intended to be general names for these operations, and are <strong>NOT</strong> references to functions or terms in R*</p>
+
+<h2 id="group">GROUP</h2>
+
+<p>Turn this table (A):</p>
+
+<table>
+<thead>
+<tr>
+<th>c1</th>
+<th>c2</th>
+<th>c3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>a</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>a</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>a</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>b</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>b</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>c</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>d</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>into this (B):</p>
+
+<table>
+<thead>
+<tr>
+<th>Group1</th>
+<th>Group2</th>
+<th>Nrows</th>
+<th>SumOfCol3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>a</td>
+<td>3</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>b</td>
+<td>2</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>c</td>
+<td>1</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>d</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-r">A &lt;- data.frame(
+       c1 = c('A', 'A', 'A', 'A', 'A', 'B', 'B'),
+       c2 = c('a', 'a', 'a', 'b', 'b', 'c', 'd'),
+       c3 = c(1, 3, 1, 1, 2, 2, 1))
+
+B &lt;- A %&gt;%
+  group_by(c1,c2) %&gt;%
+  summarize(Nrows=n(),
+            SumOfCol3=sum(c3))
+kable(B)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="left">c2</th>
+<th align="right">Nrows</th>
+<th align="right">SumOfCol3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">3</td>
+<td align="right">5</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">c</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">d</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="split">SPLIT</h2>
+
+<p>Turn col3 of the second table (B) into this &copy;:</p>
+
+<table>
+<thead>
+<tr>
+<th>row</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>d</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>3</td>
+<td>2</td>
+<td>.</td>
+<td>.</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>.</td>
+<td>.</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>Many original responders suggested the use of <code>table</code>, referring to the original dataset:</p>
+
+<pre><code class="language-r">C_alt &lt;- with(A,table(c1,c2))
+kable(C_alt)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="right">a</th>
+<th align="right">b</th>
+<th align="right">c</th>
+<th align="right">d</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="right">a</th>
+<th align="right">b</th>
+<th align="right">c</th>
+<th align="right">d</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>although that solution is not <a href="http://vita.had.co.nz/papers/tidy-data.pdf">&ldquo;tidy&rdquo; in the Hadlian sense</a> &ndash; i.e., it does not return a <code>data.frame</code>, but rather a <code>table</code> object.</p>
+
+<pre><code class="language-r">class(C_alt)
+</code></pre>
+
+<pre><code>## [1] &quot;table&quot;
+</code></pre>
+
+<p>You can obtain a data.frame with <code>tidyr::spread()</code> directly:</p>
+
+<pre><code class="language-r">C &lt;- B %&gt;%
+  select(-Nrows) %&gt;% 
+  spread(c2, SumOfCol3) 
+
+kable(C)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="right">a</th>
+<th align="right">b</th>
+<th align="right">c</th>
+<th align="right">d</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="stack">STACK</h2>
+
+<p>Turn the above table &copy; into this (D):</p>
+
+<table>
+<thead>
+<tr>
+<th>c1</th>
+<th>V1</th>
+<th>V2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>a</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>b</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>c</td>
+<td>.</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>d</td>
+<td>.</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>a</td>
+<td>.</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>b</td>
+<td>.</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>c</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>d</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-r">C %&gt;% 
+  gather(V1, V2, a:d) %&gt;% 
+  arrange(c1, V1)
+</code></pre>
+
+<pre><code>## Source: local data frame [8 x 3]
 ## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932</code></pre>
-</div>
-<div id="including-plots" class="section level1">
-<h1>Including Plots</h1>
-<p>You can also embed plots. See Figure <a href="#fig:pie">1</a> for example:</p>
-<pre class="r"><code>par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&#39;Sky&#39;, &#39;Sunny side of pyramid&#39;, &#39;Shady side of pyramid&#39;),
-  col = c(&#39;#0292D8&#39;, &#39;#F7EA39&#39;, &#39;#C4B632&#39;),
-  init.angle = -50, border = NA
-)</code></pre>
-<div class="figure"><span id="fig:pie"></span>
-<img src="figures/pie-1.png" alt="A fancy pie chart." width="672" />
-<p class="caption">
-Figure 1: A fancy pie chart.
-</p>
-</div>
-</div>
+##       c1     V1    V2
+##   (fctr) (fctr) (dbl)
+## 1      A      a     5
+## 2      A      b     3
+## 3      A      c    NA
+## 4      A      d    NA
+## 5      B      a    NA
+## 6      B      b    NA
+## 7      B      c     2
+## 8      B      d     1
+</code></pre>
+
+<h2 id="join">JOIN</h2>
+
+<p>Join these tables (E, F):</p>
+
+<table>
+<thead>
+<tr>
+<th>c1</th>
+<th>c2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>C</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>c1</th>
+<th>c3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>a</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>a</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>a</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>b</td>
+</tr>
+
+<tr>
+<td>C</td>
+<td>c</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>b</td>
+</tr>
+</tbody>
+</table>
+
+<p>to give (G):</p>
+
+<table>
+<thead>
+<tr>
+<th>c1</th>
+<th>c3</th>
+<th>c2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>a</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>a</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>a</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>b</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>C</td>
+<td>c</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>b</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>We begin by making the data frames in question:</p>
+
+<pre><code class="language-r">E &lt;- data.frame(c1 = c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), c2 = 1:3)
+FF &lt;- data.frame(c1 = c(&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;,&quot;C&quot;,&quot;A&quot;), c3 = c(&quot;a&quot;,&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;b&quot;))
+G &lt;- left_join(FF, E)
+</code></pre>
+
+<pre><code>## Joining by: &quot;c1&quot;
+</code></pre>
+
+<pre><code class="language-r">kable(G)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">C</td>
+<td align="left">c</td>
+<td align="right">3</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>the <code>dplyr</code> package supplies <code>left_join()</code>, which preserves the sequence of rows in its left argument. Alternatively, as was originally suggested, one could use <code>merge()</code> :</p>
+
+<pre><code class="language-r">G_merge &lt;- merge(FF,E)
+kable(G_merge)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">C</td>
+<td align="left">c</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">a</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">C</td>
+<td align="left">c</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+
+<p>Although columns now come out sorted.</p>
+
+<h2 id="subset">SUBSET</h2>
+
+<p>subset Table G to give H:</p>
+
+<table>
+<thead>
+<tr>
+<th>c1</th>
+<th>c3</th>
+<th>c2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>a</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>b</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-r">H &lt;- filter(G,c1==&quot;A&quot;)
+kable(H)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="left">c3</th>
+<th align="right">c2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="transpose">TRANSPOSE</h2>
+
+<p>transpose H to give:</p>
+
+<table>
+<thead>
+<tr>
+<th>V1</th>
+<th>V2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A</td>
+<td>A</td>
+</tr>
+
+<tr>
+<td>a</td>
+<td>b</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-r">H_transpose &lt;- data.frame(t(H))
+kable(H_transpose)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">X1</th>
+<th align="left">X2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>c1</td>
+<td align="left">A</td>
+<td align="left">A</td>
+</tr>
+
+<tr>
+<td>c3</td>
+<td align="left">a</td>
+<td align="left">b</td>
+</tr>
+
+<tr>
+<td>c2</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">X1</th>
+<th align="left">X2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">c1</td>
+<td align="left">A</td>
+<td align="left">A</td>
+</tr>
+
+<tr>
+<td align="left">c3</td>
+<td align="left">a</td>
+<td align="left">b</td>
+</tr>
+
+<tr>
+<td align="left">c2</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="sort">SORT</h2>
+
+<p>In the original, the question suggested &ldquo;up to three keys&rdquo;.</p>
+
+<pre><code class="language-r">A_arranged &lt;- arrange(A,c1,c2,c3)
+kable(A_arranged)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="left">c2</th>
+<th align="right">c3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">3</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">c</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">d</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="left">c1</th>
+<th align="left">c2</th>
+<th align="right">c3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">a</td>
+<td align="right">3</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">1</td>
+</tr>
+
+<tr>
+<td align="left">A</td>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">c</td>
+<td align="right">2</td>
+</tr>
+
+<tr>
+<td align="left">B</td>
+<td align="left">d</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>To my surprise, each of these was actually a single line. The only exception was the first (GROUP), and that was because there are really two separate steps here &ndash; the first to actually group the data, the second to apply summary functions to the data. <code>dplyr</code> automates both tasks, and supplies great readability.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/munge01/">
+        Data munging
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="outline-for-today">Outline for today</h2>
+
+<ul>
+<li><a href="slides/munge_slides.html">Today&rsquo;s slides</a><br /></li>
+<li><a href="SuppMatt/09_02_2016_notes.R">What Andrew typed in today</a></li>
+</ul>
+
+<h3 id="intro-to-tidy-data">Intro to tidy data</h3>
+
+<p><em>step 1</em> download <a href="https://www.dropbox.com/s/5ncuacnd3arjitc/survey_data_tabs.xls?dl=0">this data</a><br />
+<em>step 2</em> &ldquo;tidy it up&rdquo;<br />
+<em>courtesy of Data Carpentry</em></p>
+
+<h3 id="intro-to-r">Intro to R</h3>
+
+<p>I&rsquo;m assuming that you have had some exposure to R already. However, let&rsquo;s review some of the particular tools that we&rsquo;re going to be using</p>
+
+<h3 id="ceci-ce-n-est-pas-un-pipe"><em>Ceci ce n&rsquo;est pas un pipe</em></h3>
+
+<p>The pipe operator <code>%&gt;%</code> was recently introduced to R and created shockwaves:</p>
+
+<pre><code>foo_foo &lt;- little_bunny()
+
+## orthodox R style
+bop_on(scoop_up(hop_through(foo_foo, forest), field_mouse), head)
+
+## novel pipe syntax
+foo_foo %&gt;%
+  hop_through(forest) %&gt;%
+  scoop_up(field_mouse) %&gt;%
+  bop_on(head)
+</code></pre>
+
+<p>Based on this, how do you think it works?</p>
+
+<ul>
+<li><code>tidyr</code></li>
+<li>some project setup</li>
+</ul>
+
+<h2 id="recommended-reading">recommended reading</h2>
+
+<ul>
+<li><a href="http://vita.had.co.nz/papers/tidy-data.pdf">Tidy data</a></li>
+<li><a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html"><code>dplyr</code> vignette</a></li>
+<li><a href="http://www.seascapemodels.org/rstats/rspatial/2015/11/13/data-commandments.html">ten commandments of entering data for R</a></li>
+</ul>
+
+<p>You can also see these from Rstudio if you type <code>browseVignettes(package = &quot;dplyr&quot;)</code></p>
+
+<h2 id="homework-2-is-coming-up">Homework 2 is coming up!</h2>
+
+<p>Come next class (Thursday) with the most <em>raw</em> version of your data you can find. This might be the spreadsheet you typed in when you recorded your data, or which was emailed to you. It may be a series of text files that you received from your instrument. It might even be a link to a shared folder on Dropbox, or some other online source of information.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/munge02/">
+        Data munging part 2
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="outline-for-today">Outline for today</h2>
+
+<ul>
+<li><a href="slides/munge_slides02.html">slides for today</a></li>
+<li>review of the basics, and intro to <code>tidyr</code>: <a href="tidyr.html">basic data manipulations</a></li>
+<li>we&rsquo;ll practice tidying data with <a href="SuppMatt/gapminder_wide.csv">wide format gapminder</a></li>
+<li>joins</li>
+<li><code>tidyr</code></li>
+<li>some project setup</li>
+<li>start work on Homework 2</li>
+</ul>
+
+<h2 id="how-can-i-tell-if-my-data-is-tidy">How can I tell if my data is &ldquo;Tidy&rdquo;?</h2>
+
+<p>There are two basic principles to look for when deciding how to organize a dataset:</p>
+
+<ol>
+<li>There should be one observation per row, and one variable per column</li>
+<li>Rows should be repeated as little as possible. If you have a lot of repeated rows, consider separating the data into two groups and using a <em>join</em></li>
+</ol>
+
+<h2 id="when-do-use-different-columns-and-when-to-use-a-single-factor">When do use different columns, and when to use a single factor?</h2>
+
+<p>Today we&rsquo;ll be practicing a lot with two functions from <code>tidyr</code>: <code>gather()</code> and <code>spread()</code>. These functions move data back and forth between what is often called &ldquo;wide&rdquo; and &ldquo;long&rdquo; format. It can be tricky to determine if your data is, or should be, wide or long. Is a group of columns a series of different variables, or are they actually different observations of the same variable? Here is a quote from Wickham&rsquo;s <code>tidyr</code> vignette:</p>
+
+<blockquote>
+<p>A general rule of thumb is that it is easier to describe functional relationships between variables (e.g., <code>z</code> is a linear combination of <code>x</code> and <code>y</code>, <code>density</code> is the ratio of <code>weight</code> to <code>volume</code>) than between rows, and it is easier to make comparisons between groups of observations (e.g., average of group a vs. average of group b) than between groups of columns.</p>
+</blockquote>
+
+<p>In biology, the variables that describe groups are often physical location (e.g. site or block) and/or experimental treatment. Keep this kind of information as values in the same column (i.e. as different levels of a factor &ldquo;Site_name&rdquo; or Block&rdquo;). This makes it easy to compare averages across, say, different sites.</p>
+
+<p>We also often measure the different responses for each of our study units. For example, you might measure the surface area and mass of a leaf. Keep these as the names of separate columns. This makes it easy to do calculations (e.g. SLA = mass / area)</p>
+
+<p>Sometimes, it is harder to tell. Then, you have to rely on your knowledge as a biologist &ndash; what are you planning on doing with these data? that will shape your analysis.</p>
+
+<h2 id="homework-2">Homework 2</h2>
+
+<p><strong><em>clean your data</em></strong></p>
+
+<p>The goal that I want to achieve for <em>everyone</em> with this assignment is how to process data with code accurately. However, where you end up will depend a lot on where you begin.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/github/">
+        GitHub and project setup
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="content-outline">Content outline</h2>
+
+<ul>
+<li>Let&rsquo;s introduce ourselves to each other (and join the <a href="https://github.com/BIOL548O/">course github organization</a>)</li>
+<li>set up your private repository for your project
+
+<ul>
+<li>make a new private repository called <code>yourlastname_yourfirstname</code></li>
+<li>give it a description</li>
+<li>choose &ldquo;Private&rdquo;</li>
+<li>under &ldquo;add .gitignore:&rdquo; choose <strong>R</strong></li>
+<li>under &ldquo;add a license:&rdquo; choose <strong>MIT License</strong></li>
+<li>click &ldquo;Create Repository&rdquo;</li>
+</ul></li>
+</ul>
+
+<p><img src="img/start_repo.png" alt="illustration" /></p>
+
+<ul>
+<li><p>On the next screen you will see the beginning of your repository. Copy the link at the top of the page.</p></li>
+
+<li><p>Open Rstudio</p>
+
+<ul>
+<li>select <code>File &gt; New Project</code></li>
+<li>select <code>From Version Control &gt; git</code></li>
+<li>paste in the link to your new repository</li>
+<li>Take charge of where this goes! <strong>consider creating a dedicated <code>Projects/</code> directory</strong></li>
+</ul></li>
+</ul>
+
+<p>If all has gone well, you should now have a new folder on your computer, containing the files that were created on GitHub. Let&rsquo;s take a look at what you have so far:</p>
+
+<h3 id="license">license</h3>
+
+<p>We&rsquo;ve chosen the MIT license, which is a common and very permissive license.</p>
+
+<pre><code>The MIT License (MIT)
+
+Copyright (c) 2016 BIOL548O
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre>
+
+<h3 id="gitignore">.gitignore</h3>
+
+<p>This file expresses patterns of filenames that we want to ignore.</p>
+
+<ul>
+<li>Try adding a file name (e.g. <code>bigdata.nextgen</code>) to your directory. Notice how it appears in Rstudio.</li>
+<li>Then add the line <code>*.nextgen</code> to the <code>.gitignore</code>. Notice how the Rstudio window has changed.</li>
+</ul>
+
+<h3 id="readme">README</h3>
+
+<p>This file explains your project to your audience on Github. At present, your audience will not extend beyond this room. In the near future, it may extend to the whole Internet!</p>
+
+<ul>
+<li>with the help of Rstudio, let&rsquo;s practice some markdown basics.</li>
+</ul>
+
+<h2 id="project-setup">project setup</h2>
+
+<p>We&rsquo;re going to set up a basic structure for our project. Here is a template from the <a href="https://github.com/ropensci/rrrpkg">Ropensci/rrrpkg</a></p>
+
+<p><strong><em>Getting started with a research compendium</em></strong></p>
+
+<ul>
+<li>Start simple - it’s ok to have just one R script or one R markdown file. But as you get more complex and start to break into multiple files, that you should follow these simple conventions described above</li>
+<li>A simple example of a research compendium might look like this:</li>
+</ul>
+
+<pre><code>project
+|- DESCRIPTION          # project metadata and dependencies 
+|- README.md            # top-level description of content and guide to users
+|
+|- data/                # raw data, not changed once created
+|  +- my_data.csv       # data files in open formats such as TXT, CSV, TSV, etc.
+|
+|- analysis/            # any programmatic code 
+|  +- my_scripts.R      # R code used to analyse and visualise data 
+</code></pre>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/Homework_2/">
+        Homework 2
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<p>The goal of this week&rsquo;s homework is take your raw data and produce some <strong>tidy</strong> data, using only R to perform any manipulations. Remember:</p>
+
+<blockquote>
+<p>Tidy data has one variable per column, and one observation per row.</p>
+</blockquote>
+
+<p>You will begin with your original data file, in the most raw and untouched form available to you. Here are some steps to follow.</p>
+
+<ol>
+<li>create the following directory structure in your project:</li>
+</ol>
+
+<pre><code>lastname_firstname
+ |
+ |--data/
+ |--data-raw/
+ |--Rscripts/
+</code></pre>
+
+<ol>
+<li><p>Put your raw data file into your <code>data-raw</code> directory. (e.g. <code>2015 Field Season.xls</code>). You may choose to rename it to remove spaces in the filenames (<code>2015_Field_season.xls</code>). <strong>this is the only modification to this file you get to make</strong>. Some people will even modify the file permissions to make it &ldquo;write only&rdquo;.</p></li>
+
+<li><p>Start an R script in the <code>Rscripts/</code> directory. Call it something intuitive (like <code>01_data_preparation.R</code>). I like prefacing my <code>.R</code> files with numbers, expressing the order in which they are meant to be run. <strong>don&rsquo;t forget to commit and push as you are writing this file!</strong></p></li>
+
+<li><p>read your data in, modify it to make it tidy, then write it out into the <code>data/</code> folder. Give it a meaningful name: <code>data/bromeliad_nitrogen_experiment_2015.csv</code> for example.</p></li>
+
+<li><p>commit and push your tidy data file.</p></li>
+</ol>
+
+<h2 id="what-kind-of-things-should-i-do">What kind of things should I do?</h2>
+
+<p>Here are a few ideas for you to think of while you tidy your data up:</p>
+
+<ul>
+<li><p>Do I have any repetitive variables? Were some of these variables calculated from others? use <code>dplyr::select()</code> to drop any columns that do not represent actual measurements &ndash; these can be re-calculated later</p></li>
+
+<li><p>Are my variable names sensible? Good variable names are expressive but brief. something like <code>mass_mg</code> or <code>body_mass</code> is good, something like <code>total_dry_mass_of_animal</code> or <code>m</code> is bad.  Check out <code>dplyr::rename()</code></p></li>
+
+<li><p>Are my column titles actually variables? It&rsquo;s not uncommon to see one (or more!) variables stored in column names:</p></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="center">male_junvenile</th>
+<th align="center">male_adult</th>
+<th align="center">female_juvenile</th>
+<th align="center">female_adult</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">2</td>
+<td align="center">14</td>
+<td align="center">7</td>
+<td align="center">20</td>
+</tr>
+</tbody>
+</table>
+
+<p>use <code>tidyr::gather()</code> and <code>separate</code> to fix this</p>
+
+<ul>
+<li>Do I have too many repeated rows? You might find that your data would make more sense separated into more than one table, which you could then combine with <code>dplyr::left_join()</code></li>
+</ul>
+
+<p>There are many ways in which a dataset can be untidy. Feel free to ask an Instructor or to confer with each other as you are making these decisions!</p>
+
+<h2 id="peer-review">Peer Review</h2>
+
+<p>This work will be graded in much the same way &ndash; by a randomly assigned person from the class. They will clone your repository to their computer, read and run all your code, and examine your tidy data. Here are some things they&rsquo;ll be on the lookout for:</p>
+
+<h4 id="well-commented">well commented</h4>
+
+<p>Write lots of comments. What are you doing, when and why should all be easy to understand by reading your <code>.R</code> files. You can also use the project&rsquo;s README to direct your reviewer to the necessary files!</p>
+
+<h4 id="reproducible">reproducible</h4>
+
+<p>You peer reviewer will re-runs your script, to see if they get the same result (i.e. the csv file in <code>/data</code> should be writtin anew). They should find that it is recreated <strong>just as it was before</strong> (i.e. git thinks that the file is unchanged.)</p>
+
+<p>In order for this to happen, the paths you use must be <em>relative</em>: that is, they should start from the project working directory. That means where the rstudio project file lives. e.g. for a folder setup like this:</p>
+
+<pre><code>lastname_firstname
+ |
+ | lastname_firstname.Rproj
+ |--/data
+ |--/data-raw
+ |--/Rscripts
+            |
+            |--01_tidying.R
+</code></pre>
+
+<p>the file <code>01_tidying.R</code> starts with reading in data: a relative path like this:</p>
+
+<p><code>treedata &lt;- read.csv(&quot;data-raw/rawdata.csv&quot;)</code></p>
+
+<h4 id="tidy">tidy</h4>
+
+<p>What <em>exactly</em> that means for your dataset will partly depend on your definitions &ldquo;observation&rdquo; and &ldquo;variable&rdquo; for your purposes. When in doubt, describe your choices in comments in the data-cleaning file, in the projects README.md or in a README inside <code>data</code>. You can never have too much documentation.</p>
+
+<h4 id="correct">correct</h4>
+
+<p>One simple way of validating your CSV file is to show that it displays nicely on github.</p>
+
+<p>If you CSV is very large, that approach might not work. In such cases you (and your reviewer) can check your CSV on sites such as <a href="http://csvlint.io/">csvlint.io</a> and/or <a href="http://setosa.io/csv-fingerprint/">CSVfingerprint</a></p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/Homework_3/">
+        Homework 3
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h3 id="first-part-respond-to-your-reviewers-from-last-week">First part &ndash; respond to your reviewers from last week.</h3>
+
+<p>Peer reviewers probably raised a couple of very important points in the process of reviewing  your work. Try to address these: edit your code and re-run it. Commit and push both the modified code and the new data (if it actually different).</p>
+
+<p>In particular, be wary of doing things that make your R code irreproducible: <code>setwd()</code>, <code>attach</code>, and setting an absolute path e.g. <code>read.csv(&quot;/home/andrew/Documents/projects/BIOL548O/BIOL548O.github.io/gapminder.csv&quot;)</code> rather than a relative path (e.g. assuming the project directory is <code>/home/andrew/Documents/projects/BIOL548O</code>, you only need to specify the remaining (relative) part of the path: <code>read.csv(&quot;BIOL548O.github.io/gapminder.csv&quot;)</code>).  The project directory is already set to your <code>lastname_firstname</code> folder, because that is where the <code>.Rproj</code> file is!</p>
+
+<h3 id="second-part-assertions-and-metadata">Second part &ndash; Assertions and metadata</h3>
+
+<p>In the last two classes we practiced writing assertions and metadata. Apply these skills to your dataset to test and document it.</p>
+
+<ul>
+<li>add another file to your <code>Rscripts</code> directory. This is a good time to start thinking about your file naming convention. A popular approach is to preface R scripts with <code>01_</code> and <code>02_</code> etc, to indicate the order in which they are meant to be run.</li>
+<li>This R script can have two parts (after the normal reading in of data): first write some assertions, then write the metadata. (alternatively, split it into two parts).</li>
+<li><em>Writing Assertions</em> Use the <code>assertr</code> package to write some simple statements about your study. These are especially useful if they describe what <em>another, uncollected</em> dataset would look like. (ie if somebody repeats your study, or if more observations are collected in the same way). Here&rsquo;s some ideas:
+
+<ul>
+<li>Species names come from the correct set</li>
+<li>Measurement values fall in a biologically realistic range</li>
+<li>Dates are in a plausible range</li>
+<li>Columns have correct types</li>
+</ul></li>
+<li><em>Writing metadata</em> Use one of the machine-readable data formats we discussed in class.
+
+<ul>
+<li>EML</li>
+<li>CSVY</li>
+<li>datapackage</li>
+</ul></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/installation/">
+        Installation
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="installing-software">Installing software</h2>
+
+<p>In this course, we&rsquo;re going to use open-source software to learn how to manage and share data. Our hope is to provide you with a basic level of comfort with all of these tools, which you can use in your future projects!</p>
+
+<p>You will need five things during this course:</p>
+
+<ul>
+<li>a laptop</li>
+<li>git</li>
+<li>a GitHub account</li>
+<li>R</li>
+<li>Rstudio (an IDE for R)</li>
+</ul>
+
+<p>Please see installation instructions below for all the different software tools you need. These are modified from several sources, mostly from <a href="http://www.stat.ubc.ca/~jenny/">Jenny Bryan&rsquo;s</a> excellent <a href="http://stat545-ubc.github.io/">STAT545 website</a></p>
+
+<h2 id="git-and-github">Git and Github</h2>
+
+<p><code>git</code> is a command-line program for doing &ldquo;version control&rdquo; : that is, for tracking changes to a group of files all at once. We&rsquo;re going to use it to track changes to our research project (i.e. data and the code that manipulates the data).</p>
+
+<h3 id="git-installation-windows">Git installation: Windows</h3>
+
+<p>We reccommend this approach, following <a href="http://software-carpentry.org">Software Carpentry</a>, an organization that &ldquo;teaches lab skills for scientific computing&rdquo; (and also STAT545):</p>
+
+<ul>
+<li>Install <a href="https://git-for-windows.github.io/">Git for Windows</a>, previously known as <code>msysgit</code> or &ldquo;Git Bash&rdquo;, to get Git in addition to some other useful tools, such as the Bash <a href="git09_shell.html">shell</a>.
+
+<ul>
+<li>Yes, all those names are totally confusing.</li>
+</ul></li>
+<li>This approach leaves the Git executable in a conventional location, which will help you and other programs, e.g. RStudio, find it and use it.</li>
+</ul>
+
+<h3 id="git-installation-mac">Git installation: Mac</h3>
+
+<p><strong>Option 1</strong> (<em>recommended</em>): Install Git from here: <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a>.</p>
+
+<ul>
+<li>The GitHub home for this project is here: <a href="https://github.com/timcharper/git_osx_installer">https://github.com/timcharper/git_osx_installer</a>.</li>
+<li>This arguably sets you up the best for the future and should &ldquo;just work&rdquo; for most people. It will certainly get you the latest version of Git of all approaches described here. It is the most widely recommended installation method.</li>
+<li>Here&rsquo;s a list of maintained builds for various combinations of Git and Mac OS version: <a href="http://sourceforge.net/projects/git-osx-installer/files/?source=navbar"><code>git-osx-installer</code> on sourceforge</a>. If your OS version is not there &ndash; I&rsquo;m talking to you 10.7 Lion people &ndash; we&rsquo;ve had recent success with binaries found here: <a href="https://www.wandisco.com/git/download">https://www.wandisco.com/git/download</a>.</li>
+</ul>
+
+<h3 id="git-installation-linux">Git installation: Linux</h3>
+
+<p>If Git is not already available on your machine you can install it via your distro&rsquo;s package manager (e.g. <code>apt-get</code> or <code>yum</code>).</p>
+
+<p>Ubuntu or Debian Linux</p>
+
+<pre><code>sudo apt-get install git
+</code></pre>
+
+<p>Fedora or RedHat Linux</p>
+
+<pre><code>sudo yum install git
+</code></pre>
+
+<h3 id="register-a-github-account">Register a GitHub account</h3>
+
+<ul>
+<li><a href="https://github.com/">Github</a> is an increasingly popular website for sharing code and data. It is an excellent platform for collaborating on projects, including scientific manuscripts.</li>
+<li>Register for a free individual GitHub account and request <a href="https://education.github.com">the student discount</a>. This should give you some free private repositories for a couple of years.
+
+<ul>
+<li>Give your public profile name some thought. I suggest you use a real name and begin to build a scholarly identity in social media and coding, but it&rsquo;s a decision you should make with intention.</li>
+</ul></li>
+<li>We will elicit your GitHub username soon so we can add you to the <a href="https://github.com/BIOL548O">BIOL 548O GitHub Organization</a>.</li>
+</ul>
+
+<h2 id="r-and-rstudio">R and RStudio</h2>
+
+<ul>
+<li><p>Install <a href="http://www.r-project.org">R, a free software environment for statistical computing and graphics</a> from <a href="http://cran.rstudio.com">CRAN</a>, the Comprehensive R Archive Network. Install the precompiled binary for your Operating system.</p></li>
+
+<li><p>Install <a href="http://www.rstudio.com/products/rstudio">RStudio&rsquo;s IDE</a> (stands for <em>integrated development environment</em>), a powerful user interface for R. Get the Open Source Edition of RStudio Desktop.</p>
+
+<ul>
+<li>I <strong>highly recommend</strong> you run the <a href="https://www.rstudio.com/products/rstudio/download/preview/">Preview version</a>. I find these quite stable and you&rsquo;ll get the cool new features! Update to new Preview versions often.</li>
+<li>RStudio comes with a <strong>text editor</strong>, so there is no immediate need to install a separate stand-alone editor.</li>
+<li>RStudio can <strong>interface with Git(Hub)</strong>. However, you must do all the Git(Hub) set up before you can take advantage of this.
+<br /></li>
+</ul></li>
+</ul>
+
+<p>If you have a pre-existing installation of R and/or RStudio, we <strong>highly recommend</strong> that you reinstall both and get as current as possible. It can be considerably harder to run old software than new.</p>
+
+<ul>
+<li>If you upgrade R, you will need to update any packages you have installed. The command below should get you started, though you may need to specify more arguments if, e.g., you have been using a non-default library for your packages.</li>
+</ul>
+
+<pre><code>    update.packages(ask = FALSE, checkBuilt = TRUE)
+</code></pre>
+
+<p>Note: this will only look for updates on CRAN. So if you use a package that lives <em>only</em> on GitHub or if you want a develoment version from GitHub, you will need to  update manually, e.g. via <code>devtools::install_github()</code>.</p>
+
+<h3 id="testing-testing">Testing testing</h3>
+
+<ul>
+<li><p>Do whatever is appropriate for your OS to launch RStudio. You should get a window similar to the screenshot you see <a href="http://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png">here</a>, but yours will be more boring because you haven&rsquo;t written any code or made any figures yet!</p></li>
+
+<li><p>Put your cursor in the pane labelled Console, which is where you interact with the live R process. Create a simple object with code like <code>x &lt;- 2 * 4</code> (followed by enter or return). Then inspect the <code>x</code> object by typing <code>x</code> followed by enter or return. You should see the value 8 print to screen. If yes, you&rsquo;ve succeeded in installing R and RStudio.</p></li>
+</ul>
+
+<h3 id="next-steps">Next steps</h3>
+
+<p>After installation, you still need to <a href="01_git_introduce.html">introduce yourself to Git</a> and <a href="01_git_cache.html">get it to remember your GitHub username and password</a>. If your Git client guides you through this, seize that opportunity! Otherwise follow the links for some assistance.</p>
+
+<h3 id="add-on-packages">Add-on packages</h3>
+
+<p>R is an extensible system and many people share useful code they have developed as a <em>package</em> via CRAN and GitHub. To install a package from CRAN, for example the <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html"><code>dplyr</code></a>  package for data manipulation, here is one way to do it in the R console (there are others).</p>
+
+<pre><code>install.packages(&quot;dplyr&quot;, dependencies = TRUE)
+</code></pre>
+
+<p>By including <code>dependencies = TRUE</code>, we are being explicit and extra-careful to install any additional packages the target package, <code>dplyr</code> in the example above, needs to have around.</p>
+
+<p>You could use the above method to install the following packages, all of which we will use:</p>
+
+<ul>
+<li><code>tidyr</code>, <a href="https://cran.r-project.org/web/packages/tidyr/index.html">package webpage</a></li>
+<li><code>ggplot2</code> <a href="http://docs.ggplot2.org/">package webpage</a></li>
+<li><code>EML</code> <a href="https://github.com/ropensci/EML">package webpage</a></li>
+</ul>
+
+<h3 id="further-resources">Further resources</h3>
+
+<p>The above will get your basic setup ready but here are some links if you are interested in reading a bit further.</p>
+
+<ul>
+<li>How to Use RStudio
+
+<ul>
+<li><a href="https://support.rstudio.com/hc/en-us">https://support.rstudio.com/hc/en-us</a></li>
+</ul></li>
+<li>RStudio&rsquo;s leads for learning R
+
+<ul>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200717153-Getting-Help-with-R">https://support.rstudio.com/hc/en-us/articles/200717153-Getting-Help-with-R</a></li>
+</ul></li>
+<li>R FAQ:
+
+<ul>
+<li><a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html">http://cran.r-project.org/doc/FAQ/R-FAQ.html</a></li>
+</ul></li>
+<li>R Installation and Administration
+
+<ul>
+<li><a href="http://cran.r-project.org/doc/manuals/R-admin.html">http://cran.r-project.org/doc/manuals/R-admin.html</a></li>
+</ul></li>
+<li>More about add-on packages in the R Installation and Administration Manual
+
+<ul>
+<li><a href="https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages">https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages</a></li>
+</ul></li>
+</ul>
+
+<p>Eventually we will want you to connect RStudio and Git(Hub) (see next item about installing Git), so if things are going really well, give that a try.</p>
+
+<p>If you have a pre-existing installation of R and/or RStudio, we <strong>highly recommend</strong> that you reinstall and upgrade to the most recent version. It is very easy and RStudio, specifically, is changing rapidly and positively (written 2015-09). If you upgrade R, you will need to also update any packages you have installed.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/01_git_introduce/">
+        Introduce yourself to Git
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<p><strong>You only have to set this up once per machine.</strong></p>
+
+<h3 id="tl-dr">TL;DR</h3>
+
+<pre><code class="language-sh">git config --global user.name 'Ralph Yorke'
+git config --global user.email 'ralph.yorke@zoology.ubc.ca'
+git config --global --list
+</code></pre>
+
+<p>In words &hellip;</p>
+
+<p>From RStudio, go to <em>Tools &gt; Shell</em> and tell <code>git</code> your name and <strong>GitHub email</strong> by typing (use your own name and email):</p>
+
+<ul>
+<li><p><code>git config --global user.name 'Ralph Yorke'</code></p>
+
+<ul>
+<li>This does <strong>NOT</strong> have to be your GitHub username, although it can be. Another good option is your actual first name and last name. Your commits will be labelled with this name, so this should be informative to potential collaborators.</li>
+</ul></li>
+
+<li><p><code>git config --global user.email 'ralph.yorke@zoology.ubc.ca'</code></p>
+
+<ul>
+<li>This <strong>must</strong> be the email that you used to sign up for GitHub.</li>
+</ul></li>
+
+<li><p><code>git config --global core.editor 'nano'</code></p></li>
+</ul>
+
+<p>These commands return nothing. You can check that <code>git</code> understood what you typed by looking at the output of <code>git config --global --list</code>.</p>
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://help.github.com/articles/set-up-git">GitHub&rsquo;s advice</a>.</li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/metadata/">
+        Metadata
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="outline-for-today">Outline for today</h2>
+
+<ul>
+<li>Some very quick [slides about metadata]()</li>
+<li>Group discussion activity</li>
+<li>an <a href="writing_metadata">Introduction to writing metadata</a></li>
+<li>Description of <a href="Homework_3">Homework 3: the Final Project</a></li>
+</ul>
+
+<h4 id="let-s-begin-with-an-exercise">Let&rsquo;s begin with an exercise!</h4>
+
+<ol>
+<li>Break into evenly distributed groups of 3 people. <em>(2 mins)</em><br /></li>
+<li>Identify one volunteer to be the “Researcher” and describe their research data for this exercise.  This person will need to be fairly familiar with how and why the data was collected. <em>(2 mins)</em><br /></li>
+<li>Identify a note taker to record responses to questions from the group about the data set. <em>(1 min)</em><br /></li>
+<li>members of the group ask questions of the “Researcher” about her or his data set while the note taker records responses.  (The note taker can ask questions, too!)  As you ask questions, think about how you would (if you could) respond to a similar question for your data set. <em>(15 mins)</em><br /></li>
+</ol>
+
+<p>Add your responses to <a href="https://etherpad.wikimedia.org/p/BIO548O">This Etherpad Document</a></p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/writing_metadata/">
+        Metadata
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<p>Metadata is <em>data about data</em></p>
+
+<h2 id="hand-made-artisanal-metadata">hand-made artisanal metadata</h2>
+
+<p>You can also do this simply by simple text (<code>.txt</code> or <code>.rtf</code>) with your own hands:</p>
+
+<p><img src="img/bromeliad_metadata.png" alt="brom" /></p>
+
+<p>Alternatively, you could write it in a CSV format:</p>
+
+<pre><code>field,description
+country,&quot;countries of the world&quot;&quot;
+continent,&quot;continents of the world&quot;
+year,&quot;the year AD&quot;
+lifeExp,&quot;lifeExp in years&quot;
+pop,&quot;population in humans&quot;
+gdpPercap,&quot;gdp per capita, measured in PPP&quot;
+</code></pre>
+
+<p>This is convenient, but has no standard whatsoever. This makes it difficult for machines to read. An increasing number of scientists are experimenting with new ways of creating metadata that satisfies our &ldquo;write data for machines&rdquo; principle.</p>
+
+<p>Many of these methods are novel, and rather experimental. We&rsquo;re going to be using some Very Modern Packages in today&rsquo;s exercises. We&rsquo;ll need to install versions of packages that are newer than what is available on CRAN (via <code>install.packages()</code>). We&rsquo;ll use a small package called <code>ghit</code> to do the job:</p>
+
+<pre><code class="language-r"># install.packages(&quot;ghit&quot;)
+</code></pre>
+
+<p>As usual, our gapminder dataset will supply some good examples:</p>
+
+<pre><code class="language-r">library(gapminder)
+</code></pre>
+
+<h2 id="intro-to-json-and-xml-and-yaml">intro to JSON and XML (and YAML)</h2>
+
+<p>These are the two common languages of the internet: <strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation and e<strong>X</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage.</p>
+
+<p>Here&rsquo;s an example of JSON: from <a href="https://zapier.com/learn/apis/chapter-3-data-formats/">this wonderful site</a></p>
+
+<pre><code class="language-javascript">{
+  &quot;crust&quot;: &quot;original&quot;,
+  &quot;toppings&quot;: [&quot;cheese&quot;, &quot;pepperoni&quot;, &quot;garlic&quot;],
+  &quot;status&quot;: &quot;cooking&quot;,
+  &quot;customer&quot;: {
+    &quot;name&quot;: &quot;Brian&quot;,
+    &quot;phone&quot;: &quot;573-111-1111&quot;
+  }
+}
+</code></pre>
+
+<p>And here is XML:</p>
+
+<pre><code class="language-xml">&lt;order&gt;
+    &lt;crust&gt;original&lt;/crust&gt;
+    &lt;toppings&gt;
+        &lt;topping&gt;cheese&lt;/topping&gt;
+        &lt;topping&gt;pepperoni&lt;/topping&gt;
+        &lt;topping&gt;garlic&lt;/topping&gt;
+    &lt;/toppings&gt;
+    &lt;status&gt;cooking&lt;/status&gt;
+&lt;/order&gt;
+</code></pre>
+
+<p>and finally, *Y*et *A*nother *M*arkup *L*anguage:</p>
+
+<pre><code>order:
+  - crust: original
+     topping: 
+        - cheese
+        - pepperoni
+        - garlic
+</code></pre>
+
+<h2 id="the-classic-approach-the-ecological-metadata-language-eml">the classic approach: the Ecological Metadata Language (<code>EML</code>)</h2>
+
+<p>EML is a classic metadata approach. There is a <a href="http://im.lternet.edu/sites/im.lternet.edu/files/emlHandbook.pdf">large amount of documentation</a>.</p>
+
+<p>It is used in the Knowledge Network for Biocomplexity</p>
+
+<pre><code>library(ghit)
+install_github(&quot;ropensci/EML&quot;, dependencies=c(&quot;Depends&quot;, &quot;Imports&quot;))
+library(EML)
+</code></pre>
+
+<pre><code class="language-r">dat &lt;- data.frame(river = factor(c(&quot;SAC&quot;,  
+                                   &quot;SAC&quot;,   
+                                   &quot;AM&quot;)),
+                  spp   = c(&quot;Oncorhynchus tshawytscha&quot;,  
+                            &quot;Oncorhynchus tshawytscha&quot;, 
+                            &quot;Oncorhynchus kisutch&quot;),
+                  stg   = ordered(c(&quot;smolt&quot;, 
+                                    &quot;parr&quot;, 
+                                    &quot;smolt&quot;), 
+                                  levels=c(&quot;parr&quot;, 
+                                           &quot;smolt&quot;)), # =&gt; parr &lt; smolt
+                  ct    = c(293L,    
+                            410L,    
+                            210L),
+                  day   = as.Date(c(&quot;2013-09-01&quot;, 
+                                    &quot;2013-09-1&quot;, 
+                                    &quot;2013-09-02&quot;)),
+                  stringsAsFactors = FALSE)
+</code></pre>
+
+<p>now we define the column units:</p>
+
+<pre><code class="language-r">col.defs &lt;- c(&quot;River site used for collection&quot;,
+              &quot;Species scientific name&quot;,
+              &quot;Life Stage&quot;, 
+              &quot;count of live fish in traps&quot;,
+              &quot;The day on which traps were sampled&quot;)
 
 
+unit.defs &lt;- list(
+  c(SAC = &quot;The Sacramento River&quot;,     # Factor 
+    AM = &quot;The American River&quot;),
+ &quot;Scientific name&quot;,                   # Character string 
+  c(parr = &quot;third life stage&quot;,        # Ordered factor 
+    smolt = &quot;fourth life stage&quot;),
+  c(unit = &quot;number&quot;, 
+    precision = 1, 
+    bounds = c(0, Inf)),              # Integer
+  c(format = &quot;YYYY-MM-DD&quot;,            # Date
+    precision = 1))
+</code></pre>
+
+<p>And finally, we write it out:</p>
+
+<pre><code class="language-r">eml_write(dat, 
+          col.defs = col.defs, 
+          unit.defs = unit.defs, 
+          creator = &quot;Carl Boettiger &lt;cboettig@ropensci.org&gt;&quot;, 
+          file = &quot;EML_example.xml&quot;)
+</code></pre>
+
+<h2 id="get-the-computer-to-write-it-csvy">get the computer to write it: <code>CSVY</code></h2>
+
+<p>CSVY is a new idea, that embeds the metadata file into the very <code>.csv</code> file. The whole idea is described on <a href="http://csvy.org/">csvy.org</a>. It uses a metadata standard called <code>YAML</code>:</p>
+
+<pre><code>---
+name: my-dataset
+fields:
+  - name: var1
+    title: variable 1
+    type: string
+    description: explaining var1
+    constraints:
+      - required: true
+  - name: var2
+    title: variable 2
+    type: integer
+  - name: var3
+    title: variable 3
+    type: number
+---
+var1,var2,var3
+A,1,2.5
+B,3,4.3
+</code></pre>
+
+<p>We&rsquo;re going to focus on this process, (but not on the constraints)</p>
+
+<p>Let&rsquo;s start by using <code>rio</code> to write the data out:</p>
+
+<pre><code class="language-r">library(rio)
+
+attributes(gapminder)[1:2]
+</code></pre>
+
+<pre><code>## $names
+## [1] &quot;country&quot;   &quot;continent&quot; &quot;year&quot;      &quot;lifeExp&quot;   &quot;pop&quot;       &quot;gdpPercap&quot;
+## 
+## $class
+## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+</code></pre>
+
+<pre><code class="language-r">export(gapminder, &quot;gapminder.csvy&quot;, format = &quot;csvy&quot;, comment_header = FALSE)
+</code></pre>
+
+<pre><code>## Warning in write.table(x, file = file, sep = sep, row.names = row.names, :
+## appending column names to file
+</code></pre>
+
+<pre><code class="language-r">head(import(&quot;gapminder.csvy&quot;))
+</code></pre>
+
+<pre><code>##       country continent year lifeExp      pop gdpPercap
+## 1 Afghanistan      Asia 1952  28.801  8425333  779.4453
+## 2 Afghanistan      Asia 1957  30.332  9240934  820.8530
+## 3 Afghanistan      Asia 1962  31.997 10267083  853.1007
+## 4 Afghanistan      Asia 1967  34.020 11537966  836.1971
+## 5 Afghanistan      Asia 1972  36.088 13079460  739.9811
+## 6 Afghanistan      Asia 1977  38.438 14880372  786.1134
+</code></pre>
+
+<p>now let&rsquo;s edit it by hand.</p>
+
+<h3 id="note-the-json-table-schema">Note: the JSON table schema</h3>
+
+<pre><code> field     field
+   |         |
+   |         |
+   V         V
+
+  A     |    B    |    C    |    D      &lt;--- Row
+  ------------------------------------
+  valA  |   valB  |  valC   |   valD    &lt;--- Row
+  ...
+</code></pre>
+
+<p>We&rsquo;re going to work with <strong>field descriptors</strong></p>
+
+<pre><code class="language-json">  &quot;name&quot;: &quot;name of field (e.g. column name)&quot;,
+  &quot;title&quot;: &quot;A nicer human readable label or title for the field&quot;,
+  &quot;type&quot;: &quot;A string specifying the type&quot;,
+  &quot;format&quot;: &quot;A string specifying a format&quot;,
+  &quot;description&quot;: &quot;A description for the field&quot;
+</code></pre>
+
+<p>Note that there are no quotes when we use YAML.</p>
+
+<h2 id="datapackage">datapackage</h2>
+
+<p>Using the R package <a href="https://github.com/christophergandrud/dpmr"><code>dmpr</code></a>. It creates data packages after the standard described in <a href="http://data.okfn.org/doc/tabular-data-package">datapackage</a></p>
+
+<pre><code class="language-r">#install.package(&quot;dpmr&quot;)
+
+library(dpmr)
+meta_list &lt;- list(name = 'gapminder_data',
+                    title = 'the data of Gapminder',
+                    last_updated = Sys.Date(),
+                    version = '0.1',
+                    license = data.frame(type = 'PDDL-1.0',
+                            url = 'http://opendatacommons.org/licenses/pddl/')
+                            )
+
+datapackage_init(df = gapminder, meta = meta_list) 
+</code></pre>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+<li><a href="http://www.ands.org.au/guides/metadata-working.html">Metadata Guide</a> from Australian National Data Service (ANDS)</li>
+<li><a href="http://rd-alliance.github.io/metadata-directory/">Metadata Directory</a> from Research Data Alliance</li>
+<li><a href="https://www.dataone.org/sites/all/documents/DataONE_BP_Primer_020212.pdf">Best Practices for Data Management</a> from DataONE</li>
+<li><a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003542">Ten Simple Rules for the Care and Feeding of Scientific Data</a> by Goodman et al</li>
+<li>[Challenges to Open Data and How to Respond] (04c_OpenDataChallengesQuickInfoSheet.md)</li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/github_howto/">
+        Notes on running a class on github
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The first run of BIOL548O (&ldquo;Dealing with Data&rdquo;) is being taught entirely through GitHub. This is an approach inspired by STAT545/547. In both courses, the intention is that students will get practical experience in creating and managing their projects via git. It also has the potential to help the course instructor manage assignments and grades, etc.</p>
+
+<p>This document is for notes that I am taking about using GitHub in the classroom. I mean it mostly as a personal reference, but also as a place to discuss with instructors of other courses. It will eventually serve as a guide for whoever takes this course over from me, should they wish to apply the same approach in the future.</p>
+
+<h2 id="organization-setup">organization setup</h2>
+
+<ul>
+<li>created the organization on github, added other course Instructor (there are two this year, myself and Diane) as owners.</li>
+<li>applied for the GitHub educational discount for the course. asked for a large number of private repositories (more than i would need, 30 or 50 i forget exactly how many)</li>
+<li>How can you find out how many private repositories you have? You go to <code>Settings &gt; Billing</code>. As of 2016, GitHub granted BIOL548O a &ldquo;Gold&rdquo; plan, giving us 50 private repositories.</li>
+</ul>
+
+<h2 id="adding-people-to-the-github-organization">adding people to the github organization</h2>
+
+<ul>
+<li>In STAT545, data about each student was collected in a Shiny app &ndash; including their GitHub username. I considered doing that here as well, or using a Google Form</li>
+<li>Instead, I decided on the Human Touch &ndash; on the 2nd lecture, I asked the students to take turns introducing themselves and stating<br />
+
+<ul>
+<li>their actual name</li>
+<li>their github username</li>
+<li>what kind of data they deal with</li>
+</ul></li>
+<li>As each student introduced themselves, I manually added them to the organization. This led to me typing on the screen while the student was talking about themselves.</li>
+<li>Pros and cons of this approach
+
+<ul>
+<li><em>PRO</em>
+
+<ul>
+<li>I actually got to meet everyone. Adding the username gave the proceedings a bit of practical significance, instead of the rote &ldquo;name/lab/thesis&rdquo; introduction we are all used to giving.</li>
+<li>other students got to hear their peer&rsquo;s usernames. Since online collaboration is an important part of this course, its important that they know who they are dealing with.</li>
+<li>So easy! it allowed me to defer studying the GitHub API</li>
+</ul></li>
+<li><em>CON</em>
+
+<ul>
+<li>Would scale TERRIBLY. This was only possible because about 20 people are involved.</li>
+<li>Weird typos, either in original usernames or in my typing of them, slowed down that process.</li>
+</ul></li>
+</ul></li>
+<li>I added <em>everybody</em> to this course. Literally everybody. Students and Instructors, of course, but also auditors, unofficial auditors, friendly postdocs, interested grad students, and one colleague in another country.
+
+<ul>
+<li>my motivation for liberal course membership: Keeping track of <em>all</em> interested parties, to spare myself having to coordinate things through &ldquo;connect&rdquo; (the UBC course management thing). This list is incomplete (ie doesn&rsquo;t catch those impermanent groups). Also I find the UI for Connect a little stressful (why are there so many menus! v distressing)</li>
+</ul></li>
+</ul>
+
+<h2 id="github-api-stuff-permissions-teams">Github API stuff &ndash; permissions, teams</h2>
+
+<ul>
+<li>I started trying to learn the <a href="https://developer.github.com/v3/">github API</a>, especially as expressed in R by <a href="https://github.com/gaborcsardi/gh">Gabor Csardi&rsquo;s R package <code>gh</code></a></li>
+<li>I quickly realized that decisions about the entire course organization need to be taken before you start organizing people. That&rsquo;s why i wanted to write everything down now: to record those decisions.</li>
+</ul>
+
+<p>Here is a running list of all the Clicky Business you need to do to set up an organization like this:
+    * Get yourself <a href="https://github.com/settings/tokens">a very permissive and powerful github API token</a>. The only thing I left off of my token was &ldquo;Delete&rdquo;, because Future Andrew is an imperfect fellow.
+    * Manually add students to the organization: go to the <a href="https://github.com/orgs/BIOL548O/people">people tab</a> of the organization and click &ldquo;Invite member&rdquo;
+    * <em>this is the stage where they created their own repositories</em>
+    * Go to <code>BIOL548O &gt; Settings &gt; Member Privileges</code> and under <code>Default repository permission</code> set it to <strong>&ldquo;None&rdquo;</strong>.</p>
+
+<h3 id="how-to-see-what-is-going-on">how to see what is going on</h3>
+
+<p><em>who can see this repo</em>: go to a repo, click <code>Settings &gt; Collaborators &amp; teams</code> and it shows up there.</p>
+
+<p>In the setup I described above, you end up with (at least at the beginning) students having Admin access for one repo only: the one they created. Presumably they can also Read any public repository (just as anyone could) but they can&rsquo;t push commits anywhere else.<br />
+I like that. This way, they can have ownership of this repository: they could even (i think?) add an outside person (supervisor, friend) if they wanted.</p>
+
+<p><em>what can this individual see</em>: go to &ldquo;People&rdquo; and click &ldquo;manage access&rdquo; next to their name. You can see here what repositories they have access to. You can also click on the (very confusingly named) &ldquo;manage access&rdquo; button (how far does this rabbithole go?) to see <em>why</em> they have access to it. I like that, too.</p>
+
+<h3 id="private-repositories-student-created">Private repositories &ndash; student created</h3>
+
+<ul>
+<li>I wanted each student to create their own private repository. I felt it was important that they experience the workflow (rather than have a repository handed to them). That happened in Lecture 2</li>
+<li>Well, it <em>seemed</em> OK. But there were Problems:
+
+<ul>
+<li>I asked students to keep their repositories in a standard format: <code>lastname_firstname</code>. In a room of 20 people at least one person wrote their name down as <code>lastname-firstname</code>. Potentially a snag for later when I am using R to process course stuff (the worse because at least one student has a hyphenated last name, so splitting repos base on <code>-</code> OR <code>_</code> will give the wrong answer). Will report back here.
+
+<ul>
+<li>What should I do when students give their repos inconsistent names? Ask the student to correct their error? That <em>might</em> work, but would cause headaches. Because of our workflow, the student would need to modify the name of their repository, the name of the folder and the RStudio project file name, too. Then Rstudio would get confused, and the student would get confused..</li>
+</ul></li>
+<li>When we looked at the MIT Licence after cloning our repositories, it said (to my dismay) that the copyright was to the Organization name (&ldquo;BIOL548O&rdquo;). I had hoped that it would be the student&rsquo;s name. However, only <em>teams</em> can own repos in GitHub. That brings me to my next point:</li>
+</ul></li>
+</ul>
+
+<h3 id="teams-and-permissions">Teams and permissions</h3>
+
+<ul>
+<li>When i added the students to the organization, and asked them to create private repositories, I noticed later that the default setting is that all members can see all private repos.
+
+<ul>
+<li><em>why that&rsquo;s bad</em>
+
+<ul>
+<li>Compromises privacy quite a bit (it is one thing for students to review each other&rsquo;s work, but perhaps too much for all students to see all work all the time)</li>
+<li>Enables copying and plagiarism (not, of course, that I think this is possible/probable in a course of about a dozen close colleagues. But if this were to scale it would be a problem)</li>
+<li>no privacy for Instructors! for those things that an Instructor would like to have in private. Like their kludgy GitHub API code manipulation. Or, idk, minor things like <strong><em>student marks</em></strong></li>
+</ul></li>
+<li><em>why its sort of OK</em>
+
+<ul>
+<li>It looks a bit more like how a lab would organize itself. I mean within a lab it makes sense that everyone should be able to read (and perhaps even modify) all projects. Enabling collaboration even within private repos. So if we&rsquo;re teaching practical skills, why not teach them practically?</li>
+<li>It would certainly be easier to organize peer reviews!</li>
+</ul></li>
+</ul></li>
+<li>Despite the (considerable!) convenience to myself, I decided that it was necessary to shut down access to all private repos.</li>
+</ul>
+
+<h4 id="organizational-teams">Organizational teams</h4>
+
+<p>There are a few teams and things I know for sure I want:</p>
+
+<ul>
+<li><code>all</code> : a team for absolutely everybody. To be used in broadcast announcements.</li>
+<li><code>students</code>: just the students, for announcements that pertain only to actual work.</li>
+<li><code>auditors</code>: just because it seems polite to include em. Even though technically an instructor is not required to actually <em>do</em> anything with auditors, so I guess there is no official need to interact with them as a group.</li>
+<li><code>instructors</code>: for access to the student grades / &ldquo;instructorsonly&rdquo; repository</li>
+</ul>
+
+<h4 id="student-teams">Student teams</h4>
+
+<ul>
+<li>in STAT545, each student was on a singleton team, just for them. That team was the owner of their own repo. I want to try to import this system here:</li>
+<li>I <em>think</em> that marking proceeded like this:
+
+<ul>
+<li><em>STUDENT</em>
+
+<ul>
+<li>Student does homework, pushes to their repo (owned by their team. they have push access)</li>
+</ul></li>
+<li><em>Instructor</em>
+
+<ul>
+<li>Peer reviewer is selected by random process: <code>combn(students, 2)</code> etc, with perhaps some finesse to make sure that duplicates are impossible</li>
+<li>peer reviewer&rsquo;s team is added to repository (or rather, that repository is added to reviewer&rsquo;s team)</li>
+</ul></li>
+<li>Issue is opened on <em>student&rsquo;s</em> repo: &ldquo;Peer review of <code>&lt;student&gt;</code> by <code>&lt;reviewer&gt;</code>&rdquo;, and reviewer is assigned.  This issue contains:
+
+<ul>
+<li>Hi (reviwer name) (maybe reviwer github handle)</li>
+<li>link to general rubric + general rules for review (be nice, don&rsquo;t plagarize, etc)</li>
+<li>specific information about what this review should be</li>
+<li>due date</li>
+</ul></li>
+<li>Issue given tags &ldquo;homework&rdquo; with number and &ldquo;peer review&rdquo; with number?</li>
+<li><em>REVIEWER</em>
+
+<ul>
+<li>reviewer submits marks and feedback &ndash; on the issue? in a google form? if the former then should be in som standard format. If the latter, should be also communicated to student somehow (could be simply in an unstructured form on the issue)</li>
+<li>both issue and form feedback need to be done by the due date.</li>
+</ul></li>
+<li><em>INSTRUCTOR AGAIN</em>
+
+<ul>
+<li>closes issue.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Alternatively:</p>
+
+<ul>
+<li><em>STUDENT</em>
+
+<ul>
+<li>students push a branch containing their changes since last homework was completed</li>
+<li>students open a PR. that counts as their &ldquo;submission&rdquo; of the homework.</li>
+</ul></li>
+<li><em>INSTRUCTOR</em>
+
+<ul>
+<li>reviewr randomly assigned (as above) and assigned to issue.</li>
+</ul></li>
+<li><em>REVIEWER</em>
+
+<ul>
+<li>reviewer submits comments as both comments on the issue and inline comments on the diff.</li>
+</ul></li>
+<li><em>STUDENT (possibly optional)</em>
+
+<ul>
+<li>student responds to those comments</li>
+</ul></li>
+<li><em>INSTRUCTOR</em>
+
+<ul>
+<li>instructor confirms that
+
+<ol>
+<li>reviewer comments are done</li>
+<li>reviewer grade is registered on a form.</li>
+</ol></li>
+<li>creates comment, acknowledging review is complete and informing student they can merge
+
+<ul>
+<li>make sure you merge before next assignment.</li>
+<li>delete your branches</li>
+<li>reviewer, remember to delete your clone (if any).</li>
+</ul></li>
+</ul></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/Repositories/">
+        Online Repositories
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="outline-for-today">Outline for today</h2>
+
+<ul>
+<li>A review of different metadata techniques, using examples from class.</li>
+<li>some <a href="slides/review_slides.html">Review Slides</a></li>
+<li>Introduction to a three online data repositories</li>
+<li>live demonstration of online repository use!</li>
+<li>getting started on peer reviews/ homework</li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/PeerReview_2/">
+        Peer Review 2
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    <p>The goal of this Peer Review is to help our colleagues to write <em>clear, readable code</em> which creates <em>tidy data</em>.</p>
+
+<blockquote>
+<p><em>tip: suggest new code to your reviewee by typing three backticks before and after your suggestion</em></p>
+
+<p><em>tip: you can <a href="http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github">link to specific lines of code</a> on GitHub by clicking on them and using the new URL</em></p>
+</blockquote>
+
+<p><em>Please don&rsquo;t keep a copy of your reviewee&rsquo;s data!</em></p>
+
+<p>Here is a template for Peer Review 2. <strong>Copy and paste this in response to the GitHub Issue that announces your review</strong></p>
+
+<pre><code>## organization
+
+Did your reviewee follow the directory naming convention that we are using? Was it easy to find the data cleaning script?
+
+YOUR WORDS HERE
+
+## reproducible
+
+Open the data cleaning script and run it all, either by sourcing or by highlighting and click Run all
+
+What happened? Did the final data file recreate itself? Why or why not? What changes need to be made to the script to allow it to run on your machine?
+
+YOUR WORDS HERE
+
+## documented
+
+Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?
+
+YOUR WORDS HERE
+
+## efficient
+
+What transformations or manipulations is your reviewee performing? Are any done with more code than is necessary? For example, are they using their own code to solve a problem that is already handled in `dplyr` or `tidyr`? **suggest something they could do differently**
+
+YOUR WORDS HERE
+
+
+## output is tidy
+
+Tidy data has one observation in each row, and one variable in each column. Does that appear to be true of your reviewee's dataset? Is there another form you could suggest?
+
+YOUR WORDS HERE
+
+## output is correct
+
+check either on Github or via a real CSV validator such as [csvlint.io](http://csvlint.io/) and/or [CSVfingerprint](http://setosa.io/csv-fingerprint/)
+
+YOUR WORDS HERE
+
+</code></pre>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/PeerReview_3/">
+        Peer Review 3
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<p>The goal of this Peer Review is twofold:</p>
+
+<ul>
+<li>To help our colleagues perform &ldquo;quality control&rdquo; on their <em>tidy data</em>, and to document that data with clear metadata.</li>
+<li>To practice applying your own data skills to unfamiliar data.</li>
+</ul>
+
+<p>A template for your Review is below. <strong>Copy and paste this in response to the GitHub Issue that announces your review</strong></p>
+
+<h3 id="reusing-your-reviewee-s-data">reusing your reviewee&rsquo;s data!</h3>
+
+<ul>
+<li>To demonstrate that their metadata is complete by interpreting their data without asking them questions</li>
+<li>To practice your dplyr and tidyr skills on a new and unfamiliar dataset</li>
+<li>FUN!</li>
+</ul>
+
+<p>Here are some ideas of what you can do:</p>
+
+<ul>
+<li>Write a few new assertions</li>
+<li>Do some statistics (anova, linear regression &ndash; very simple is fine)</li>
+<li>Visualize their data</li>
+<li>use <code>dplyr</code> to calculate some new summary statistics</li>
+</ul>
+
+<blockquote>
+<p>Tip: format your R code so that it looks good on the issue! put a row of three backticks right before your code and right after it. This is called a fenced code block <a href="https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks">see this link for more info</a>.</p>
+
+<p>Tip: you can <a href="http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github">link to specific lines of code</a> on GitHub by clicking on them and using the new URL</p>
+</blockquote>
+
+<p><em>Please don&rsquo;t keep a copy of your reviewee&rsquo;s data!</em></p>
+
+<h2 id="template">Template:</h2>
+
+<pre><code>## organization
+
+*Did your reviewee follow the directory naming convention that we are using? Was it easy to find the different R scripts?*
+
+YOUR WORDS HERE
+
+## documentation
+
+*Review the code that performs the assertions. Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?*
+
+YOUR WORDS HERE
+
+## Assertions
+
+*what things does your reviewee test for in the assertions? Is anything missing? Suggest an improvement to their quality control*
+
+YOUR WORDS HERE
+
+## Metadata (two parts)
+
+### clear and human-readable
+
+*Is the metadata thorough? When, where and how was this work done? Do you have any questions about what the data mean?* 
+
+YOUR WORDS HERE
+
+### correct and machine-readable
+
+*Choose one from below (depending on what your reviewee has done) and describe how to fix any problems you find:*
+
+* `EML` -- use the function `eml_read()` from the `EML` package. Will it read into R?
+* `csvy` -- copy and paste the YAML information into [this validator](http://codebeautify.org/yaml-validator) and click &quot;Validate&quot;.
+* `datapackage` -- copy and paste the `datapackage.json` file into [this validator](http://jsonlint.com/) and click &quot;Validate&quot;
+
+YOUR WORDS HERE
+
+# Reuse your colleagues data
+
+*Do something with your reviewee's data! Write an R script that reads the data in, then does something. Don't forget to write comments!*  
+*Paste the entire R script you wrote below, inside a fenced code block*  
+*If you've made a plot, you can add that in a separate comment*
+
+YOUR CODE HERE
+
+</code></pre>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/VersionControl/">
+        Version control
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="lecture-outline">Lecture outline</h2>
+
+<ul>
+<li>Introduction to what the class will be about <a href="../slides/01_Introduction.html">slides</a></li>
+<li>introduction to version control with git</li>
+</ul>
+
+<h3 id="getting-started-with-git">Getting started with git</h3>
+
+<p><a href="slides/git_slides.pdf">slides about git</a> courtesy of <a href="http://swcarpentry.github.io/git-novice">Software Carpentry</a></p>
+
+<p><a href="01_git_introduce">Introduce yourself to git</a></p>
+
+<ul>
+<li>here is a list of <a href="SuppMatt/the_shell">handy shell commands</a></li>
+</ul>
+
+<h3 id="video-explanation-of-what-this-course-is-about">Video explanation of what this course is about</h3>
+
+<p><a href="https://www.youtube.com/watch?v=N2zK3sAtr-4">Data Sharing and Management Snafu in 3 Short Acts</a></p>
+
+<h3 id="reading-for-thursday">Reading for Thursday</h3>
+
+<p><a href="http://scfbm.biomedcentral.com/articles/10.1186/1751-0473-8-7">Ram, K. 2013. Git can facilitate greater reproducibility and increased transparency in science. Source Code for Biology and Medicine</a></p>
+
+<p><a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668">Blischak et al, 2016, A Quick Introduction to Version Control with Git and GitHub, PLOS comp bio</a></p>
+
+<h3 id="optional-next-steps-might-have-to-be-on-your-own-time">Optional next steps (might have to be on your own time)</h3>
+
+<ul>
+<li><a href="01_git_cache">cache your credentials</a> so that you don&rsquo;t have to log in every time that you want to push to github</li>
+</ul>
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://help.github.com/articles/set-up-git">GitHub&rsquo;s advice</a>.</li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/final/">
+        filling up the corners
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h2 id="timeline">Timeline</h2>
+
+<ul>
+<li>Peer reviews done by the end of today (midnight) :
+
+<ul>
+<li>Comments (using form)</li>
+<li>Google form with marks</li>
+<li><a href="https://github.com/BIOL548O/macdonald_andrew/issues/1">my example</a></li>
+</ul></li>
+<li>Comments on projects by Andrew tomorrow</li>
+<li>Final form of project end of 07 March (Monday)</li>
+</ul>
+
+<h1 id="filling-up-the-corners-various-interesting-topics">Filling up the corners &ndash; various interesting topics</h1>
+
+<h2 id="licences">Licences</h2>
+
+<ul>
+<li>Software licences:
+
+<ul>
+<li>MIT</li>
+<li>Apache
+
+<ul>
+<li>requires preservation of the copyright notice and disclaimer.</li>
+</ul></li>
+</ul></li>
+<li>Licences for data, writing and code:
+
+<ul>
+<li><a href="https://creativecommons.org/choose/">choose the one for you on Creative Commons</a></li>
+<li><a href="https://creativecommons.org/about/cc0/">CC-0</a></li>
+<li>CC-by</li>
+</ul></li>
+</ul>
+
+<h2 id="open-science">Open Science</h2>
+
+<blockquote>
+<p>Fully open science can take place throughout the process of discovery, from the sharing of nascent ideas, to the uploading of data at the moment of capture, through to developing “living papers” in an open forum in which the details of analysis and reasoning are completely transparent. Subsequent generations of ecologists will build their work on what we leave.</p>
+</blockquote>
+
+<p>&ndash; Hampton, S. E., S. S. Anderson, S. C. Bagby, C. Gries, X. Han, E. M. Hart, M. B. Jones, W. C. Lenhardt, A. MacDonald, W. K. Michener, J. Mudge, A. Pourmokhtarian, M. P. Schildhauer, K. H. Woo, and N. Zimmerman. 2015. The Tao of open science for ecology. Ecosphere 6(7):120. <a href="http://dx.doi.org/10.1890/ES14-00402.1">http://dx.doi.org/10.1890/ES14-00402.1</a></p>
+
+<h2 id="reproducibility-and-open-science">Reproducibility and Open Science</h2>
+
+<p><img src="img/open_sci_pop.png" height="500px"></img></p>
+
+<h2 id="open-science-workflows">Open Science workflows</h2>
+
+<p><img src="img/open_sci_workflow.png" height="500px"></img></p>
+
+<h2 id="bias-in-research-data">Bias in research data</h2>
+
+<blockquote>
+<p>Researchers in psychology, a field rocked by findings of irreproducibility in the past few years, have been especially vocal proponents of the drive for more-open science. In one of the latest examples of irreproducibility issues, investigators tried to replicate results from 100 psychological studies but succeeded in fewer than half of them</p>
+</blockquote>
+
+<p>&ndash; <a href="http://www.nature.com/naturejobs/science/articles/10.1038/nj7584-117a">Gewin, 2016, Nature</a></p>
+
+<h2 id="guide-to-bad-data">Guide to bad data</h2>
+
+<p>List of data woes <a href="https://github.com/Quartz/bad-data-guide">on github</a> (where else)</p>
+
+<p>Here are some selected problems! How would you solve them?</p>
+
+<ul>
+<li><a href="https://github.com/Quartz/bad-data-guide#suspicious-values-are-present">suspicious values</a></li>
+<li><a href="https://github.com/Quartz/bad-data-guide#spreadsheet-has-65536-rows">65536 rows</a></li>
+<li><a href="https://github.com/Quartz/bad-data-guide#data-are-too-granular">data are too granular</a></li>
+<li><a href="https://github.com/Quartz/bad-data-guide#data-are-in-a-pdf">data are in pdf</a>
+
+<ul>
+<li><a href="https://github.com/ropensci/pdftools">ropensci/pdftools</a></li>
+</ul></li>
+<li><a href="https://github.com/Quartz/bad-data-guide#results-have-been-p-hacked">p-hacking</a></li>
+</ul>
+
+<h2 id="data-management-plans">Data management plans</h2>
+
+<p><img src="img/michner_DMP.PNG" height="500px"></img></p>
+
+<ul>
+<li><a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">Michener WK (2015) Ten Simple Rules for Creating a Good Data Management Plan. PLoS Comput Biol 11(10): e1004525. doi:10.1371/journal.pcbi.1004525</a></li>
+</ul>
+
+<h2 id="data-management-plans-links">Data management plans &ndash; links</h2>
+
+<ul>
+<li><a href="http://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf">British Ecological Society guide</a></li>
+<li><a href="https://figshare.com/articles/Research_Data_Management_in_R/1600906">Slide presentation about research data management</a></li>
+<li><a href="https://dmptool.org/">DMPtool</a></li>
+</ul>
+
+<h2 id="misc">Misc</h2>
+
+<p><a href="http://paulfitz.github.io/daff/">daff</a>, also exists as <a href="https://github.com/edwindj/daff">an R package</a></p>
+
+<p>Awesome use for your skills : <a href="https://github.com/cdcepi/zika">zika data cleaning</a></p>
+
+<h2 id="awesome-related-r-packages">Awesome &amp; related R packages</h2>
+
+<p>The <em>Hadleyverse</em></p>
+
+<ul>
+<li>tidy model outputs with <a href="https://github.com/dgrtwo/broom"><code>broom</code></a></li>
+<li>manipulate times and dates with <a href="https://github.com/hadley/lubridate"><code>lubridate</code></a></li>
+<li>control your character vectors with <a href="https://github.com/hadley/stringr"><code>stringr</code></a></li>
+<li>pretty plots with ggplot2</li>
+</ul>
+
+<h2 id="cool-online-resources">Cool online resources</h2>
+
+<ul>
+<li><p><a href="http://www.programmingforbiologists.org/">programmingforbiologists.org/</a></p>
+
+<ul>
+<li>how to manipulate datasets SQL, organizing computational projects</li>
+</ul></li>
+
+<li><p><a href="http://software-carpentry.org/lessons/">Software Carpentry</a></p>
+
+<ul>
+<li>general programming for biologists</li>
+</ul></li>
+
+<li><p><a href="http://www.datacarpentry.org/spreadsheet-ecology-lesson/">Data Carpentry</a></p>
+
+<ul>
+<li>lots of similar material to this course</li>
+<li>very interesting <a href="http://www.datacarpentry.org/OpenRefine-ecology/">OpenRefine lesson</a></li>
+</ul></li>
+</ul>
+
+<h2 id="here-at-ubc">Here at UBC</h2>
+
+<ul>
+<li><a href="http://stat545-ubc.github.io/">STAT545</a></li>
+<li><a href="http://minisciencegirl.github.io/studyGroup/">R study group</a></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="./post/01_git_cache/">
+        git
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Jan 1, 0001</span>
+
+    
+
+<h3 id="why-do-we-want-to-cache-credentials">Why do we want to cache credentials?</h3>
+
+<p>You need to get Git to remember your GitHub username and password, so that every time you push, you do NOT have to authenticate yourself interactively.</p>
+
+<p><strong>You only have to set this up once every couple of months or once per computer.</strong></p>
+
+<p>You will know you have truly succeeded once you have at least one successful push to GitHub in which you are NOT challenged for your user name and password.</p>
+
+<h3 id="get-a-test-repository">Get a test repository</h3>
+
+<p>You need a functioning test Git repository. One that exists locally and remotely on GitHub, with the local repo tracking the remote.</p>
+
+<p>If you have just <a href="git05_github-connection.html">verified that you can interact with GitHub</a> from your local computer, that test repo will be perfect.</p>
+
+<p>If you are <a href="git06_git-github-rstudio.html">testing that you can work with GitHub from RStudio</a>, that test repo will be perfect.</p>
+
+<p>You may proceed when</p>
+
+<ul>
+<li>You have a test repo.</li>
+<li>You know where it lives on your local computer. Example:
+
+<ul>
+<li><code>/home/jenny/tmp/myrepo</code></li>
+</ul></li>
+<li>You know where it lives on GitHub. Example:
+
+<ul>
+<li><code>https://github.com/jennybc/myrepo</code></li>
+</ul></li>
+
+<li><p>You know local is tracking remote. In a <a href="git09_shell.html">shell</a> with working directory set to the local Git repo, enter these commands:</p>
+
+<p>``` shell
+jenny@2015-mbp myrepo $ git remote -v
+origin  <a href="https://github.com/jennybc/myrepo">https://github.com/jennybc/myrepo</a> (fetch)
+origin  <a href="https://github.com/jennybc/myrepo">https://github.com/jennybc/myrepo</a> (push)</p>
+
+<p>jenny@2015-mbp myrepo $ git branch -vv</p>
+
+<ul>
+<li>master b8e03e3 [origin/master] line added locally
+```
+<br /></li>
+</ul></li>
+</ul>
+
+<p>We want to see that fetch and push are set to remote URLs that point to your GitHub repo. We also want to see that your local master branch has your GitHub master branch as upstream remote. Gibberish? Just check that your output looks similar to mine.</p>
+
+<h3 id="verify-that-your-git-is-new-enough-to-have-a-credential-helper">Verify that your Git is new enough to have a credential helper</h3>
+
+<p>In a <a href="git09_shell.html">shell</a>, enter <code>git --version</code> and verify that you have 1.7.10 or newer. If you don&rsquo;t, <a href="git01_git-install.html">update Git</a>.</p>
+
+<h3 id="turn-on-the-credential-helper">Turn on the credential helper</h3>
+
+<h4 id="windows">Windows</h4>
+
+<p>In the shell, enter <code>git config --global credential.helper wincred</code></p>
+
+<h4 id="windows-plan-b">Windows, plan B</h4>
+
+<p>If that doesn&rsquo;t seem to work, install an external credential helper.</p>
+
+<ul>
+<li><p>Download the <a href="http://gitcredentialstore.codeplex.com/">git-credential-winstore.exe</a> application.</p></li>
+
+<li><p>Run it! It should work if Git is in your <code>PATH</code> environment variable. If not, go to the directory where you downloaded the application and run the following:
+<code>git-credential-winstore -i &quot;C:\Program Files (x86)\Git\bin\git.exe&quot;</code></p></li>
+</ul>
+
+<h4 id="mac">Mac</h4>
+
+<p>Find out if the credential helper is already installed. In the <a href="git09_shell.html">shell</a>, enter <code>git credential-osxkeychain</code>. You should see something like this: <code>Usage: git credential-osxkeychain &lt;get|store|erase&gt;</code>. If you do <strong>not</strong>, follow steps 2 and 3 on <a href="https://help.github.com/articles/caching-your-github-password-in-git#platform-mac">the github help</a>.</p>
+
+<p>Once you&rsquo;ve confirmed you have the credential helper, enter <code>git config --global credential.helper osxkeychain</code></p>
+
+<h4 id="linux">Linux</h4>
+
+<p>In the <a href="git09_shell.html">shell</a>, enter <code>git config --global credential.helper 'cache --timeout=10000000'</code> to store your password for ten million seconds (that&rsquo;s 16 weeks, enough for a full term).</p>
+
+<h3 id="trigger-a-username-password-challenge">Trigger a username / password challenge</h3>
+
+<p>Change a file in your local repo and commit it. Do that however you wish. Here are <a href="git09_shell.html">shell</a> commands that will work:</p>
+
+<pre><code class="language-shell">echo &quot;adding a line&quot; &gt;&gt; README.md
+git add -A
+git commit -m &quot;A commit from my local computer&quot;
+</code></pre>
+
+<p>Now push!</p>
+
+<pre><code class="language-shell">git push -u origin master
+</code></pre>
+
+<p>One last time you will be asked for your username and password, which hopefully will be cached.</p>
+
+<p>Now push AGAIN.</p>
+
+<pre><code class="language-shell">git push
+</code></pre>
+
+<p>You should NOT be asked for your username and password, instead you should see <code>Everything up-to-date</code>.</p>
+
+<p>Rejoice and close the <a href="git09_shell.html">shell</a>. From now on your &ldquo;Push&rdquo; button in RStudio will just work.</p>
+
+<h3 id="more-options">More options</h3>
+
+<ul>
+<li>Above we are connecting to GitHub via HTTPS. The alternative is <a href="https://help.github.com/articles/generating-ssh-keys">SSH</a>. We follow <a href="https://help.github.com/articles/which-remote-url-should-i-use/">GitHub&rsquo;s advice</a>, which is to prefer HTTPS over SSH, but both are perfectly valid.</li>
+</ul>
+
+<p>Go back to the <a href="git00_index.html">index for the all the Git stuff</a>.</p>
 
   </div>
   
