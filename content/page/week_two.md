@@ -1,5 +1,5 @@
 ---
-title: "Tidy data"
+title: "Week 2: Tidy data"
 menu: 
   main:
     weight: 40
