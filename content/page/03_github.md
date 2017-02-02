@@ -1,10 +1,8 @@
 ---
 title: "GitHub and project setup"
-subtitle: "the infrastructure of collaboration"
-menu: 
-  main:
-    weight: 30
+subtitle: ""
 ---
+### the infrastructure of collaboration
 
 ## Content outline
 
