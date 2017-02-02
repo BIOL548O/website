@@ -18,15 +18,17 @@
       <guid>/post/2017-01-31-about-this-course/</guid>
       <description>
 
-&lt;p&gt;This course teaches tools for sharing data.&lt;/p&gt;
+&lt;h3 id=&#34;a-graduate-module-in-data-management-manipulation-and-sharing&#34;&gt;A graduate module in data management, manipulation and sharing&lt;/h3&gt;
 
-&lt;h2 id=&#34;resources&#34;&gt;Resources&lt;/h2&gt;
+&lt;p&gt;Biodiversity 224&lt;/p&gt;
 
-&lt;p&gt;The content here is based on several excellent sources.&lt;/p&gt;
+&lt;p&gt;3:00pm to 4:30pm&lt;/p&gt;
 
-&lt;p&gt;SWC
-DAta carpentry
-Ethan&amp;rsquo;s course&lt;/p&gt;
+&lt;p&gt;Tuesday to Thursday
+This 1 credit course provides practical instruction on how to efficiently manage a reproducible research project. You will learn version control, the core principles of &amp;ldquo;tidy data&amp;rdquo;, and how to automate and document your workflow from data entry to final result. Students will implement these concepts on their own data using R and Git + Github, and will practice giving feedback on the structure of a peer&amp;rsquo;s project. We will also discuss open science, licences, and statistical biases in scientific research. Students will be evaluated on their ability to apply the concepts learnt during lectures to the development of their own reproducible project.
+About the Instructors&lt;/p&gt;
+
+&lt;p&gt;Andrew MacDonald is a PhD student in Dr. Diane Srivastava&amp;rsquo;s lab at the University of British Columbia&lt;/p&gt;
 </description>
     </item>
     

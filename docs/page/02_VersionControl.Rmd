@@ -8,7 +8,7 @@ menu:
 
 ## Lecture outline
 
-* Introduction to what the class will be about [slides](../slides/01_Introduction.html)
+* Introduction to what the class will be about [slides](/slides/01_Introduction.html)
 * introduction to version control with git
 
 

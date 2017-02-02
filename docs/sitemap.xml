@@ -7,7 +7,7 @@
   </url>
   
   <url>
-    <loc>/page/writing_metadata/</loc>
+    <loc>/page/07_writing_metadata/</loc>
     <lastmod>2017-02-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -30,15 +30,7 @@
   </url>
   
   <url>
-    <loc>/page/tidyr/</loc>
-  </url>
-  
-  <url>
-    <loc>/page/03_github/</loc>
-  </url>
-  
-  <url>
-    <loc>/page/05_Homework_2/</loc>
+    <loc>/page/02_github/</loc>
   </url>
   
   <url>
@@ -74,15 +66,19 @@
   </url>
   
   <url>
-    <loc>/page/04_munge01/</loc>
+    <loc>/page/04_munge02/</loc>
   </url>
   
   <url>
-    <loc>/page/05_munge02/</loc>
+    <loc>/page/week_one/</loc>
   </url>
   
   <url>
-    <loc>/page/02_VersionControl/</loc>
+    <loc>/page/week_two/</loc>
+  </url>
+  
+  <url>
+    <loc>/page/week_three/</loc>
   </url>
   
   <url>

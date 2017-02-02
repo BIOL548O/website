@@ -12,10 +12,10 @@
     
     <item>
       <title>Writing metadata</title>
-      <link>/page/writing_metadata/</link>
+      <link>/page/07_writing_metadata/</link>
       <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/page/writing_metadata/</guid>
+      <guid>/page/07_writing_metadata/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -413,15 +413,17 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
       <guid>/post/2017-01-31-about-this-course/</guid>
       <description>
 
-&lt;p&gt;This course teaches tools for sharing data.&lt;/p&gt;
+&lt;h3 id=&#34;a-graduate-module-in-data-management-manipulation-and-sharing&#34;&gt;A graduate module in data management, manipulation and sharing&lt;/h3&gt;
 
-&lt;h2 id=&#34;resources&#34;&gt;Resources&lt;/h2&gt;
+&lt;p&gt;Biodiversity 224&lt;/p&gt;
 
-&lt;p&gt;The content here is based on several excellent sources.&lt;/p&gt;
+&lt;p&gt;3:00pm to 4:30pm&lt;/p&gt;
 
-&lt;p&gt;SWC
-DAta carpentry
-Ethan&amp;rsquo;s course&lt;/p&gt;
+&lt;p&gt;Tuesday to Thursday
+This 1 credit course provides practical instruction on how to efficiently manage a reproducible research project. You will learn version control, the core principles of &amp;ldquo;tidy data&amp;rdquo;, and how to automate and document your workflow from data entry to final result. Students will implement these concepts on their own data using R and Git + Github, and will practice giving feedback on the structure of a peer&amp;rsquo;s project. We will also discuss open science, licences, and statistical biases in scientific research. Students will be evaluated on their ability to apply the concepts learnt during lectures to the development of their own reproducible project.
+About the Instructors&lt;/p&gt;
+
+&lt;p&gt;Andrew MacDonald is a PhD student in Dr. Diane Srivastava&amp;rsquo;s lab at the University of British Columbia&lt;/p&gt;
 </description>
     </item>
     
@@ -1340,999 +1342,14 @@ kable(A_arranged)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Basic Manipulation</title>
-      <link>/page/tidyr/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/tidyr/</guid>
-      <description>
-
-&lt;p&gt;Many years ago, I was introduced to R by &lt;a href=&#34;http://camwebb.info/&#34;&gt;Cam Webb&lt;/a&gt;. At the time, his website contained a list of common data manipulations (original &lt;a href=&#34;http://camwebb.info/blog/2014-04-29/&#34;&gt;here&lt;/a&gt;). This list dated from Cam&amp;rsquo;s early experience with R, and contained the R-help mailing list responses to a series of data manipulations. For a long time, I kept this file as a handy reference. I printed it out. I recommended it to friends.&lt;/p&gt;
-
-&lt;p&gt;Now I have been using R for years, and the state of the art has advanced considerably. Particulary, &lt;a href=&#34;https://github.com/hadley&#34;&gt;Hadley Wickham&amp;rsquo;s&lt;/a&gt; &lt;code&gt;tidyr&lt;/code&gt; and &lt;code&gt;dplyr&lt;/code&gt; packages have transformed the way most useRs manipulate their data. I decided that it would be interesting to revisit my favourite resource and try my hand at solving these problems with tools from these two packages.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyr)
-library(dplyr)
-
-## I&#39;m going to use a different package to make tables (so that the data look a bit better on the internet). If you want that package too, do this:
-library(knitr)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;*note that this document refers to things like &amp;ldquo;group&amp;rdquo; and &amp;ldquo;stack&amp;rdquo; that are intended to be general names for these operations, and are &lt;strong&gt;NOT&lt;/strong&gt; references to functions or terms in R*&lt;/p&gt;
-
-&lt;h2 id=&#34;group&#34;&gt;GROUP&lt;/h2&gt;
-
-&lt;p&gt;Turn this table (A):&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;c1&lt;/th&gt;
-&lt;th&gt;c2&lt;/th&gt;
-&lt;th&gt;c3&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;d&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;into this (B):&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Group1&lt;/th&gt;
-&lt;th&gt;Group2&lt;/th&gt;
-&lt;th&gt;Nrows&lt;/th&gt;
-&lt;th&gt;SumOfCol3&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;td&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;d&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;A &amp;lt;- data.frame(
-       c1 = c(&#39;A&#39;, &#39;A&#39;, &#39;A&#39;, &#39;A&#39;, &#39;A&#39;, &#39;B&#39;, &#39;B&#39;),
-       c2 = c(&#39;a&#39;, &#39;a&#39;, &#39;a&#39;, &#39;b&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;),
-       c3 = c(1, 3, 1, 1, 2, 2, 1))
-
-B &amp;lt;- A %&amp;gt;%
-  group_by(c1,c2) %&amp;gt;%
-  summarize(Nrows=n(),
-            SumOfCol3=sum(c3))
-kable(B)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;c2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Nrows&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SumOfCol3&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;c&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;d&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;split&#34;&gt;SPLIT&lt;/h2&gt;
-
-&lt;p&gt;Turn col3 of the second table (B) into this &amp;copy;:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;row&lt;/th&gt;
-&lt;th&gt;a&lt;/th&gt;
-&lt;th&gt;b&lt;/th&gt;
-&lt;th&gt;c&lt;/th&gt;
-&lt;th&gt;d&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Many original responders suggested the use of &lt;code&gt;table&lt;/code&gt;, referring to the original dataset:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;C_alt &amp;lt;- with(A,table(c1,c2))
-kable(C_alt)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;a&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;b&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;d&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;id&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;a&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;b&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;d&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;although that solution is not &lt;a href=&#34;http://vita.had.co.nz/papers/tidy-data.pdf&#34;&gt;&amp;ldquo;tidy&amp;rdquo; in the Hadlian sense&lt;/a&gt; &amp;ndash; i.e., it does not return a &lt;code&gt;data.frame&lt;/code&gt;, but rather a &lt;code&gt;table&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;class(C_alt)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;table&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can obtain a data.frame with &lt;code&gt;tidyr::spread()&lt;/code&gt; directly:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;C &amp;lt;- B %&amp;gt;%
-  select(-Nrows) %&amp;gt;% 
-  spread(c2, SumOfCol3) 
-
-kable(C)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;a&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;b&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;d&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;NA&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;stack&#34;&gt;STACK&lt;/h2&gt;
-
-&lt;p&gt;Turn the above table &amp;copy; into this (D):&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;c1&lt;/th&gt;
-&lt;th&gt;V1&lt;/th&gt;
-&lt;th&gt;V2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;d&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;d&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;C %&amp;gt;% 
-  gather(V1, V2, a:d) %&amp;gt;% 
-  arrange(c1, V1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## Source: local data frame [8 x 3]
-## 
-##       c1     V1    V2
-##   (fctr) (fctr) (dbl)
-## 1      A      a     5
-## 2      A      b     3
-## 3      A      c    NA
-## 4      A      d    NA
-## 5      B      a    NA
-## 6      B      b    NA
-## 7      B      c     2
-## 8      B      d     1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;join&#34;&gt;JOIN&lt;/h2&gt;
-
-&lt;p&gt;Join these tables (E, F):&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;c1&lt;/th&gt;
-&lt;th&gt;c2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;C&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;c1&lt;/th&gt;
-&lt;th&gt;c3&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;C&lt;/td&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;to give (G):&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;c1&lt;/th&gt;
-&lt;th&gt;c3&lt;/th&gt;
-&lt;th&gt;c2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;C&lt;/td&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;We begin by making the data frames in question:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;E &amp;lt;- data.frame(c1 = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;C&amp;quot;), c2 = 1:3)
-FF &amp;lt;- data.frame(c1 = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;C&amp;quot;,&amp;quot;A&amp;quot;), c3 = c(&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;b&amp;quot;))
-G &amp;lt;- left_join(FF, E)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## Joining by: &amp;quot;c1&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;kable(G)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;c3&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;c&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;the &lt;code&gt;dplyr&lt;/code&gt; package supplies &lt;code&gt;left_join()&lt;/code&gt;, which preserves the sequence of rows in its left argument. Alternatively, as was originally suggested, one could use &lt;code&gt;merge()&lt;/code&gt; :&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;G_merge &amp;lt;- merge(FF,E)
-kable(G_merge)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;c3&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;c&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;c3&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;c&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Although columns now come out sorted.&lt;/p&gt;
-
-&lt;h2 id=&#34;subset&#34;&gt;SUBSET&lt;/h2&gt;
-
-&lt;p&gt;subset Table G to give H:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;c1&lt;/th&gt;
-&lt;th&gt;c3&lt;/th&gt;
-&lt;th&gt;c2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;H &amp;lt;- filter(G,c1==&amp;quot;A&amp;quot;)
-kable(H)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;c3&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;c3&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;transpose&#34;&gt;TRANSPOSE&lt;/h2&gt;
-
-&lt;p&gt;transpose H to give:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;V1&lt;/th&gt;
-&lt;th&gt;V2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;a&lt;/td&gt;
-&lt;td&gt;b&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;H_transpose &amp;lt;- data.frame(t(H))
-kable(H_transpose)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;X1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;X2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;c1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;c3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;c2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;id&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;X1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;X2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;c1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;c3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;c2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;sort&#34;&gt;SORT&lt;/h2&gt;
-
-&lt;p&gt;In the original, the question suggested &amp;ldquo;up to three keys&amp;rdquo;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;A_arranged &amp;lt;- arrange(A,c1,c2,c3)
-kable(A_arranged)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;c2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c3&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;c&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;d&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;c1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;c2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;c3&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;b&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;c&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;d&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;To my surprise, each of these was actually a single line. The only exception was the first (GROUP), and that was because there are really two separate steps here &amp;ndash; the first to actually group the data, the second to apply summary functions to the data. &lt;code&gt;dplyr&lt;/code&gt; automates both tasks, and supplies great readability.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>GitHub and project setup</title>
-      <link>/page/03_github/</link>
+      <link>/page/02_github/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/03_github/</guid>
+      <guid>/page/02_github/</guid>
       <description>
+
+&lt;h3 id=&#34;the-infrastructure-of-collaboration&#34;&gt;the infrastructure of collaboration&lt;/h3&gt;
 
 &lt;h2 id=&#34;content-outline&#34;&gt;Content outline&lt;/h2&gt;
 
@@ -2432,123 +1449,6 @@ SOFTWARE.
 |- analysis/            # any programmatic code 
 |  +- my_scripts.R      # R code used to analyse and visualise data 
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Homework 2</title>
-      <link>/page/05_Homework_2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/05_Homework_2/</guid>
-      <description>
-
-&lt;p&gt;The goal of this week&amp;rsquo;s homework is take your raw data and produce some &lt;strong&gt;tidy&lt;/strong&gt; data, using only R to perform any manipulations. Remember:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Tidy data has one variable per column, and one observation per row.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;You will begin with your original data file, in the most raw and untouched form available to you. Here are some steps to follow.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;create the following directory structure in your project:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code&gt;lastname_firstname
- |
- |--data/
- |--data-raw/
- |--Rscripts/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Put your raw data file into your &lt;code&gt;data-raw&lt;/code&gt; directory. (e.g. &lt;code&gt;2015 Field Season.xls&lt;/code&gt;). You may choose to rename it to remove spaces in the filenames (&lt;code&gt;2015_Field_season.xls&lt;/code&gt;). &lt;strong&gt;this is the only modification to this file you get to make&lt;/strong&gt;. Some people will even modify the file permissions to make it &amp;ldquo;write only&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Start an R script in the &lt;code&gt;Rscripts/&lt;/code&gt; directory. Call it something intuitive (like &lt;code&gt;01_data_preparation.R&lt;/code&gt;). I like prefacing my &lt;code&gt;.R&lt;/code&gt; files with numbers, expressing the order in which they are meant to be run. &lt;strong&gt;don&amp;rsquo;t forget to commit and push as you are writing this file!&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;read your data in, modify it to make it tidy, then write it out into the &lt;code&gt;data/&lt;/code&gt; folder. Give it a meaningful name: &lt;code&gt;data/bromeliad_nitrogen_experiment_2015.csv&lt;/code&gt; for example.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;commit and push your tidy data file.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;what-kind-of-things-should-i-do&#34;&gt;What kind of things should I do?&lt;/h2&gt;
-
-&lt;p&gt;Here are a few ideas for you to think of while you tidy your data up:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Do I have any repetitive variables? Were some of these variables calculated from others? use &lt;code&gt;dplyr::select()&lt;/code&gt; to drop any columns that do not represent actual measurements &amp;ndash; these can be re-calculated later&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Are my variable names sensible? Good variable names are expressive but brief. something like &lt;code&gt;mass_mg&lt;/code&gt; or &lt;code&gt;body_mass&lt;/code&gt; is good, something like &lt;code&gt;total_dry_mass_of_animal&lt;/code&gt; or &lt;code&gt;m&lt;/code&gt; is bad.  Check out &lt;code&gt;dplyr::rename()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Are my column titles actually variables? It&amp;rsquo;s not uncommon to see one (or more!) variables stored in column names:&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;center&#34;&gt;male_junvenile&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;male_adult&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;female_juvenile&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;female_adult&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;14&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;20&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;use &lt;code&gt;tidyr::gather()&lt;/code&gt; and &lt;code&gt;separate&lt;/code&gt; to fix this&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Do I have too many repeated rows? You might find that your data would make more sense separated into more than one table, which you could then combine with &lt;code&gt;dplyr::left_join()&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;There are many ways in which a dataset can be untidy. Feel free to ask an Instructor or to confer with each other as you are making these decisions!&lt;/p&gt;
-
-&lt;h2 id=&#34;peer-review&#34;&gt;Peer Review&lt;/h2&gt;
-
-&lt;p&gt;This work will be graded in much the same way &amp;ndash; by a randomly assigned person from the class. They will clone your repository to their computer, read and run all your code, and examine your tidy data. Here are some things they&amp;rsquo;ll be on the lookout for:&lt;/p&gt;
-
-&lt;h4 id=&#34;well-commented&#34;&gt;well commented&lt;/h4&gt;
-
-&lt;p&gt;Write lots of comments. What are you doing, when and why should all be easy to understand by reading your &lt;code&gt;.R&lt;/code&gt; files. You can also use the project&amp;rsquo;s README to direct your reviewer to the necessary files!&lt;/p&gt;
-
-&lt;h4 id=&#34;reproducible&#34;&gt;reproducible&lt;/h4&gt;
-
-&lt;p&gt;You peer reviewer will re-runs your script, to see if they get the same result (i.e. the csv file in &lt;code&gt;/data&lt;/code&gt; should be writtin anew). They should find that it is recreated &lt;strong&gt;just as it was before&lt;/strong&gt; (i.e. git thinks that the file is unchanged.)&lt;/p&gt;
-
-&lt;p&gt;In order for this to happen, the paths you use must be &lt;em&gt;relative&lt;/em&gt;: that is, they should start from the project working directory. That means where the rstudio project file lives. e.g. for a folder setup like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;lastname_firstname
- |
- | lastname_firstname.Rproj
- |--/data
- |--/data-raw
- |--/Rscripts
-            |
-            |--01_tidying.R
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;the file &lt;code&gt;01_tidying.R&lt;/code&gt; starts with reading in data: a relative path like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;treedata &amp;lt;- read.csv(&amp;quot;data-raw/rawdata.csv&amp;quot;)&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;tidy&#34;&gt;tidy&lt;/h4&gt;
-
-&lt;p&gt;What &lt;em&gt;exactly&lt;/em&gt; that means for your dataset will partly depend on your definitions &amp;ldquo;observation&amp;rdquo; and &amp;ldquo;variable&amp;rdquo; for your purposes. When in doubt, describe your choices in comments in the data-cleaning file, in the projects README.md or in a README inside &lt;code&gt;data&lt;/code&gt;. You can never have too much documentation.&lt;/p&gt;
-
-&lt;h4 id=&#34;correct&#34;&gt;correct&lt;/h4&gt;
-
-&lt;p&gt;One simple way of validating your CSV file is to show that it displays nicely on github.&lt;/p&gt;
-
-&lt;p&gt;If you CSV is very large, that approach might not work. In such cases you (and your reviewer) can check your CSV on sites such as &lt;a href=&#34;http://csvlint.io/&#34;&gt;csvlint.io&lt;/a&gt; and/or &lt;a href=&#34;http://setosa.io/csv-fingerprint/&#34;&gt;CSVfingerprint&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -3133,6 +2033,149 @@ check either on Github or via a real CSV validator such as [csvlint.io](http://c
 YOUR WORDS HERE
 
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Peer Review 3</title>
+      <link>/page/08_PeerReview_3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/08_PeerReview_3/</guid>
+      <description>
+
+&lt;p&gt;The goal of this Peer Review is twofold:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To help our colleagues perform &amp;ldquo;quality control&amp;rdquo; on their &lt;em&gt;tidy data&lt;/em&gt;, and to document that data with clear metadata.&lt;/li&gt;
+&lt;li&gt;To practice applying your own data skills to unfamiliar data.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A template for your Review is below. &lt;strong&gt;Copy and paste this in response to the GitHub Issue that announces your review&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;reusing-your-reviewee-s-data&#34;&gt;reusing your reviewee&amp;rsquo;s data!&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To demonstrate that their metadata is complete by interpreting their data without asking them questions&lt;/li&gt;
+&lt;li&gt;To practice your dplyr and tidyr skills on a new and unfamiliar dataset&lt;/li&gt;
+&lt;li&gt;FUN!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are some ideas of what you can do:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Write a few new assertions&lt;/li&gt;
+&lt;li&gt;Do some statistics (anova, linear regression &amp;ndash; very simple is fine)&lt;/li&gt;
+&lt;li&gt;Visualize their data&lt;/li&gt;
+&lt;li&gt;use &lt;code&gt;dplyr&lt;/code&gt; to calculate some new summary statistics&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Tip: format your R code so that it looks good on the issue! put a row of three backticks right before your code and right after it. This is called a fenced code block &lt;a href=&#34;https://help.github.com/articles/creating-and-highlighting-code-blocks/#fenced-code-blocks&#34;&gt;see this link for more info&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Tip: you can &lt;a href=&#34;http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github&#34;&gt;link to specific lines of code&lt;/a&gt; on GitHub by clicking on them and using the new URL&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Please don&amp;rsquo;t keep a copy of your reviewee&amp;rsquo;s data!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;template&#34;&gt;Template:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;## organization
+
+*Did your reviewee follow the directory naming convention that we are using? Was it easy to find the different R scripts?*
+
+YOUR WORDS HERE
+
+## documentation
+
+*Review the code that performs the assertions. Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?*
+
+YOUR WORDS HERE
+
+## Assertions
+
+*what things does your reviewee test for in the assertions? Is anything missing? Suggest an improvement to their quality control*
+
+YOUR WORDS HERE
+
+## Metadata (two parts)
+
+### clear and human-readable
+
+*Is the metadata thorough? When, where and how was this work done? Do you have any questions about what the data mean?* 
+
+YOUR WORDS HERE
+
+### correct and machine-readable
+
+*Choose one from below (depending on what your reviewee has done) and describe how to fix any problems you find:*
+
+* `EML` -- use the function `eml_read()` from the `EML` package. Will it read into R?
+* `csvy` -- copy and paste the YAML information into [this validator](http://codebeautify.org/yaml-validator) and click &amp;quot;Validate&amp;quot;.
+* `datapackage` -- copy and paste the `datapackage.json` file into [this validator](http://jsonlint.com/) and click &amp;quot;Validate&amp;quot;
+
+YOUR WORDS HERE
+
+# Reuse your colleagues data
+
+*Do something with your reviewee&#39;s data! Write an R script that reads the data in, then does something. Don&#39;t forget to write comments!*  
+*Paste the entire R script you wrote below, inside a fenced code block*  
+*If you&#39;ve made a plot, you can add that in a separate comment*
+
+YOUR CODE HERE
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tidy data (continued)</title>
+      <link>/page/04_munge02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/04_munge02/</guid>
+      <description>
+
+&lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;slides/munge_slides02.html&#34;&gt;slides for today&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;review of the basics, and intro to &lt;code&gt;tidyr&lt;/code&gt;: &lt;a href=&#34;../tidyr&#34;&gt;basic data manipulations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;we&amp;rsquo;ll practice tidying data with &lt;a href=&#34;SuppMatt/gapminder_wide.csv&#34;&gt;wide format gapminder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;joins&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tidyr&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;some project setup&lt;/li&gt;
+&lt;li&gt;start work on Homework 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;how-can-i-tell-if-my-data-is-tidy&#34;&gt;How can I tell if my data is &amp;ldquo;Tidy&amp;rdquo;?&lt;/h2&gt;
+
+&lt;p&gt;There are two basic principles to look for when deciding how to organize a dataset:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;There should be one observation per row, and one variable per column&lt;/li&gt;
+&lt;li&gt;Rows should be repeated as little as possible. If you have a lot of repeated rows, consider separating the data into two groups and using a &lt;em&gt;join&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;when-do-use-different-columns-and-when-to-use-a-single-factor&#34;&gt;When do use different columns, and when to use a single factor?&lt;/h2&gt;
+
+&lt;p&gt;Today we&amp;rsquo;ll be practicing a lot with two functions from &lt;code&gt;tidyr&lt;/code&gt;: &lt;code&gt;gather()&lt;/code&gt; and &lt;code&gt;spread()&lt;/code&gt;. These functions move data back and forth between what is often called &amp;ldquo;wide&amp;rdquo; and &amp;ldquo;long&amp;rdquo; format. It can be tricky to determine if your data is, or should be, wide or long. Is a group of columns a series of different variables, or are they actually different observations of the same variable? Here is a quote from Wickham&amp;rsquo;s &lt;code&gt;tidyr&lt;/code&gt; vignette:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A general rule of thumb is that it is easier to describe functional relationships between variables (e.g., &lt;code&gt;z&lt;/code&gt; is a linear combination of &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt;, &lt;code&gt;density&lt;/code&gt; is the ratio of &lt;code&gt;weight&lt;/code&gt; to &lt;code&gt;volume&lt;/code&gt;) than between rows, and it is easier to make comparisons between groups of observations (e.g., average of group a vs. average of group b) than between groups of columns.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In biology, the variables that describe groups are often physical location (e.g. site or block) and/or experimental treatment. Keep this kind of information as values in the same column (i.e. as different levels of a factor &amp;ldquo;Site_name&amp;rdquo; or Block&amp;rdquo;). This makes it easy to compare averages across, say, different sites.&lt;/p&gt;
+
+&lt;p&gt;We also often measure the different responses for each of our study units. For example, you might measure the surface area and mass of a leaf. Keep these as the names of separate columns. This makes it easy to do calculations (e.g. SLA = mass / area)&lt;/p&gt;
+
+&lt;p&gt;Sometimes, it is harder to tell. Then, you have to rely on your knowledge as a biologist &amp;ndash; what are you planning on doing with these data? that will shape your analysis.&lt;/p&gt;
+
+&lt;h2 id=&#34;homework-2&#34;&gt;Homework 2&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;clean your data&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The goal that I want to achieve for &lt;em&gt;everyone&lt;/em&gt; with this assignment is how to process data with code accurately. However, where you end up will depend a lot on where you begin.&lt;/p&gt;
 </description>
     </item>
     

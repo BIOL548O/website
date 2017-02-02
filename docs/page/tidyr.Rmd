@@ -1,7 +1,6 @@
 ---
 title: "Basic Data Manipulation"
 author: "Andrew MacDonald"
-menu: main
 ---
 
 

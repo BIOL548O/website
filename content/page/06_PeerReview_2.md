@@ -1,8 +1,5 @@
 ---
 title: "Peer Review 2"
-menu: 
-  main:
-    weight: 65
 ---
 
 The goal of this Peer Review is to help our colleagues to write *clear, readable code* which creates *tidy data*.

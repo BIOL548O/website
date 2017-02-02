@@ -1,9 +1,6 @@
 ---
 title: "Metadata"
 subtitle: "Has anyone seen my keys?"
-menu: 
-  main:
-    weight: 70
 ---
 
 ## Outline for today
