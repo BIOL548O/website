@@ -8,7 +8,7 @@ menu:
 ## Outline for today
 
 * [slides for today](slides/munge_slides02.html)
-* review of the basics, and intro to `tidyr`: [basic data manipulations](tidyr.html)
+* review of the basics, and intro to `tidyr`: [basic data manipulations](../tidyr)
 * we'll practice tidying data with [wide format gapminder](SuppMatt/gapminder_wide.csv)
 * joins
 * `tidyr`

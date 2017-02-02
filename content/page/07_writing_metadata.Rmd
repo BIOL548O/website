@@ -2,7 +2,9 @@
 title: "Writing metadata"
 author: "Andrew MacDonald"
 date: 2017-02-15
-menu: main
+menu: 
+  main:
+    weight: 71
 ---
 
 Metadata is _data about data_
