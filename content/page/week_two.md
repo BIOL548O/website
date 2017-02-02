@@ -42,6 +42,11 @@ Based on this, how do you think it works?
 * `tidyr`
 * some project setup
 
+## Thursday
+
+* Notes on [using tidyr](../04_munge02)
+* My notes on [basic data cleaning](../tidyr)
+
 
 ## recommended reading 
 

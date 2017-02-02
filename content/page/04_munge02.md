@@ -1,8 +1,5 @@
 ---
 title: "Tidy data (continued)"
-menu: 
-  main:
-    weight: 50
 ---
 
 ## Outline for today
