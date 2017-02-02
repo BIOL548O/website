@@ -2,9 +2,6 @@
 title: "Installation"
 subtitle: "getting your software ready for class"
 author: "Andrew MacDonald"
-menu: 
-  main:
-    weight: 10
 ---
 
 
