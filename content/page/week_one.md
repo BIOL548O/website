@@ -1,5 +1,5 @@
 ---
-title: "Week one: Introduction to version control"
+title: "Week 1: Version control"
 menu: 
   main:
     weight: 10
