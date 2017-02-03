@@ -4,7 +4,6 @@ languageCode = "en-us"
 publishDir = "docs"
 publishdir = "docs"
 #disqusShortname = "your_disqus_shortname"
-relativeURLs = false
 
 [author]
     name = "Dealing with Data"
