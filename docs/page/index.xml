@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Page-rsses on </title>
-    <link>http://biol548o.github.io/website/page/index.xml</link>
+    <link>https://biol548o.github.io/website/page/index.xml</link>
     <description>Recent content in Page-rsses on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Andrew MacDonald 2017</copyright>
     <lastBuildDate>Wed, 15 Feb 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://biol548o.github.io/website/page/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://biol548o.github.io/website/page/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Writing metadata</title>
-      <link>http://biol548o.github.io/website/page/07_writing_metadata/</link>
+      <link>https://biol548o.github.io/website/page/07_writing_metadata/</link>
       <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/07_writing_metadata/</guid>
+      <guid>https://biol548o.github.io/website/page/07_writing_metadata/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -217,10 +217,10 @@ datapackage_init(df = gapminder, meta = meta_list)
     
     <item>
       <title>Assertions in R</title>
-      <link>http://biol548o.github.io/website/page/06_assert/</link>
+      <link>https://biol548o.github.io/website/page/06_assert/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/06_assert/</guid>
+      <guid>https://biol548o.github.io/website/page/06_assert/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -407,10 +407,10 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     
     <item>
       <title></title>
-      <link>http://biol548o.github.io/website/page/nextPRsheet/</link>
+      <link>https://biol548o.github.io/website/page/nextPRsheet/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/nextPRsheet/</guid>
+      <guid>https://biol548o.github.io/website/page/nextPRsheet/</guid>
       <description>
 
 &lt;p&gt;for this next peer review:&lt;/p&gt;
@@ -478,10 +478,10 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     
     <item>
       <title>Basic Data Manipulation</title>
-      <link>http://biol548o.github.io/website/page/tidyr/</link>
+      <link>https://biol548o.github.io/website/page/tidyr/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/tidyr/</guid>
+      <guid>https://biol548o.github.io/website/page/tidyr/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -1321,10 +1321,10 @@ kable(A_arranged)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>GitHub and project setup</title>
-      <link>http://biol548o.github.io/website/page/02_github/</link>
+      <link>https://biol548o.github.io/website/page/02_github/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/02_github/</guid>
+      <guid>https://biol548o.github.io/website/page/02_github/</guid>
       <description>
 
 &lt;h3 id=&#34;the-infrastructure-of-collaboration&#34;&gt;the infrastructure of collaboration&lt;/h3&gt;
@@ -1432,10 +1432,10 @@ SOFTWARE.
     
     <item>
       <title>Homework 3</title>
-      <link>http://biol548o.github.io/website/page/07_Homework_3/</link>
+      <link>https://biol548o.github.io/website/page/07_Homework_3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/07_Homework_3/</guid>
+      <guid>https://biol548o.github.io/website/page/07_Homework_3/</guid>
       <description>
 
 &lt;h3 id=&#34;first-part-respond-to-your-reviewers-from-last-week&#34;&gt;First part &amp;ndash; respond to your reviewers from last week.&lt;/h3&gt;
@@ -1472,10 +1472,10 @@ SOFTWARE.
     
     <item>
       <title>Installation</title>
-      <link>http://biol548o.github.io/website/page/01_installation/</link>
+      <link>https://biol548o.github.io/website/page/01_installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/01_installation/</guid>
+      <guid>https://biol548o.github.io/website/page/01_installation/</guid>
       <description>
 
 &lt;h2 id=&#34;installing-software&#34;&gt;Installing software&lt;/h2&gt;
@@ -1630,10 +1630,10 @@ SOFTWARE.
     
     <item>
       <title>Introduce yourself to Git</title>
-      <link>http://biol548o.github.io/website/page/01_git_introduce/</link>
+      <link>https://biol548o.github.io/website/page/01_git_introduce/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/01_git_introduce/</guid>
+      <guid>https://biol548o.github.io/website/page/01_git_introduce/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;You only have to set this up once per machine.&lt;/strong&gt;&lt;/p&gt;
@@ -1677,10 +1677,10 @@ git config --global --list
     
     <item>
       <title>Metadata</title>
-      <link>http://biol548o.github.io/website/page/07_metadata/</link>
+      <link>https://biol548o.github.io/website/page/07_metadata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/07_metadata/</guid>
+      <guid>https://biol548o.github.io/website/page/07_metadata/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -1707,10 +1707,10 @@ git config --global --list
     
     <item>
       <title>Notes on running a class on github</title>
-      <link>http://biol548o.github.io/website/page/github_howto/</link>
+      <link>https://biol548o.github.io/website/page/github_howto/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/github_howto/</guid>
+      <guid>https://biol548o.github.io/website/page/github_howto/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -1923,10 +1923,10 @@ I like that. This way, they can have ownership of this repository: they could ev
     
     <item>
       <title>Online Repositories</title>
-      <link>http://biol548o.github.io/website/page/08_Repositories/</link>
+      <link>https://biol548o.github.io/website/page/08_Repositories/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/08_Repositories/</guid>
+      <guid>https://biol548o.github.io/website/page/08_Repositories/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -1943,10 +1943,10 @@ I like that. This way, they can have ownership of this repository: they could ev
     
     <item>
       <title>Peer Review 2</title>
-      <link>http://biol548o.github.io/website/page/06_PeerReview_2/</link>
+      <link>https://biol548o.github.io/website/page/06_PeerReview_2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/06_PeerReview_2/</guid>
+      <guid>https://biol548o.github.io/website/page/06_PeerReview_2/</guid>
       <description>&lt;p&gt;The goal of this Peer Review is to help our colleagues to write &lt;em&gt;clear, readable code&lt;/em&gt; which creates &lt;em&gt;tidy data&lt;/em&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -2004,10 +2004,10 @@ YOUR WORDS HERE
     
     <item>
       <title>Peer Review 3</title>
-      <link>http://biol548o.github.io/website/page/08_PeerReview_3/</link>
+      <link>https://biol548o.github.io/website/page/08_PeerReview_3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/08_PeerReview_3/</guid>
+      <guid>https://biol548o.github.io/website/page/08_PeerReview_3/</guid>
       <description>
 
 &lt;p&gt;The goal of this Peer Review is twofold:&lt;/p&gt;
@@ -2096,10 +2096,10 @@ YOUR CODE HERE
     
     <item>
       <title>Tidy data (continued)</title>
-      <link>http://biol548o.github.io/website/page/04_munge02/</link>
+      <link>https://biol548o.github.io/website/page/04_munge02/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/04_munge02/</guid>
+      <guid>https://biol548o.github.io/website/page/04_munge02/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -2147,10 +2147,10 @@ YOUR CODE HERE
     
     <item>
       <title>Week 1: Version control</title>
-      <link>http://biol548o.github.io/website/page/week_one/</link>
+      <link>https://biol548o.github.io/website/page/week_one/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://biol548o.github.io/website/page/week_one/</guid>
+      <guid>https://biol548o.github.io/website/page/week_one/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-and-goals-for-the-week&#34;&gt;Outline and goals for the week&lt;/h2&gt;
@@ -2158,7 +2158,7 @@ YOUR CODE HERE
 &lt;h2 id=&#34;tuesday&#34;&gt;Tuesday&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;* Introduction to what the class will be about &lt;a href=&#34;http://biol548o.github.io/website/slides/01_Introduction.html&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;* Introduction to what the class will be about &lt;a href=&#34;https://biol548o.github.io/website/slides/01_Introduction.html&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;lecture notes:
 
 &lt;ul&gt;
@@ -2169,7 +2169,7 @@ YOUR CODE HERE
 
 &lt;h3 id=&#34;getting-started-with-git&#34;&gt;Getting started with git&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://biol548o.github.io/website/slides/git_slides.pdf&#34;&gt;slides about git&lt;/a&gt; courtesy of &lt;a href=&#34;http://swcarpentry.github.io/git-novice&#34;&gt;Software Carpentry&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://biol548o.github.io/website/slides/git_slides.pdf&#34;&gt;slides about git&lt;/a&gt; courtesy of &lt;a href=&#34;http://swcarpentry.github.io/git-novice&#34;&gt;Software Carpentry&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;here is a list of &lt;a href=&#34;SuppMatt/the_shell&#34;&gt;handy shell commands&lt;/a&gt;&lt;/li&gt;
