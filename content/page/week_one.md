@@ -24,23 +24,14 @@ menu:
 
 ## Thursday
 
-* Getting set up with Github. [notes](../03_github)
-
 ### Video explanation of what this course is about
 
 [Data Sharing and Management Snafu in 3 Short Acts](https://www.youtube.com/watch?v=N2zK3sAtr-4)
 
-
-
-* a few slides from today
-* lecture notes: Collaborating on Github
+* [Getting set up with Github](../02_github)
 * [caching your github credentials](../01_git_cache)
 
-## Homework from Thursday
-
-<!-- is this written up somewhere? -->
-
-## Recommended readingsdds
+## Recommended readings
 
 <!-- remember to add rubric data to the course landing page -->
 

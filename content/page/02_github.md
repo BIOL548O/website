@@ -15,7 +15,7 @@ subtitle: ""
     - under "add a license:" choose **MIT License**
     - click "Create Repository"
 
-![illustration](img/start_repo.png)
+![illustration](../img/start_repo.png)
 
 * On the next screen you will see the beginning of your repository. Copy the link at the top of the page.
 
