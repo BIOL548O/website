@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Post-rsses on </title>
-    <link>https://biol548o.github.io/website/post/index.xml</link>
+    <link>biol548o.github.io/website/post/index.xml</link>
     <description>Recent content in Post-rsses on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Andrew MacDonald 2017</copyright>
     <lastBuildDate>Tue, 31 Jan 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://biol548o.github.io/website/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="biol548o.github.io/website/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>About this course</title>
-      <link>https://biol548o.github.io/website/post/2017-01-31-about-this-course/</link>
+      <link>/biol548o.github.io/website/post/2017-01-31-about-this-course/</link>
       <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://biol548o.github.io/website/post/2017-01-31-about-this-course/</guid>
+      <guid>/biol548o.github.io/website/post/2017-01-31-about-this-course/</guid>
       <description>
 
 &lt;h3 id=&#34;a-graduate-module-in-data-management-manipulation-and-sharing&#34;&gt;A graduate module in data management, manipulation and sharing&lt;/h3&gt;
