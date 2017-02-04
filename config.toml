@@ -1,5 +1,5 @@
 theme = "hyde-x"
-baseurl = "http://biol548o.github.io/"
+baseurl = "http://biol548o.github.io/website"
 languageCode = "en-us"
 publishDir = "docs"
 publishdir = "docs"
