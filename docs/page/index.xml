@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Page-rsses on </title>
-    <link>/page/index.xml</link>
+    <link>http://biol548o.github.io/page/index.xml</link>
     <description>Recent content in Page-rsses on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Andrew MacDonald 2017</copyright>
     <lastBuildDate>Wed, 15 Feb 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://biol548o.github.io/page/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Writing metadata</title>
-      <link>/page/07_writing_metadata/</link>
+      <link>http://biol548o.github.io/page/07_writing_metadata/</link>
       <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/page/07_writing_metadata/</guid>
+      <guid>http://biol548o.github.io/page/07_writing_metadata/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -217,10 +217,10 @@ datapackage_init(df = gapminder, meta = meta_list)
     
     <item>
       <title>Assertions in R</title>
-      <link>/page/06_assert/</link>
+      <link>http://biol548o.github.io/page/06_assert/</link>
       <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/page/06_assert/</guid>
+      <guid>http://biol548o.github.io/page/06_assert/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -407,10 +407,10 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     
     <item>
       <title></title>
-      <link>/page/nextPRsheet/</link>
+      <link>http://biol548o.github.io/page/nextPRsheet/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/nextPRsheet/</guid>
+      <guid>http://biol548o.github.io/page/nextPRsheet/</guid>
       <description>
 
 &lt;p&gt;for this next peer review:&lt;/p&gt;
@@ -478,10 +478,10 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     
     <item>
       <title>Basic Data Manipulation</title>
-      <link>/page/tidyr/</link>
+      <link>http://biol548o.github.io/page/tidyr/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/tidyr/</guid>
+      <guid>http://biol548o.github.io/page/tidyr/</guid>
       <description>&lt;!-- BLOGDOWN-BODY-BEFORE
 
 /BLOGDOWN-BODY-BEFORE --&gt;
@@ -1321,10 +1321,10 @@ kable(A_arranged)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>GitHub and project setup</title>
-      <link>/page/02_github/</link>
+      <link>http://biol548o.github.io/page/02_github/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/02_github/</guid>
+      <guid>http://biol548o.github.io/page/02_github/</guid>
       <description>
 
 &lt;h3 id=&#34;the-infrastructure-of-collaboration&#34;&gt;the infrastructure of collaboration&lt;/h3&gt;
@@ -1345,7 +1345,7 @@ kable(A_arranged)&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;img/start_repo.png&#34; alt=&#34;illustration&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../img/start_repo.png&#34; alt=&#34;illustration&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;On the next screen you will see the beginning of your repository. Copy the link at the top of the page.&lt;/p&gt;&lt;/li&gt;
@@ -1432,10 +1432,10 @@ SOFTWARE.
     
     <item>
       <title>Homework 3</title>
-      <link>/page/07_Homework_3/</link>
+      <link>http://biol548o.github.io/page/07_Homework_3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/07_Homework_3/</guid>
+      <guid>http://biol548o.github.io/page/07_Homework_3/</guid>
       <description>
 
 &lt;h3 id=&#34;first-part-respond-to-your-reviewers-from-last-week&#34;&gt;First part &amp;ndash; respond to your reviewers from last week.&lt;/h3&gt;
@@ -1472,10 +1472,10 @@ SOFTWARE.
     
     <item>
       <title>Installation</title>
-      <link>/page/01_installation/</link>
+      <link>http://biol548o.github.io/page/01_installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/01_installation/</guid>
+      <guid>http://biol548o.github.io/page/01_installation/</guid>
       <description>
 
 &lt;h2 id=&#34;installing-software&#34;&gt;Installing software&lt;/h2&gt;
@@ -1496,6 +1496,14 @@ SOFTWARE.
 
 &lt;h2 id=&#34;git-and-github&#34;&gt;Git and Github&lt;/h2&gt;
 
+&lt;p&gt;As you work on your data project, you will be creating a well-organized directory for sharing your project with other people. One of the best ways to share a complex project is via &lt;code&gt;git&lt;/code&gt; and its companion website &lt;strong&gt;Github&lt;/strong&gt;. Throughout this course we will be practicing interacting with both of these.&lt;/p&gt;
+
+&lt;h3 id=&#34;do-i-already-have-git-installed&#34;&gt;Do I already have git installed?&lt;/h3&gt;
+
+&lt;p&gt;You might want to know if you have these things installed already. R, and Rstudio, if present, are installed as regular programs on your OS. git, however, is a command line tool and may not be obvious. One way to check is by running &lt;code&gt;which git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/which_git.gif&#34; alt=&#34;which git&#34; /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;code&gt;git&lt;/code&gt; is a command-line program for doing &amp;ldquo;version control&amp;rdquo; : that is, for tracking changes to a group of files all at once. We&amp;rsquo;re going to use it to track changes to our research project (i.e. data and the code that manipulates the data).&lt;/p&gt;
 
 &lt;h3 id=&#34;git-installation-windows&#34;&gt;Git installation: Windows&lt;/h3&gt;
@@ -1503,23 +1511,13 @@ SOFTWARE.
 &lt;p&gt;We reccommend this approach, following &lt;a href=&#34;http://software-carpentry.org&#34;&gt;Software Carpentry&lt;/a&gt;, an organization that &amp;ldquo;teaches lab skills for scientific computing&amp;rdquo; (and also STAT545):&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Install &lt;a href=&#34;https://git-for-windows.github.io/&#34;&gt;Git for Windows&lt;/a&gt;, previously known as &lt;code&gt;msysgit&lt;/code&gt; or &amp;ldquo;Git Bash&amp;rdquo;, to get Git in addition to some other useful tools, such as the Bash &lt;a href=&#34;git09_shell.html&#34;&gt;shell&lt;/a&gt;.
-
-&lt;ul&gt;
-&lt;li&gt;Yes, all those names are totally confusing.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Install &lt;a href=&#34;https://git-for-windows.github.io/&#34;&gt;Git for Windows&lt;/a&gt;, previously known as &lt;code&gt;msysgit&lt;/code&gt; or &amp;ldquo;Git Bash&amp;rdquo;, to get Git in addition to some other useful tools, such as the Bash &lt;a href=&#34;git09_shell.html&#34;&gt;shell&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;This approach leaves the Git executable in a conventional location, which will help you and other programs, e.g. RStudio, find it and use it.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;git-installation-mac&#34;&gt;Git installation: Mac&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Option 1&lt;/strong&gt; (&lt;em&gt;recommended&lt;/em&gt;): Install Git from here: &lt;a href=&#34;http://git-scm.com/downloads&#34;&gt;http://git-scm.com/downloads&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The GitHub home for this project is here: &lt;a href=&#34;https://github.com/timcharper/git_osx_installer&#34;&gt;https://github.com/timcharper/git_osx_installer&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;This arguably sets you up the best for the future and should &amp;ldquo;just work&amp;rdquo; for most people. It will certainly get you the latest version of Git of all approaches described here. It is the most widely recommended installation method.&lt;/li&gt;
-&lt;li&gt;Here&amp;rsquo;s a list of maintained builds for various combinations of Git and Mac OS version: &lt;a href=&#34;http://sourceforge.net/projects/git-osx-installer/files/?source=navbar&#34;&gt;&lt;code&gt;git-osx-installer&lt;/code&gt; on sourceforge&lt;/a&gt;. If your OS version is not there &amp;ndash; I&amp;rsquo;m talking to you 10.7 Lion people &amp;ndash; we&amp;rsquo;ve had recent success with binaries found here: &lt;a href=&#34;https://www.wandisco.com/git/download&#34;&gt;https://www.wandisco.com/git/download&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;h3 id=&#34;git-installation-linux&#34;&gt;Git installation: Linux&lt;/h3&gt;
 
@@ -1535,55 +1533,32 @@ SOFTWARE.
 &lt;pre&gt;&lt;code&gt;sudo yum install git
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;register-a-github-account&#34;&gt;Register a GitHub account&lt;/h3&gt;
+&lt;h2 id=&#34;register-a-github-account&#34;&gt;Register a GitHub account&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt; is an increasingly popular website for sharing code and data. It is an excellent platform for collaborating on projects, including scientific manuscripts.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt; is an increasingly popular website for sharing code and data. It is an excellent platform for collaborating on projects, including scientific manuscripts.&lt;/li&gt;
-&lt;li&gt;Register for a free individual GitHub account and request &lt;a href=&#34;https://education.github.com&#34;&gt;the student discount&lt;/a&gt;. This should give you some free private repositories for a couple of years.
-
-&lt;ul&gt;
-&lt;li&gt;Give your public profile name some thought. I suggest you use a real name and begin to build a scholarly identity in social media and coding, but it&amp;rsquo;s a decision you should make with intention.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;We will elicit your GitHub username soon so we can add you to the &lt;a href=&#34;https://github.com/BIOL548O&#34;&gt;BIOL 548O GitHub Organization&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Register for a &lt;a href=&#34;github.com&#34;&gt;free individual GitHub account&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Request &lt;a href=&#34;https://education.github.com&#34;&gt;the student discount&lt;/a&gt;. This should give you some free private repositories for a couple of years.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&#34;next-steps&#34;&gt;Next steps&lt;/h3&gt;
+
+&lt;p&gt;After installation, you still need to &lt;a href=&#34;01_git_introduce&#34;&gt;introduce yourself to Git&lt;/a&gt; and &lt;a href=&#34;01_git_cache&#34;&gt;get it to remember your GitHub username and password&lt;/a&gt;. If your Git client guides you through this, seize that opportunity! Otherwise follow the links for some assistance.&lt;/p&gt;
 
 &lt;h2 id=&#34;r-and-rstudio&#34;&gt;R and RStudio&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Install &lt;a href=&#34;http://www.r-project.org&#34;&gt;R, a free software environment for statistical computing and graphics&lt;/a&gt; from &lt;a href=&#34;http://cran.rstudio.com&#34;&gt;CRAN&lt;/a&gt;, the Comprehensive R Archive Network. Install the precompiled binary for your Operating system.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Install &lt;a href=&#34;http://www.rstudio.com/products/rstudio&#34;&gt;RStudio&amp;rsquo;s IDE&lt;/a&gt; (stands for &lt;em&gt;integrated development environment&lt;/em&gt;), a powerful user interface for R. Get the Open Source Edition of RStudio Desktop.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Install &lt;a href=&#34;http://www.rstudio.com/products/rstudio&#34;&gt;RStudio&amp;rsquo;s IDE&lt;/a&gt; (i.e. an &lt;em&gt;&lt;strong&gt;I&lt;/strong&gt;ntegrated &lt;strong&gt;D&lt;/strong&gt;evelopment &lt;strong&gt;E&lt;/strong&gt;nvironment&lt;/em&gt;), a powerful user interface for R. Get the Open Source Edition of RStudio Desktop (free).&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;I &lt;strong&gt;highly recommend&lt;/strong&gt; you run the &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/preview/&#34;&gt;Preview version&lt;/a&gt;. I find these quite stable and you&amp;rsquo;ll get the cool new features! Update to new Preview versions often.&lt;/li&gt;
+&lt;li&gt;We strongly suggest you try out the &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/preview/&#34;&gt;Preview version&lt;/a&gt;. You&amp;rsquo;ll often find helpful new features in these! Remember to update frequently&lt;/li&gt;
 &lt;li&gt;RStudio comes with a &lt;strong&gt;text editor&lt;/strong&gt;, so there is no immediate need to install a separate stand-alone editor.&lt;/li&gt;
-&lt;li&gt;RStudio can &lt;strong&gt;interface with Git(Hub)&lt;/strong&gt;. However, you must do all the Git(Hub) set up before you can take advantage of this.
-&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;RStudio can &lt;strong&gt;interface with Git(Hub)&lt;/strong&gt;. However, we will have to set that connection up first.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;If you have a pre-existing installation of R and/or RStudio, we &lt;strong&gt;highly recommend&lt;/strong&gt; that you reinstall both and get as current as possible. It can be considerably harder to run old software than new.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;If you upgrade R, you will need to update any packages you have installed. The command below should get you started, though you may need to specify more arguments if, e.g., you have been using a non-default library for your packages.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;    update.packages(ask = FALSE, checkBuilt = TRUE)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note: this will only look for updates on CRAN. So if you use a package that lives &lt;em&gt;only&lt;/em&gt; on GitHub or if you want a develoment version from GitHub, you will need to  update manually, e.g. via &lt;code&gt;devtools::install_github()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;testing-testing&#34;&gt;Testing testing&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Do whatever is appropriate for your OS to launch RStudio. You should get a window similar to the screenshot you see &lt;a href=&#34;http://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png&#34;&gt;here&lt;/a&gt;, but yours will be more boring because you haven&amp;rsquo;t written any code or made any figures yet!&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Put your cursor in the pane labelled Console, which is where you interact with the live R process. Create a simple object with code like &lt;code&gt;x &amp;lt;- 2 * 4&lt;/code&gt; (followed by enter or return). Then inspect the &lt;code&gt;x&lt;/code&gt; object by typing &lt;code&gt;x&lt;/code&gt; followed by enter or return. You should see the value 8 print to screen. If yes, you&amp;rsquo;ve succeeded in installing R and RStudio.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;next-steps&#34;&gt;Next steps&lt;/h3&gt;
-
-&lt;p&gt;After installation, you still need to &lt;a href=&#34;01_git_introduce.html&#34;&gt;introduce yourself to Git&lt;/a&gt; and &lt;a href=&#34;01_git_cache.html&#34;&gt;get it to remember your GitHub username and password&lt;/a&gt;. If your Git client guides you through this, seize that opportunity! Otherwise follow the links for some assistance.&lt;/p&gt;
 
 &lt;h3 id=&#34;add-on-packages&#34;&gt;Add-on packages&lt;/h3&gt;
 
@@ -1601,6 +1576,21 @@ SOFTWARE.
 &lt;li&gt;&lt;code&gt;ggplot2&lt;/code&gt; &lt;a href=&#34;http://docs.ggplot2.org/&#34;&gt;package webpage&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;EML&lt;/code&gt; &lt;a href=&#34;https://github.com/ropensci/EML&#34;&gt;package webpage&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&#34;updating&#34;&gt;Updating&lt;/h3&gt;
+
+&lt;p&gt;If you have already have R or Rstudio installed, I still &lt;strong&gt;highly reccommend&lt;/strong&gt; that you update everything first!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you upgrade R, you will need to update any packages you have installed. Copy-and-paste this to get started:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;    update.packages(ask = FALSE, checkBuilt = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you may need more arguments, for example if you have a custom library location.&lt;/p&gt;
+
+&lt;p&gt;Also note: Anything installed from GitHub will need to be manually updated, i.e. using &lt;code&gt;devtools::install_github()&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;further-resources&#34;&gt;Further resources&lt;/h3&gt;
 
@@ -1634,18 +1624,16 @@ SOFTWARE.
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Eventually we will want you to connect RStudio and Git(Hub) (see next item about installing Git), so if things are going really well, give that a try.&lt;/p&gt;
-
-&lt;p&gt;If you have a pre-existing installation of R and/or RStudio, we &lt;strong&gt;highly recommend&lt;/strong&gt; that you reinstall and upgrade to the most recent version. It is very easy and RStudio, specifically, is changing rapidly and positively (written 2015-09). If you upgrade R, you will need to also update any packages you have installed.&lt;/p&gt;
+&lt;p&gt;If you have a pre-existing installation of R and/or RStudio, we &lt;strong&gt;highly recommend&lt;/strong&gt; that you reinstall and upgrade to the most recent version. It is very easy and RStudio, specifically, is changing rapidly and positively. If you upgrade R, you will need to also update any packages you have installed.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Introduce yourself to Git</title>
-      <link>/page/01_git_introduce/</link>
+      <link>http://biol548o.github.io/page/01_git_introduce/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/01_git_introduce/</guid>
+      <guid>http://biol548o.github.io/page/01_git_introduce/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;You only have to set this up once per machine.&lt;/strong&gt;&lt;/p&gt;
@@ -1689,10 +1677,10 @@ git config --global --list
     
     <item>
       <title>Metadata</title>
-      <link>/page/07_metadata/</link>
+      <link>http://biol548o.github.io/page/07_metadata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/07_metadata/</guid>
+      <guid>http://biol548o.github.io/page/07_metadata/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -1719,10 +1707,10 @@ git config --global --list
     
     <item>
       <title>Notes on running a class on github</title>
-      <link>/page/github_howto/</link>
+      <link>http://biol548o.github.io/page/github_howto/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/github_howto/</guid>
+      <guid>http://biol548o.github.io/page/github_howto/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
@@ -1935,10 +1923,10 @@ I like that. This way, they can have ownership of this repository: they could ev
     
     <item>
       <title>Online Repositories</title>
-      <link>/page/08_Repositories/</link>
+      <link>http://biol548o.github.io/page/08_Repositories/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/08_Repositories/</guid>
+      <guid>http://biol548o.github.io/page/08_Repositories/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -1955,10 +1943,10 @@ I like that. This way, they can have ownership of this repository: they could ev
     
     <item>
       <title>Peer Review 2</title>
-      <link>/page/06_PeerReview_2/</link>
+      <link>http://biol548o.github.io/page/06_PeerReview_2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/06_PeerReview_2/</guid>
+      <guid>http://biol548o.github.io/page/06_PeerReview_2/</guid>
       <description>&lt;p&gt;The goal of this Peer Review is to help our colleagues to write &lt;em&gt;clear, readable code&lt;/em&gt; which creates &lt;em&gt;tidy data&lt;/em&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -2016,10 +2004,10 @@ YOUR WORDS HERE
     
     <item>
       <title>Peer Review 3</title>
-      <link>/page/08_PeerReview_3/</link>
+      <link>http://biol548o.github.io/page/08_PeerReview_3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/08_PeerReview_3/</guid>
+      <guid>http://biol548o.github.io/page/08_PeerReview_3/</guid>
       <description>
 
 &lt;p&gt;The goal of this Peer Review is twofold:&lt;/p&gt;
@@ -2108,10 +2096,10 @@ YOUR CODE HERE
     
     <item>
       <title>Tidy data (continued)</title>
-      <link>/page/04_munge02/</link>
+      <link>http://biol548o.github.io/page/04_munge02/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/04_munge02/</guid>
+      <guid>http://biol548o.github.io/page/04_munge02/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
@@ -2159,10 +2147,10 @@ YOUR CODE HERE
     
     <item>
       <title>Week 1: Version control</title>
-      <link>/page/week_one/</link>
+      <link>http://biol548o.github.io/page/week_one/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/week_one/</guid>
+      <guid>http://biol548o.github.io/page/week_one/</guid>
       <description>
 
 &lt;h2 id=&#34;outline-and-goals-for-the-week&#34;&gt;Outline and goals for the week&lt;/h2&gt;
@@ -2170,7 +2158,7 @@ YOUR CODE HERE
 &lt;h2 id=&#34;tuesday&#34;&gt;Tuesday&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;* Introduction to what the class will be about &lt;a href=&#34;../slides/01_Introduction.html&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;* Introduction to what the class will be about &lt;a href=&#34;http://biol548o.github.io/slides/01_Introduction.html&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;lecture notes:
 
 &lt;ul&gt;
@@ -2181,7 +2169,7 @@ YOUR CODE HERE
 
 &lt;h3 id=&#34;getting-started-with-git&#34;&gt;Getting started with git&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&#34;../slides/git_slides.pdf&#34;&gt;slides about git&lt;/a&gt; courtesy of &lt;a href=&#34;http://swcarpentry.github.io/git-novice&#34;&gt;Software Carpentry&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://biol548o.github.io/slides/git_slides.pdf&#34;&gt;slides about git&lt;/a&gt; courtesy of &lt;a href=&#34;http://swcarpentry.github.io/git-novice&#34;&gt;Software Carpentry&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;here is a list of &lt;a href=&#34;SuppMatt/the_shell&#34;&gt;handy shell commands&lt;/a&gt;&lt;/li&gt;
@@ -2189,25 +2177,16 @@ YOUR CODE HERE
 
 &lt;h2 id=&#34;thursday&#34;&gt;Thursday&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Getting set up with Github. &lt;a href=&#34;../03_github&#34;&gt;notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;h3 id=&#34;video-explanation-of-what-this-course-is-about&#34;&gt;Video explanation of what this course is about&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=N2zK3sAtr-4&#34;&gt;Data Sharing and Management Snafu in 3 Short Acts&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;a few slides from today&lt;/li&gt;
-&lt;li&gt;lecture notes: Collaborating on Github&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../02_github&#34;&gt;Getting set up with Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../01_git_cache&#34;&gt;caching your github credentials&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;homework-from-thursday&#34;&gt;Homework from Thursday&lt;/h2&gt;
-
-&lt;!-- is this written up somewhere? --&gt;
-
-&lt;h2 id=&#34;recommended-readingsdds&#34;&gt;Recommended readingsdds&lt;/h2&gt;
+&lt;h2 id=&#34;recommended-readings&#34;&gt;Recommended readings&lt;/h2&gt;
 
 &lt;!-- remember to add rubric data to the course landing page --&gt;
 

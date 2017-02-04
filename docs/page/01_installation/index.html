@@ -10,19 +10,19 @@
   <title>Installation &middot; Dealing with Data</title>
 
   
-  <link rel="stylesheet" href="../../css/poole.css">
-  <link rel="stylesheet" href="../../css/hyde.css">
-  <link rel="stylesheet" href="../../css/poole-overrides.css">
-  <link rel="stylesheet" href="../../css/hyde-overrides.css">
-  <link rel="stylesheet" href="../../css/hyde-x.css">
-  <link rel="stylesheet" href="../../css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://biol548o.github.io/css/poole.css">
+  <link rel="stylesheet" href="http://biol548o.github.io/css/hyde.css">
+  <link rel="stylesheet" href="http://biol548o.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://biol548o.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://biol548o.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="http://biol548o.github.io/css/highlight/sunburst.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../touch-icon-144-precomposed.png">
-  <link href="../../favicon.png" rel="icon">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://biol548o.github.io/touch-icon-144-precomposed.png">
+  <link href="http://biol548o.github.io/favicon.png" rel="icon">
 
   
   
@@ -43,21 +43,21 @@
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="../../">About this course</a></li>
+      <li class="sidebar-nav-item"><a href="http://biol548o.github.io/">About this course</a></li>
       
-      <li class="sidebar-nav-item"><a href="../../page/week_one/">Week 1: Version control</a></li>
+      <li class="sidebar-nav-item"><a href="http://biol548o.github.io/page/week_one/">Week 1: Version control</a></li>
       
-      <li class="sidebar-nav-item"><a href="../../page/week_two/">Week 2: Tidy data</a></li>
+      <li class="sidebar-nav-item"><a href="http://biol548o.github.io/page/week_two/">Week 2: Tidy data</a></li>
       
-      <li class="sidebar-nav-item"><a href="../../page/week_three/">Week 3: Assertions &amp; Metadata</a></li>
+      <li class="sidebar-nav-item"><a href="http://biol548o.github.io/page/week_three/">Week 3: Assertions &amp; Metadata</a></li>
       
-      <li class="sidebar-nav-item"><a href="../../page/07_Homework_3/">Homework 3</a></li>
+      <li class="sidebar-nav-item"><a href="http://biol548o.github.io/page/07_Homework_3/">Homework 3</a></li>
       
-      <li class="sidebar-nav-item"><a href="../../page/08_Repositories/">Online Repositories</a></li>
+      <li class="sidebar-nav-item"><a href="http://biol548o.github.io/page/08_Repositories/">Online Repositories</a></li>
       
-      <li class="sidebar-nav-item"><a href="../../page/08_PeerReview_3/">Peer Review 3</a></li>
+      <li class="sidebar-nav-item"><a href="http://biol548o.github.io/page/08_PeerReview_3/">Peer Review 3</a></li>
       
-      <li class="sidebar-nav-item"><a href="../../page/08_final/">filling up the corners</a></li>
+      <li class="sidebar-nav-item"><a href="http://biol548o.github.io/page/08_final/">filling up the corners</a></li>
       
     </ul>
 
@@ -77,7 +77,7 @@
 
     
 
-    <p>Copyright &copy; 2017 <a href="../../license/">License</a><br/>
+    <p>Copyright &copy; 2017 <a href="http://biol548o.github.io/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
   </div>
 </div>
@@ -106,6 +106,14 @@
 
 <h2 id="git-and-github">Git and Github</h2>
 
+<p>As you work on your data project, you will be creating a well-organized directory for sharing your project with other people. One of the best ways to share a complex project is via <code>git</code> and its companion website <strong>Github</strong>. Throughout this course we will be practicing interacting with both of these.</p>
+
+<h3 id="do-i-already-have-git-installed">Do I already have git installed?</h3>
+
+<p>You might want to know if you have these things installed already. R, and Rstudio, if present, are installed as regular programs on your OS. git, however, is a command line tool and may not be obvious. One way to check is by running <code>which git</code></p>
+
+<p><img src="img/which_git.gif" alt="which git" /></p>
+
 <p><code>git</code> is a command-line program for doing &ldquo;version control&rdquo; : that is, for tracking changes to a group of files all at once. We&rsquo;re going to use it to track changes to our research project (i.e. data and the code that manipulates the data).</p>
 
 <h3 id="git-installation-windows">Git installation: Windows</h3>
@@ -113,23 +121,13 @@
 <p>We reccommend this approach, following <a href="http://software-carpentry.org">Software Carpentry</a>, an organization that &ldquo;teaches lab skills for scientific computing&rdquo; (and also STAT545):</p>
 
 <ul>
-<li>Install <a href="https://git-for-windows.github.io/">Git for Windows</a>, previously known as <code>msysgit</code> or &ldquo;Git Bash&rdquo;, to get Git in addition to some other useful tools, such as the Bash <a href="git09_shell.html">shell</a>.
-
-<ul>
-<li>Yes, all those names are totally confusing.</li>
-</ul></li>
+<li>Install <a href="https://git-for-windows.github.io/">Git for Windows</a>, previously known as <code>msysgit</code> or &ldquo;Git Bash&rdquo;, to get Git in addition to some other useful tools, such as the Bash <a href="git09_shell.html">shell</a>.</li>
 <li>This approach leaves the Git executable in a conventional location, which will help you and other programs, e.g. RStudio, find it and use it.</li>
 </ul>
 
 <h3 id="git-installation-mac">Git installation: Mac</h3>
 
 <p><strong>Option 1</strong> (<em>recommended</em>): Install Git from here: <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a>.</p>
-
-<ul>
-<li>The GitHub home for this project is here: <a href="https://github.com/timcharper/git_osx_installer">https://github.com/timcharper/git_osx_installer</a>.</li>
-<li>This arguably sets you up the best for the future and should &ldquo;just work&rdquo; for most people. It will certainly get you the latest version of Git of all approaches described here. It is the most widely recommended installation method.</li>
-<li>Here&rsquo;s a list of maintained builds for various combinations of Git and Mac OS version: <a href="http://sourceforge.net/projects/git-osx-installer/files/?source=navbar"><code>git-osx-installer</code> on sourceforge</a>. If your OS version is not there &ndash; I&rsquo;m talking to you 10.7 Lion people &ndash; we&rsquo;ve had recent success with binaries found here: <a href="https://www.wandisco.com/git/download">https://www.wandisco.com/git/download</a>.</li>
-</ul>
 
 <h3 id="git-installation-linux">Git installation: Linux</h3>
 
@@ -145,55 +143,32 @@
 <pre><code>sudo yum install git
 </code></pre>
 
-<h3 id="register-a-github-account">Register a GitHub account</h3>
+<h2 id="register-a-github-account">Register a GitHub account</h2>
+
+<p><a href="https://github.com/">Github</a> is an increasingly popular website for sharing code and data. It is an excellent platform for collaborating on projects, including scientific manuscripts.</p>
 
 <ul>
-<li><a href="https://github.com/">Github</a> is an increasingly popular website for sharing code and data. It is an excellent platform for collaborating on projects, including scientific manuscripts.</li>
-<li>Register for a free individual GitHub account and request <a href="https://education.github.com">the student discount</a>. This should give you some free private repositories for a couple of years.
-
-<ul>
-<li>Give your public profile name some thought. I suggest you use a real name and begin to build a scholarly identity in social media and coding, but it&rsquo;s a decision you should make with intention.</li>
-</ul></li>
-<li>We will elicit your GitHub username soon so we can add you to the <a href="https://github.com/BIOL548O">BIOL 548O GitHub Organization</a>.</li>
+<li>Register for a <a href="github.com">free individual GitHub account</a></li>
+<li>Request <a href="https://education.github.com">the student discount</a>. This should give you some free private repositories for a couple of years.</li>
 </ul>
+
+<h3 id="next-steps">Next steps</h3>
+
+<p>After installation, you still need to <a href="01_git_introduce">introduce yourself to Git</a> and <a href="01_git_cache">get it to remember your GitHub username and password</a>. If your Git client guides you through this, seize that opportunity! Otherwise follow the links for some assistance.</p>
 
 <h2 id="r-and-rstudio">R and RStudio</h2>
 
 <ul>
 <li><p>Install <a href="http://www.r-project.org">R, a free software environment for statistical computing and graphics</a> from <a href="http://cran.rstudio.com">CRAN</a>, the Comprehensive R Archive Network. Install the precompiled binary for your Operating system.</p></li>
 
-<li><p>Install <a href="http://www.rstudio.com/products/rstudio">RStudio&rsquo;s IDE</a> (stands for <em>integrated development environment</em>), a powerful user interface for R. Get the Open Source Edition of RStudio Desktop.</p>
+<li><p>Install <a href="http://www.rstudio.com/products/rstudio">RStudio&rsquo;s IDE</a> (i.e. an <em><strong>I</strong>ntegrated <strong>D</strong>evelopment <strong>E</strong>nvironment</em>), a powerful user interface for R. Get the Open Source Edition of RStudio Desktop (free).</p>
 
 <ul>
-<li>I <strong>highly recommend</strong> you run the <a href="https://www.rstudio.com/products/rstudio/download/preview/">Preview version</a>. I find these quite stable and you&rsquo;ll get the cool new features! Update to new Preview versions often.</li>
+<li>We strongly suggest you try out the <a href="https://www.rstudio.com/products/rstudio/download/preview/">Preview version</a>. You&rsquo;ll often find helpful new features in these! Remember to update frequently</li>
 <li>RStudio comes with a <strong>text editor</strong>, so there is no immediate need to install a separate stand-alone editor.</li>
-<li>RStudio can <strong>interface with Git(Hub)</strong>. However, you must do all the Git(Hub) set up before you can take advantage of this.
-<br /></li>
+<li>RStudio can <strong>interface with Git(Hub)</strong>. However, we will have to set that connection up first.</li>
 </ul></li>
 </ul>
-
-<p>If you have a pre-existing installation of R and/or RStudio, we <strong>highly recommend</strong> that you reinstall both and get as current as possible. It can be considerably harder to run old software than new.</p>
-
-<ul>
-<li>If you upgrade R, you will need to update any packages you have installed. The command below should get you started, though you may need to specify more arguments if, e.g., you have been using a non-default library for your packages.</li>
-</ul>
-
-<pre><code>    update.packages(ask = FALSE, checkBuilt = TRUE)
-</code></pre>
-
-<p>Note: this will only look for updates on CRAN. So if you use a package that lives <em>only</em> on GitHub or if you want a develoment version from GitHub, you will need to  update manually, e.g. via <code>devtools::install_github()</code>.</p>
-
-<h3 id="testing-testing">Testing testing</h3>
-
-<ul>
-<li><p>Do whatever is appropriate for your OS to launch RStudio. You should get a window similar to the screenshot you see <a href="http://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png">here</a>, but yours will be more boring because you haven&rsquo;t written any code or made any figures yet!</p></li>
-
-<li><p>Put your cursor in the pane labelled Console, which is where you interact with the live R process. Create a simple object with code like <code>x &lt;- 2 * 4</code> (followed by enter or return). Then inspect the <code>x</code> object by typing <code>x</code> followed by enter or return. You should see the value 8 print to screen. If yes, you&rsquo;ve succeeded in installing R and RStudio.</p></li>
-</ul>
-
-<h3 id="next-steps">Next steps</h3>
-
-<p>After installation, you still need to <a href="01_git_introduce.html">introduce yourself to Git</a> and <a href="01_git_cache.html">get it to remember your GitHub username and password</a>. If your Git client guides you through this, seize that opportunity! Otherwise follow the links for some assistance.</p>
 
 <h3 id="add-on-packages">Add-on packages</h3>
 
@@ -211,6 +186,21 @@
 <li><code>ggplot2</code> <a href="http://docs.ggplot2.org/">package webpage</a></li>
 <li><code>EML</code> <a href="https://github.com/ropensci/EML">package webpage</a></li>
 </ul>
+
+<h3 id="updating">Updating</h3>
+
+<p>If you have already have R or Rstudio installed, I still <strong>highly reccommend</strong> that you update everything first!</p>
+
+<ul>
+<li>If you upgrade R, you will need to update any packages you have installed. Copy-and-paste this to get started:</li>
+</ul>
+
+<pre><code>    update.packages(ask = FALSE, checkBuilt = TRUE)
+</code></pre>
+
+<p>Note that you may need more arguments, for example if you have a custom library location.</p>
+
+<p>Also note: Anything installed from GitHub will need to be manually updated, i.e. using <code>devtools::install_github()</code>.</p>
 
 <h3 id="further-resources">Further resources</h3>
 
@@ -244,13 +234,11 @@
 </ul></li>
 </ul>
 
-<p>Eventually we will want you to connect RStudio and Git(Hub) (see next item about installing Git), so if things are going really well, give that a try.</p>
-
-<p>If you have a pre-existing installation of R and/or RStudio, we <strong>highly recommend</strong> that you reinstall and upgrade to the most recent version. It is very easy and RStudio, specifically, is changing rapidly and positively (written 2015-09). If you upgrade R, you will need to also update any packages you have installed.</p>
+<p>If you have a pre-existing installation of R and/or RStudio, we <strong>highly recommend</strong> that you reinstall and upgrade to the most recent version. It is very easy and RStudio, specifically, is changing rapidly and positively. If you upgrade R, you will need to also update any packages you have installed.</p>
 
   </div>
 </div>
-<script src="../../js/highlight.pack.js"></script>
+<script src="http://biol548o.github.io/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
