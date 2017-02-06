@@ -7,7 +7,7 @@ publishdir = "docs"
 #disqusShortname = "your_disqus_shortname"
 
 [author]
-    name = "Dealing with Data"
+  name = "Dealing with Data"
 
 [params]
   theme = "theme-base-0b"
