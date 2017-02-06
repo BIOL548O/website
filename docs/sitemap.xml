@@ -22,11 +22,19 @@
   </url>
   
   <url>
+    <loc>/page/01_shell/</loc>
+  </url>
+  
+  <url>
     <loc>/page/nextPRsheet/</loc>
   </url>
   
   <url>
     <loc>/page/tidyr/</loc>
+  </url>
+  
+  <url>
+    <loc>/page/01_git_basics/</loc>
   </url>
   
   <url>
@@ -83,10 +91,6 @@
   
   <url>
     <loc>/page/08_final/</loc>
-  </url>
-  
-  <url>
-    <loc>/page/01_git_cache/</loc>
   </url>
   
 </urlset>

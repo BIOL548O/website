@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> &middot; Dealing with Data</title>
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="../../css/poole-overrides.css">
+  <link rel="stylesheet" href="../../css/hyde-overrides.css">
+  <link rel="stylesheet" href="../../css/hyde-x.css">
+  <link rel="stylesheet" href="../../css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../touch-icon-144-precomposed.png">
+  <link href="../../favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Dealing with Data</h1>
+      <p class="lead">BIOL548O</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="../../">About this course</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_one/">Week 1: Version control</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_two/">Week 2: Tidy data</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_three/">Week 3: Assertions &amp; Metadata</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/07_Homework_3/">Homework 3</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_Repositories/">Online Repositories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_PeerReview_3/">Peer Review 3</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_final/">filling up the corners</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2017 <a href="../../license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title"></h1>
+    
+
+<h3 id="what-is-the-shell">What is the Shell?</h3>
+
+<p>The <code>shell</code> (or <code>bash</code> or <code>terminal</code>) is a program on your computer whose job is to run other programs, rather than do calculations itself. The <code>shell</code> is a very old program and in a time before the mouse it was the only way to interact with a computer. It is still extremely popular among programmers because it is very powerful, fast, and is particularly powerful at automating repetitive tasks.</p>
+
+<p>Here we use the <code>shell</code> for a more modest goal: To navigate the file system, confirm the present working directory, and cement the <code>git</code> to <code>GitHub</code> connection.</p>
+
+<h3 id="starting-the-shell">Starting the shell</h3>
+
+<p>In RStudio, go to <em>Tools &gt; Shell</em>. This should take you to the shell (on Mac: Terminal, on Windows: GitBash or equivalent). It should be a simple blinking cursor, waiting for input and looks similar to this (white text on black background, or black text on white background):</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Bash_screenshot.png/440px-Bash_screenshot.png" alt="" /></p>
+
+<h3 id="using-the-shell">Using the shell</h3>
+
+<p>The most basic commands are listed below:</p>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Pwd"><code>pwd</code></a> (<strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory). Shows the folder (or directory) you are currently operating in. This is not necessarily the same as the <code>R</code> working directory you get from <code>getwd()</code>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Ls"><code>ls</code></a> (<strong>l</strong>i<strong>s</strong>t all files). Shows all files in the current working directory. This is equivalent to looking at the files in your Finder/Explorer/File Manager. Use <code>ls -a</code> to also list hidden files, such as <code>.Rhistory</code> and <code>.git</code>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Cd_(command)"><code>cd</code></a> (<strong>c</strong>hange <strong>d</strong>irectory). Allows you to navigate through your folders by changing the shell&rsquo;s working directory. You can navigate like so:</li>
+<li>go to subfolder <code>foo</code> of current working directory: <code>cd foo</code></li>
+<li>go to parent folder of current working directory: <code>cd ..</code></li>
+<li>go to home folder: <a href="http://tilde.club/~ford/tildepoint.jpg"><code>cd ~</code></a> or simply <code>cd</code></li>
+<li>go to folder using absolute path, works regardless of your current working directory: <code>cd /home/my_username/Desktop</code>. Windows uses a slightly different syntax with the slashes between the folder names reversed, <code>\</code>, e.g. <code>cd C:\Users\MY_USERNAME\Desktop</code>.</li>
+<li>Pro tip 1: Dragging and dropping a file or folder into the terminal window will paste the absolute path into the window.</li>
+<li>Pro tip 2: Use the <code>tab</code> key to autocomplete unambiguous folder and file names. Hit <code>tab</code> twice to see all ambiguous options.</li>
+<li>Use arrow-up and arrow-down to repeat previous commands. Or search for previous commands with <code>CTRL</code>+<code>r</code>.</li>
+<li><code>git status</code> is the most used git command and informs you of your current branch,  any changes or untracked files, and whether you are in sync with your remotes.</li>
+<li><code>git remote -v</code> lists all remotes. Very useful for making sure <code>git</code> knows about your remote and that the remote address is correct.</li>
+<li><code>git remote add origin GITHUB_URL</code> adds the remote <code>GITHUB_URL</code> with nickname <code>origin</code>.</li>
+<li><code>git remote set-url origin GITHUB_URL</code> changes the remote url of <code>origin</code> to <code>GITHUB_URL</code>. This way you can fix typos in the remote url.</li>
+</ul>
+
+<p>Go back to the <a href="git00_index.html">index for the all the Git stuff</a>.</p>
+
+  </div>
+</div>
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
+

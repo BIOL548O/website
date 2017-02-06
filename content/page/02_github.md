@@ -1,6 +1,5 @@
 ---
 title: "GitHub and project setup"
-subtitle: ""
 ---
 ### the infrastructure of collaboration
 
@@ -65,6 +64,10 @@ This file expresses patterns of filenames that we want to ignore.
 This file explains your project to your audience on Github. At present, your audience will not extend beyond this room. In the near future, it may extend to the whole Internet!
 
 * with the help of Rstudio, let's practice some markdown basics.
+* You can see a handy Markdown cheatsheet in Rstudio using `Help > Markdown Quick Reference`
+* Note that there is a difference between Rstudio's Markdown (based on [Pandoc markdown](http://pandoc.org/) and [Github Flavoured Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/))
+* You can also mix HTML formatting in with Markdown (for example to get superscripts you can use `<sup></sup>`)
+
 
 ## project setup
 
@@ -76,7 +79,7 @@ We're going to set up a basic structure for our project. Here is a template from
 * Start simple - it’s ok to have just one R script or one R markdown file. But as you get more complex and start to break into multiple files, that you should follow these simple conventions described above
 * A simple example of a research compendium might look like this:
 
-```
+```txt
 project
 |- DESCRIPTION          # project metadata and dependencies 
 |- README.md            # top-level description of content and guide to users

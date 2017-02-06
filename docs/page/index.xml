@@ -407,6 +407,51 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     
     <item>
       <title></title>
+      <link>/page/01_shell/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/01_shell/</guid>
+      <description>
+
+&lt;h3 id=&#34;what-is-the-shell&#34;&gt;What is the Shell?&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;shell&lt;/code&gt; (or &lt;code&gt;bash&lt;/code&gt; or &lt;code&gt;terminal&lt;/code&gt;) is a program on your computer whose job is to run other programs, rather than do calculations itself. The &lt;code&gt;shell&lt;/code&gt; is a very old program and in a time before the mouse it was the only way to interact with a computer. It is still extremely popular among programmers because it is very powerful, fast, and is particularly powerful at automating repetitive tasks.&lt;/p&gt;
+
+&lt;p&gt;Here we use the &lt;code&gt;shell&lt;/code&gt; for a more modest goal: To navigate the file system, confirm the present working directory, and cement the &lt;code&gt;git&lt;/code&gt; to &lt;code&gt;GitHub&lt;/code&gt; connection.&lt;/p&gt;
+
+&lt;h3 id=&#34;starting-the-shell&#34;&gt;Starting the shell&lt;/h3&gt;
+
+&lt;p&gt;In RStudio, go to &lt;em&gt;Tools &amp;gt; Shell&lt;/em&gt;. This should take you to the shell (on Mac: Terminal, on Windows: GitBash or equivalent). It should be a simple blinking cursor, waiting for input and looks similar to this (white text on black background, or black text on white background):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Bash_screenshot.png/440px-Bash_screenshot.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;using-the-shell&#34;&gt;Using the shell&lt;/h3&gt;
+
+&lt;p&gt;The most basic commands are listed below:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Pwd&#34;&gt;&lt;code&gt;pwd&lt;/code&gt;&lt;/a&gt; (&lt;strong&gt;p&lt;/strong&gt;rint &lt;strong&gt;w&lt;/strong&gt;orking &lt;strong&gt;d&lt;/strong&gt;irectory). Shows the folder (or directory) you are currently operating in. This is not necessarily the same as the &lt;code&gt;R&lt;/code&gt; working directory you get from &lt;code&gt;getwd()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Ls&#34;&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/a&gt; (&lt;strong&gt;l&lt;/strong&gt;i&lt;strong&gt;s&lt;/strong&gt;t all files). Shows all files in the current working directory. This is equivalent to looking at the files in your Finder/Explorer/File Manager. Use &lt;code&gt;ls -a&lt;/code&gt; to also list hidden files, such as &lt;code&gt;.Rhistory&lt;/code&gt; and &lt;code&gt;.git&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Cd_(command)&#34;&gt;&lt;code&gt;cd&lt;/code&gt;&lt;/a&gt; (&lt;strong&gt;c&lt;/strong&gt;hange &lt;strong&gt;d&lt;/strong&gt;irectory). Allows you to navigate through your folders by changing the shell&amp;rsquo;s working directory. You can navigate like so:&lt;/li&gt;
+&lt;li&gt;go to subfolder &lt;code&gt;foo&lt;/code&gt; of current working directory: &lt;code&gt;cd foo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;go to parent folder of current working directory: &lt;code&gt;cd ..&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;go to home folder: &lt;a href=&#34;http://tilde.club/~ford/tildepoint.jpg&#34;&gt;&lt;code&gt;cd ~&lt;/code&gt;&lt;/a&gt; or simply &lt;code&gt;cd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;go to folder using absolute path, works regardless of your current working directory: &lt;code&gt;cd /home/my_username/Desktop&lt;/code&gt;. Windows uses a slightly different syntax with the slashes between the folder names reversed, &lt;code&gt;\&lt;/code&gt;, e.g. &lt;code&gt;cd C:\Users\MY_USERNAME\Desktop&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Pro tip 1: Dragging and dropping a file or folder into the terminal window will paste the absolute path into the window.&lt;/li&gt;
+&lt;li&gt;Pro tip 2: Use the &lt;code&gt;tab&lt;/code&gt; key to autocomplete unambiguous folder and file names. Hit &lt;code&gt;tab&lt;/code&gt; twice to see all ambiguous options.&lt;/li&gt;
+&lt;li&gt;Use arrow-up and arrow-down to repeat previous commands. Or search for previous commands with &lt;code&gt;CTRL&lt;/code&gt;+&lt;code&gt;r&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git status&lt;/code&gt; is the most used git command and informs you of your current branch,  any changes or untracked files, and whether you are in sync with your remotes.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote -v&lt;/code&gt; lists all remotes. Very useful for making sure &lt;code&gt;git&lt;/code&gt; knows about your remote and that the remote address is correct.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote add origin GITHUB_URL&lt;/code&gt; adds the remote &lt;code&gt;GITHUB_URL&lt;/code&gt; with nickname &lt;code&gt;origin&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote set-url origin GITHUB_URL&lt;/code&gt; changes the remote url of &lt;code&gt;origin&lt;/code&gt; to &lt;code&gt;GITHUB_URL&lt;/code&gt;. This way you can fix typos in the remote url.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Go back to the &lt;a href=&#34;git00_index.html&#34;&gt;index for the all the Git stuff&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/page/nextPRsheet/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1320,6 +1365,126 @@ kable(A_arranged)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
+      <title>Git basics</title>
+      <link>/page/01_git_basics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/01_git_basics/</guid>
+      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
+
+/BLOGDOWN-BODY-BEFORE --&gt;
+
+&lt;div id=&#34;a-quick-introduction-to-rstudio&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A quick introduction to Rstudio&lt;/h2&gt;
+&lt;p&gt;We’re going to begin an introduction to Rstudio via &lt;strong&gt;Rstudio Projects&lt;/strong&gt;. Rstudio projects are a wonderful habit to adopt, because of the kind of thinking that they encourage. Using projects encourages you to organize everything related to a task within the same major folder. When you use projects regularly, you will begin to rely on this organization. In this course, you will also see how using project files helps you to communicate and share your work with others.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../img/rstudio_intro.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;In this screenshot you can see four panels. Clockwise from top left, here are some things to note:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The source window where R code is written&lt;/li&gt;
+&lt;li&gt;the Environment and Git tabs, where new objects appear as you create them&lt;/li&gt;
+&lt;li&gt;the Files tab, where you see the contents of your Rstudio project&lt;/li&gt;
+&lt;li&gt;the R console&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We’ll do some exercises in class to demonstrate how these four windows function together to support your workflow. Here are a few general tips:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;“Source is real”&lt;/em&gt;: that is, write in your R script (top left) and then send lines to the console. Save this file frequently. This will ensure that you can always reproduce your work.&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;use the File window frequently: it helps to know your directory structure!&lt;/li&gt;
+&lt;li&gt;use Rstudio’s &lt;em&gt;Tab Completion&lt;/em&gt;: if you start typing the name of a function or an object, then hit the &lt;code&gt;Tab&lt;/code&gt; key, Rstudio will try to help you fill it in.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-basic-git-dance-step&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The basic &lt;code&gt;git&lt;/code&gt; dance step&lt;/h2&gt;
+&lt;p&gt;There are many resources which will help you to learn git. Today in class we are going to work with the basic rhythym of a version control workflow – the “basic git dance step”, if you will.&lt;/p&gt;
+&lt;p&gt;We are going to practice these steps first in the command line, and later you will learn how to do this in Rstudio (and, perhaps, another git client of your choice).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;put-on-your-shoes-git-init&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Put on your shoes: &lt;code&gt;git init&lt;/code&gt;&lt;/h2&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../img/bird_git_init.gif&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;Start by opening a Terminal window. You can do this directly from &lt;code&gt;Rstudio&lt;/code&gt; (version 1.1.54) via &lt;code&gt;Tools &amp;gt; Terminal &amp;gt; New Terminal&lt;/code&gt;. You will hopefully be in the current working directory. Check this by typing&lt;/p&gt;
+&lt;pre class=&#34;sh&#34;&gt;&lt;code&gt;pwd&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which is “Print working directory” on the command line. If you are not in the same folder as your R project, you may need to change directory using &lt;code&gt;cd&lt;/code&gt;. Type&lt;/p&gt;
+&lt;pre class=&#34;sh&#34;&gt;&lt;code&gt;cd path/to/project&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Remember again that tab completion is your friend!&lt;/p&gt;
+&lt;p&gt;Once you are in the correct folder, it is time to let &lt;code&gt;git&lt;/code&gt; know it should version control this folder. Do this by typing&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git init&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should see something like&lt;/p&gt;
+&lt;pre class=&#34;sh&#34;&gt;&lt;code&gt;Initialized empty Git repository in /Users/amacdonald/temp/andrew-project/.git/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, we take a look at how git sees our project:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git status&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After which you will see something like this:&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../img/git_status.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;left-foot-git-add&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Left foot: &lt;code&gt;git add&lt;/code&gt;&lt;/h2&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../img/bird_stage.gif&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;Version control with &lt;code&gt;git&lt;/code&gt; is done by recording a series of small changes, known as &lt;code&gt;commits&lt;/code&gt;. Before we can make a commit, we must indicate which of the modified (or added) files the commit will concern. We do this by “adding” the file:&lt;/p&gt;
+&lt;pre class=&#34;sh&#34;&gt;&lt;code&gt;git add README.md&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../img/git_stage_demo.gif&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;Note how the &lt;code&gt;README.md&lt;/code&gt; file has moved up into a new category, “staged”, and is now highlighted in green.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;right-foot-git-commit--m&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Right foot: &lt;code&gt;git commit -m&lt;/code&gt;&lt;/h2&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../img/bird_commit.gif&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;Now we can make a commit! We do this using &lt;code&gt;git commit&lt;/code&gt; and simultaneously &lt;strong&gt;LEAVING A MESSAGE&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre class=&#34;sh&#34;&gt;&lt;code&gt;git commit -m &amp;quot;YOUR WORDS HERE&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Remember to put your own words where it says &lt;code&gt;YOUR WORDS HERE&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../img/git_commit_demo.gif&#34; /&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;and-repeat&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;And repeat&lt;/h2&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../img/bird_dont_stop.gif&#34; /&gt;
+
+&lt;/div&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Change a file&lt;/li&gt;
+&lt;li&gt;Save&lt;/li&gt;
+&lt;li&gt;Stage&lt;/li&gt;
+&lt;li&gt;commit&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I call this the “basic dance step” of git because it underlies every single workflow which involves git. No matter how sophisticated a particular use case may become, this is still the basic rhythym. After a bit of practice it will become second nature. Then, feel free to get as fancy as you like!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;other-resources&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Other resources&lt;/h2&gt;
+&lt;p&gt;There are many more things to learn about Version control. Here are some of my favourite resources to get you started:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://nicercode.github.io/&#34;&gt;niceR code&lt;/a&gt;. An excellent, R-focussed blog by two evolutionary ecologists.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://git-scm.com/docs/&#34;&gt;git manual&lt;/a&gt;. The Authoritative guide.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://kbroman.org/github_tutorial/&#34;&gt;Karl broman’s github tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;!-- BLOGDOWN-HEAD
+
+
+
+
+/BLOGDOWN-HEAD --&gt;
+</description>
+    </item>
+    
+    <item>
       <title>GitHub and project setup</title>
       <link>/page/02_github/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1404,6 +1569,9 @@ SOFTWARE.
 
 &lt;ul&gt;
 &lt;li&gt;with the help of Rstudio, let&amp;rsquo;s practice some markdown basics.&lt;/li&gt;
+&lt;li&gt;You can see a handy Markdown cheatsheet in Rstudio using &lt;code&gt;Help &amp;gt; Markdown Quick Reference&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Note that there is a difference between Rstudio&amp;rsquo;s Markdown (based on &lt;a href=&#34;http://pandoc.org/&#34;&gt;Pandoc markdown&lt;/a&gt; and &lt;a href=&#34;https://help.github.com/articles/basic-writing-and-formatting-syntax/&#34;&gt;Github Flavoured Markdown&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;You can also mix HTML formatting in with Markdown (for example to get superscripts you can use &lt;code&gt;&amp;lt;sup&amp;gt;&amp;lt;/sup&amp;gt;&lt;/code&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;project-setup&#34;&gt;project setup&lt;/h2&gt;
@@ -1417,7 +1585,7 @@ SOFTWARE.
 &lt;li&gt;A simple example of a research compendium might look like this:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;project
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;project
 |- DESCRIPTION          # project metadata and dependencies 
 |- README.md            # top-level description of content and guide to users
 |
@@ -2091,112 +2259,6 @@ YOUR WORDS HERE
 YOUR CODE HERE
 
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tidy data (continued)</title>
-      <link>/page/04_munge02/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/04_munge02/</guid>
-      <description>
-
-&lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;slides/munge_slides02.html&#34;&gt;slides for today&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;review of the basics, and intro to &lt;code&gt;tidyr&lt;/code&gt;: &lt;a href=&#34;../tidyr&#34;&gt;basic data manipulations&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;we&amp;rsquo;ll practice tidying data with &lt;a href=&#34;SuppMatt/gapminder_wide.csv&#34;&gt;wide format gapminder&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;joins&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;tidyr&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;some project setup&lt;/li&gt;
-&lt;li&gt;start work on Homework 2&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;how-can-i-tell-if-my-data-is-tidy&#34;&gt;How can I tell if my data is &amp;ldquo;Tidy&amp;rdquo;?&lt;/h2&gt;
-
-&lt;p&gt;There are two basic principles to look for when deciding how to organize a dataset:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;There should be one observation per row, and one variable per column&lt;/li&gt;
-&lt;li&gt;Rows should be repeated as little as possible. If you have a lot of repeated rows, consider separating the data into two groups and using a &lt;em&gt;join&lt;/em&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;when-do-use-different-columns-and-when-to-use-a-single-factor&#34;&gt;When do use different columns, and when to use a single factor?&lt;/h2&gt;
-
-&lt;p&gt;Today we&amp;rsquo;ll be practicing a lot with two functions from &lt;code&gt;tidyr&lt;/code&gt;: &lt;code&gt;gather()&lt;/code&gt; and &lt;code&gt;spread()&lt;/code&gt;. These functions move data back and forth between what is often called &amp;ldquo;wide&amp;rdquo; and &amp;ldquo;long&amp;rdquo; format. It can be tricky to determine if your data is, or should be, wide or long. Is a group of columns a series of different variables, or are they actually different observations of the same variable? Here is a quote from Wickham&amp;rsquo;s &lt;code&gt;tidyr&lt;/code&gt; vignette:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;A general rule of thumb is that it is easier to describe functional relationships between variables (e.g., &lt;code&gt;z&lt;/code&gt; is a linear combination of &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt;, &lt;code&gt;density&lt;/code&gt; is the ratio of &lt;code&gt;weight&lt;/code&gt; to &lt;code&gt;volume&lt;/code&gt;) than between rows, and it is easier to make comparisons between groups of observations (e.g., average of group a vs. average of group b) than between groups of columns.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In biology, the variables that describe groups are often physical location (e.g. site or block) and/or experimental treatment. Keep this kind of information as values in the same column (i.e. as different levels of a factor &amp;ldquo;Site_name&amp;rdquo; or Block&amp;rdquo;). This makes it easy to compare averages across, say, different sites.&lt;/p&gt;
-
-&lt;p&gt;We also often measure the different responses for each of our study units. For example, you might measure the surface area and mass of a leaf. Keep these as the names of separate columns. This makes it easy to do calculations (e.g. SLA = mass / area)&lt;/p&gt;
-
-&lt;p&gt;Sometimes, it is harder to tell. Then, you have to rely on your knowledge as a biologist &amp;ndash; what are you planning on doing with these data? that will shape your analysis.&lt;/p&gt;
-
-&lt;h2 id=&#34;homework-2&#34;&gt;Homework 2&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;clean your data&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The goal that I want to achieve for &lt;em&gt;everyone&lt;/em&gt; with this assignment is how to process data with code accurately. However, where you end up will depend a lot on where you begin.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 1: Version control</title>
-      <link>/page/week_one/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/week_one/</guid>
-      <description>
-
-&lt;h2 id=&#34;outline-and-goals-for-the-week&#34;&gt;Outline and goals for the week&lt;/h2&gt;
-
-&lt;h2 id=&#34;tuesday&#34;&gt;Tuesday&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Introduction to what the class will be about. &lt;a href=&#34;../slides/01_Introduction.html&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;lecture notes:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;../01_installation&#34;&gt;getting everything installed&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../01_git_introduce&#34;&gt;Introducing yourself to git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;getting-started-with-git&#34;&gt;Getting started with git&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;../slides/git_slides.pdf&#34;&gt;slides about git&lt;/a&gt; courtesy of &lt;a href=&#34;http://swcarpentry.github.io/git-novice&#34;&gt;Software Carpentry&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;here is a list of &lt;a href=&#34;SuppMatt/the_shell&#34;&gt;handy shell commands&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;thursday&#34;&gt;Thursday&lt;/h2&gt;
-
-&lt;h3 id=&#34;video-explanation-of-what-this-course-is-about&#34;&gt;Video explanation of what this course is about&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=N2zK3sAtr-4&#34;&gt;Data Sharing and Management Snafu in 3 Short Acts&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;../02_github&#34;&gt;Getting set up with Github&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../01_git_cache&#34;&gt;caching your github credentials&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;recommended-readings&#34;&gt;Recommended readings&lt;/h2&gt;
-
-&lt;!-- remember to add rubric data to the course landing page --&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scfbm.biomedcentral.com/articles/10.1186/1751-0473-8-7&#34;&gt;Ram, K. 2013. Git can facilitate greater reproducibility and increased transparency in science. Source Code for Biology and Medicine&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004668&#34;&gt;Blischak et al, 2016, A Quick Introduction to Version Control with Git and GitHub, PLOS comp bio&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/set-up-git&#34;&gt;GitHub&amp;rsquo;s advice&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

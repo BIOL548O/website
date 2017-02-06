@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Git basics &middot; Dealing with Data</title>
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="../../css/poole-overrides.css">
+  <link rel="stylesheet" href="../../css/hyde-overrides.css">
+  <link rel="stylesheet" href="../../css/hyde-x.css">
+  <link rel="stylesheet" href="../../css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../touch-icon-144-precomposed.png">
+  <link href="../../favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+
+
+
+
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Dealing with Data</h1>
+      <p class="lead">BIOL548O</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="../../">About this course</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_one/">Week 1: Version control</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_two/">Week 2: Tidy data</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_three/">Week 3: Assertions &amp; Metadata</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/07_Homework_3/">Homework 3</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_Repositories/">Online Repositories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_PeerReview_3/">Peer Review 3</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_final/">filling up the corners</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2017 <a href="../../license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Git basics</h1>
+
+
+<div id="a-quick-introduction-to-rstudio" class="section level2">
+<h2>A quick introduction to Rstudio</h2>
+<p>We’re going to begin an introduction to Rstudio via <strong>Rstudio Projects</strong>. Rstudio projects are a wonderful habit to adopt, because of the kind of thinking that they encourage. Using projects encourages you to organize everything related to a task within the same major folder. When you use projects regularly, you will begin to rely on this organization. In this course, you will also see how using project files helps you to communicate and share your work with others.</p>
+<div class="figure">
+<img src="../../img/rstudio_intro.png" />
+
+</div>
+<p>In this screenshot you can see four panels. Clockwise from top left, here are some things to note:</p>
+<ol style="list-style-type: decimal">
+<li>The source window where R code is written</li>
+<li>the Environment and Git tabs, where new objects appear as you create them</li>
+<li>the Files tab, where you see the contents of your Rstudio project</li>
+<li>the R console</li>
+</ol>
+<p>We’ll do some exercises in class to demonstrate how these four windows function together to support your workflow. Here are a few general tips:</p>
+<ul>
+<li><em>“Source is real”</em>: that is, write in your R script (top left) and then send lines to the console. Save this file frequently. This will ensure that you can always reproduce your work.<br />
+</li>
+<li>use the File window frequently: it helps to know your directory structure!</li>
+<li>use Rstudio’s <em>Tab Completion</em>: if you start typing the name of a function or an object, then hit the <code>Tab</code> key, Rstudio will try to help you fill it in.</li>
+</ul>
+</div>
+<div id="the-basic-git-dance-step" class="section level2">
+<h2>The basic <code>git</code> dance step</h2>
+<p>There are many resources which will help you to learn git. Today in class we are going to work with the basic rhythym of a version control workflow – the “basic git dance step”, if you will.</p>
+<p>We are going to practice these steps first in the command line, and later you will learn how to do this in Rstudio (and, perhaps, another git client of your choice).</p>
+</div>
+<div id="put-on-your-shoes-git-init" class="section level2">
+<h2>Put on your shoes: <code>git init</code></h2>
+<div class="figure">
+<img src="../../img/bird_git_init.gif" />
+
+</div>
+<p>Start by opening a Terminal window. You can do this directly from <code>Rstudio</code> (version 1.1.54) via <code>Tools &gt; Terminal &gt; New Terminal</code>. You will hopefully be in the current working directory. Check this by typing</p>
+<pre class="sh"><code>pwd</code></pre>
+<p>Which is “Print working directory” on the command line. If you are not in the same folder as your R project, you may need to change directory using <code>cd</code>. Type</p>
+<pre class="sh"><code>cd path/to/project</code></pre>
+<p>Remember again that tab completion is your friend!</p>
+<p>Once you are in the correct folder, it is time to let <code>git</code> know it should version control this folder. Do this by typing</p>
+<pre><code>git init</code></pre>
+<p>You should see something like</p>
+<pre class="sh"><code>Initialized empty Git repository in /Users/amacdonald/temp/andrew-project/.git/</code></pre>
+<p>Next, we take a look at how git sees our project:</p>
+<pre><code>git status</code></pre>
+<p>After which you will see something like this:</p>
+<div class="figure">
+<img src="../../img/git_status.png" />
+
+</div>
+</div>
+<div id="left-foot-git-add" class="section level2">
+<h2>Left foot: <code>git add</code></h2>
+<div class="figure">
+<img src="../../img/bird_stage.gif" />
+
+</div>
+<p>Version control with <code>git</code> is done by recording a series of small changes, known as <code>commits</code>. Before we can make a commit, we must indicate which of the modified (or added) files the commit will concern. We do this by “adding” the file:</p>
+<pre class="sh"><code>git add README.md</code></pre>
+<div class="figure">
+<img src="../../img/git_stage_demo.gif" />
+
+</div>
+<p>Note how the <code>README.md</code> file has moved up into a new category, “staged”, and is now highlighted in green.</p>
+</div>
+<div id="right-foot-git-commit--m" class="section level2">
+<h2>Right foot: <code>git commit -m</code></h2>
+<div class="figure">
+<img src="../../img/bird_commit.gif" />
+
+</div>
+<p>Now we can make a commit! We do this using <code>git commit</code> and simultaneously <strong>LEAVING A MESSAGE</strong>:</p>
+<pre class="sh"><code>git commit -m &quot;YOUR WORDS HERE&quot;</code></pre>
+<p>Remember to put your own words where it says <code>YOUR WORDS HERE</code>.</p>
+<div class="figure">
+<img src="../../img/git_commit_demo.gif" />
+
+</div>
+</div>
+<div id="and-repeat" class="section level2">
+<h2>And repeat</h2>
+<div class="figure">
+<img src="../../img/bird_dont_stop.gif" />
+
+</div>
+<ol style="list-style-type: decimal">
+<li>Change a file</li>
+<li>Save</li>
+<li>Stage</li>
+<li>commit</li>
+</ol>
+<p>I call this the “basic dance step” of git because it underlies every single workflow which involves git. No matter how sophisticated a particular use case may become, this is still the basic rhythym. After a bit of practice it will become second nature. Then, feel free to get as fancy as you like!</p>
+</div>
+<div id="other-resources" class="section level2">
+<h2>Other resources</h2>
+<p>There are many more things to learn about Version control. Here are some of my favourite resources to get you started:</p>
+<p><a href="https://nicercode.github.io/">niceR code</a>. An excellent, R-focussed blog by two evolutionary ecologists.</p>
+<p><a href="https://git-scm.com/docs/">git manual</a>. The Authoritative guide.</p>
+<p><a href="http://kbroman.org/github_tutorial/">Karl broman’s github tutorial</a></p>
+</div>
+
+
+
+  </div>
+</div>
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
+

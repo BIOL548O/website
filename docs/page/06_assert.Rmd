@@ -3,6 +3,10 @@ title: "Assertions in R"
 subtitle: "Hey are you sure about that data"
 author: "Andrew MacDonald"
 date: 2017-02-14
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ## Outline for today
