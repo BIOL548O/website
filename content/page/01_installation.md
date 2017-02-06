@@ -28,7 +28,7 @@ As you work on your data project, you will be creating a well-organized director
 
 You might want to know if you have these things installed already. R, and Rstudio, if present, are installed as regular programs on your OS. git, however, is a command line tool and may not be obvious. One way to check is by running `which git`
 
-![which git](img/which_git.gif)
+![which git](/img/which_git.gif)
 
 `git` is a command-line program for doing "version control" : that is, for tracking changes to a group of files all at once. We're going to use it to track changes to our research project (i.e. data and the code that manipulates the data).
 

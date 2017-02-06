@@ -10,7 +10,7 @@ menu:
 
 ## Tuesday
 
-* * Introduction to what the class will be about [slides](/slides/01_Introduction.html)
+* Introduction to what the class will be about. [Slides](/slides/01_Introduction.html)
 * lecture notes: 
   * [getting everything installed](../01_installation)
   * [Introducing yourself to git](../01_git_introduce)

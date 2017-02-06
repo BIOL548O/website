@@ -1502,7 +1502,7 @@ SOFTWARE.
 
 &lt;p&gt;You might want to know if you have these things installed already. R, and Rstudio, if present, are installed as regular programs on your OS. git, however, is a command line tool and may not be obvious. One way to check is by running &lt;code&gt;which git&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;img/which_git.gif&#34; alt=&#34;which git&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../img/which_git.gif&#34; alt=&#34;which git&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;git&lt;/code&gt; is a command-line program for doing &amp;ldquo;version control&amp;rdquo; : that is, for tracking changes to a group of files all at once. We&amp;rsquo;re going to use it to track changes to our research project (i.e. data and the code that manipulates the data).&lt;/p&gt;
 
@@ -2158,7 +2158,7 @@ YOUR CODE HERE
 &lt;h2 id=&#34;tuesday&#34;&gt;Tuesday&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;* Introduction to what the class will be about &lt;a href=&#34;../slides/01_Introduction.html&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Introduction to what the class will be about. &lt;a href=&#34;../slides/01_Introduction.html&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;lecture notes:
 
 &lt;ul&gt;
