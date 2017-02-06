@@ -13,6 +13,8 @@ menu:
   + [Introducing yourself to git](../01_git_introduce)
   + [Git basics](../01_git_basics)
 
+If the instructions here are not working for you, or if you would like to cache your credentials so that github does not ask you for them _every time_, please consult [happygitwithr.com](http://happygitwithr.com/) ! This is the best resource for making Rstudio, git and GitHub play nicely together.
+
 ## Thursday
 
 * Video explanation of what this course is about: [Data Sharing and Management Snafu in 3 Short Acts](https://www.youtube.com/watch?v=N2zK3sAtr-4)

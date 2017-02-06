@@ -100,7 +100,7 @@ Remember to put your own words where it says `YOUR WORDS HERE`.
 
 ## And repeat
 
-![](/img/bird_dont_stop.gif)
+![](/img/bird_don_stop.gif)
 
 1. Change a file
 2. Save
