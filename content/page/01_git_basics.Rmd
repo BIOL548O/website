@@ -1,0 +1,120 @@
+---
+title: "Git basics"
+---
+
+## A quick introduction to Rstudio
+
+We're going to begin an introduction to Rstudio via **Rstudio Projects**. Rstudio projects are a wonderful habit to adopt, because of the kind of thinking that they encourage. Using projects encourages you to organize everything related to a task within the same major folder. When you use projects regularly, you will begin to rely on this organization. In this course, you will also see how using project files helps you to communicate and share your work with others.
+
+![](/img/rstudio_intro.png)
+
+In this screenshot you can see four panels. Clockwise from top left, here are some things to note:
+
+1. The source window where R code is written
+1. the Environment and Git tabs, where new objects appear as you create them
+1. the Files tab, where you see the contents of your Rstudio project
+1. the R console
+
+We'll do some exercises in class to demonstrate how these four windows function together to support your workflow. Here are a few general tips:
+
+* _"Source is real"_: that is, write in your R script (top left) and then send lines to the console. Save this file frequently. This will ensure that you can always reproduce your work.  
+* use the File window frequently: it helps to know your directory structure!
+* use Rstudio's _Tab Completion_: if you start typing the name of a function or an object, then hit the `Tab` key, Rstudio will try to help you fill it in.
+
+## The basic `git` dance step 
+
+There are many resources which will help you to learn git. Today in class we are going to work with the basic rhythym of a version control workflow -- the "basic git dance step", if you will.
+
+We are going to practice these steps first in the command line, and later you will learn how to do this in Rstudio (and, perhaps, another git client of your choice).
+
+
+
+## Put on your shoes: `git init` 
+
+![](/img/bird_git_init.gif)
+
+Start by opening a Terminal window. You can do this directly from `Rstudio` (version 1.1.54) via `Tools > Terminal > New Terminal`. You will hopefully be in the current working directory. Check this by typing 
+
+```sh
+pwd
+```
+
+Which is "Print working directory" on the command line. If you are not in the same folder as your R project, you may need to change directory using `cd`. Type
+
+```sh
+cd path/to/project
+```
+
+Remember again that tab completion is your friend!  
+
+Once you are in the correct folder, it is time to let `git` know it should version control this folder. Do this by typing
+
+```
+git init
+```
+
+You should see something like 
+
+```sh
+Initialized empty Git repository in /Users/amacdonald/temp/andrew-project/.git/
+```
+
+Next, we take a look at how git sees our project:
+
+```
+git status
+```
+
+After which you will see something like this:
+
+![](/img/git_status.png)
+
+## Left foot: `git add`
+
+![](/img/bird_stage.gif)
+
+Version control with `git` is done by recording a series of small changes, known as `commits`. Before we can make a commit, we must indicate which of the modified (or added) files the commit will concern. We do this by "adding" the file:
+
+```sh
+git add README.md
+```
+
+![](/img/git_stage_demo.gif)
+
+Note how the `README.md` file has moved up into a new category, "staged", and is now highlighted in green.
+
+## Right foot: `git commit -m`
+
+![](/img/bird_commit.gif)
+
+Now we can make a commit! We do this using `git commit` and simultaneously **LEAVING A MESSAGE**:
+
+```sh
+git commit -m "YOUR WORDS HERE"
+```
+
+Remember to put your own words where it says `YOUR WORDS HERE`.
+
+![](/img/git_commit_demo.gif)
+
+
+## And repeat
+
+![](/img/bird_dont_stop.gif)
+
+1. Change a file
+2. Save
+3. Stage
+4. commit
+
+I call this the "basic dance step" of git because it underlies every single workflow which involves git. No matter how sophisticated a particular use case may become, this is still the basic rhythym. After a bit of practice it will become second nature. Then, feel free to get as fancy as you like!
+
+## Other resources
+
+There are many more things to learn about Version control. Here are some of my favourite resources to get you started:
+
+[niceR code](https://nicercode.github.io/). An excellent, R-focussed blog by two evolutionary ecologists. 
+
+[git manual](https://git-scm.com/docs/). The Authoritative guide.
+
+[Karl broman's github tutorial](http://kbroman.org/github_tutorial/)
