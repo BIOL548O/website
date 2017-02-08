@@ -1868,6 +1868,343 @@ git config --global --list
     </item>
     
     <item>
+      <title>Introduction to the manipulation of tidy data</title>
+      <link>/page/03_demo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/03_demo/</guid>
+      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
+
+/BLOGDOWN-BODY-BEFORE --&gt;
+
+&lt;p&gt;First, we load the packages that we need via &lt;code&gt;library&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(gapminder)
+library(dplyr)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;dplyr&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter, lag&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     intersect, setdiff, setequal, union&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyr)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can use some handy R functions to view this dataset:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(gapminder)
+View(gapminder)&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;small tip: you can create handy “sections” in your R code within R studio by clicking &lt;code&gt;Code &amp;gt; Insert section&lt;/code&gt;. That only works when you are in a &lt;code&gt;.R&lt;/code&gt; file&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There are &lt;strong&gt;Five basic functions&lt;/strong&gt; for manipulating datasets. These are the five “verbs” of dplyr, and together you can express very sophisticated data transformations with them.&lt;/p&gt;
+&lt;div id=&#34;reordering-data-arrange&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reordering data: &lt;code&gt;arrange&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The simplest operation we can do to a dataset is to change the sequence of the rows. We can do this easily with &lt;code&gt;arrange&lt;/code&gt; from dplyr.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;arrange(gapminder, year)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 × 6
+##        country continent  year lifeExp      pop  gdpPercap
+##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;      &amp;lt;dbl&amp;gt;
+## 1  Afghanistan      Asia  1952  28.801  8425333   779.4453
+## 2      Albania    Europe  1952  55.230  1282697  1601.0561
+## 3      Algeria    Africa  1952  43.077  9279525  2449.0082
+## 4       Angola    Africa  1952  30.015  4232095  3520.6103
+## 5    Argentina  Americas  1952  62.485 17876956  5911.3151
+## 6    Australia   Oceania  1952  69.120  8691212 10039.5956
+## 7      Austria    Europe  1952  66.800  6927772  6137.0765
+## 8      Bahrain      Asia  1952  50.939   120447  9867.0848
+## 9   Bangladesh      Asia  1952  37.484 46886859   684.2442
+## 10     Belgium    Europe  1952  68.000  8730405  8343.1051
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reducing-rows-and-columns-select-and-filter&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reducing rows and columns: &lt;code&gt;select()&lt;/code&gt; and &lt;code&gt;filter()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;You can select columns based on their names. You can also indicate which columns you do &lt;strong&gt;not&lt;/strong&gt; want. You can even select by names.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;select(gapminder, continent, year, lifeExp)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 × 3
+##    continent  year lifeExp
+##       &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1       Asia  1952  28.801
+## 2       Asia  1957  30.332
+## 3       Asia  1962  31.997
+## 4       Asia  1967  34.020
+## 5       Asia  1972  36.088
+## 6       Asia  1977  38.438
+## 7       Asia  1982  39.854
+## 8       Asia  1987  40.822
+## 9       Asia  1992  41.674
+## 10      Asia  1997  41.763
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## remove with -
+select(gapminder, -continent)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 × 5
+##        country  year lifeExp      pop gdpPercap
+##         &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1  Afghanistan  1952  28.801  8425333  779.4453
+## 2  Afghanistan  1957  30.332  9240934  820.8530
+## 3  Afghanistan  1962  31.997 10267083  853.1007
+## 4  Afghanistan  1967  34.020 11537966  836.1971
+## 5  Afghanistan  1972  36.088 13079460  739.9811
+## 6  Afghanistan  1977  38.438 14880372  786.1134
+## 7  Afghanistan  1982  39.854 12881816  978.0114
+## 8  Afghanistan  1987  40.822 13867957  852.3959
+## 9  Afghanistan  1992  41.674 16317921  649.3414
+## 10 Afghanistan  1997  41.763 22227415  635.3414
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## remove by range
+select(gapminder, lifeExp:gdpPercap)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 × 3
+##    lifeExp      pop gdpPercap
+##      &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1   28.801  8425333  779.4453
+## 2   30.332  9240934  820.8530
+## 3   31.997 10267083  853.1007
+## 4   34.020 11537966  836.1971
+## 5   36.088 13079460  739.9811
+## 6   38.438 14880372  786.1134
+## 7   39.854 12881816  978.0114
+## 8   40.822 13867957  852.3959
+## 9   41.674 16317921  649.3414
+## 10  41.763 22227415  635.3414
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are other ways of selecting columns. See a complete list at &lt;code&gt;?select&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Just as &lt;code&gt;select()&lt;/code&gt; reduces the number of columns, &lt;code&gt;filter()&lt;/code&gt; reduces the number of rows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;filter(gapminder, year &amp;gt; 1983)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 710 × 6
+##        country continent  year lifeExp      pop gdpPercap
+##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1  Afghanistan      Asia  1987  40.822 13867957  852.3959
+## 2  Afghanistan      Asia  1992  41.674 16317921  649.3414
+## 3  Afghanistan      Asia  1997  41.763 22227415  635.3414
+## 4  Afghanistan      Asia  2002  42.129 25268405  726.7341
+## 5  Afghanistan      Asia  2007  43.828 31889923  974.5803
+## 6      Albania    Europe  1987  72.000  3075321 3738.9327
+## 7      Albania    Europe  1992  71.581  3326498 2497.4379
+## 8      Albania    Europe  1997  72.950  3428038 3193.0546
+## 9      Albania    Europe  2002  75.651  3508512 4604.2117
+## 10     Albania    Europe  2007  76.423  3600523 5937.0295
+## # ... with 700 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## before 1970
+filter(gapminder, year &amp;lt; 1970)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 568 × 6
+##        country continent  year lifeExp      pop gdpPercap
+##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1  Afghanistan      Asia  1952  28.801  8425333  779.4453
+## 2  Afghanistan      Asia  1957  30.332  9240934  820.8530
+## 3  Afghanistan      Asia  1962  31.997 10267083  853.1007
+## 4  Afghanistan      Asia  1967  34.020 11537966  836.1971
+## 5      Albania    Europe  1952  55.230  1282697 1601.0561
+## 6      Albania    Europe  1957  59.280  1476505 1942.2842
+## 7      Albania    Europe  1962  64.820  1728137 2312.8890
+## 8      Albania    Europe  1967  66.220  1984060 2760.1969
+## 9      Algeria    Africa  1952  43.077  9279525 2449.0082
+## 10     Algeria    Africa  1957  45.685 10270856 3013.9760
+## # ... with 558 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;filter(gapminder, year &amp;gt; 1970, year &amp;lt; 1990)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 568 × 6
+##        country continent  year lifeExp      pop gdpPercap
+##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1  Afghanistan      Asia  1972  36.088 13079460  739.9811
+## 2  Afghanistan      Asia  1977  38.438 14880372  786.1134
+## 3  Afghanistan      Asia  1982  39.854 12881816  978.0114
+## 4  Afghanistan      Asia  1987  40.822 13867957  852.3959
+## 5      Albania    Europe  1972  67.690  2263554 3313.4222
+## 6      Albania    Europe  1977  68.930  2509048 3533.0039
+## 7      Albania    Europe  1982  70.420  2780097 3630.8807
+## 8      Albania    Europe  1987  72.000  3075321 3738.9327
+## 9      Algeria    Africa  1972  54.518 14760787 4182.6638
+## 10     Algeria    Africa  1977  58.014 17152804 4910.4168
+## # ... with 558 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;introducing-the-pipe-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introducing the pipe operator!&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;%&amp;gt;%&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Perhaps no recent development in the world of R is as useful, or as controversial, as these four characters. The pipe allows us to “rephrase” the way we write R code. Usually, we write R from the “inside out”:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(abs(rnorm(30)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here, the first function (&lt;code&gt;rnorm(30)&lt;/code&gt;) is on the inside, while the subsequent functions are outside each set of parentheses. This is difficult to read, because it is not like any human language.&lt;/p&gt;
+&lt;p&gt;The pipe, however, lets us write this sequentially:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(30) %&amp;gt;% abs %&amp;gt;% mean&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;from-data-unto-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;from data unto data&lt;/h3&gt;
+&lt;p&gt;All the dplyr functions we just looked at share one common trait: they all take a &lt;code&gt;data.frame&lt;/code&gt; as their first argument, and they all return a data.frame as well. This means we can chain them together with the pipe:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gapminder %&amp;gt;% 
+  select(continent, country, pop) %&amp;gt;% 
+  filter(pop &amp;gt; 1e8)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 77 × 3
+##    continent    country       pop
+##       &amp;lt;fctr&amp;gt;     &amp;lt;fctr&amp;gt;     &amp;lt;int&amp;gt;
+## 1       Asia Bangladesh 103764241
+## 2       Asia Bangladesh 113704579
+## 3       Asia Bangladesh 123315288
+## 4       Asia Bangladesh 135656790
+## 5       Asia Bangladesh 150448339
+## 6   Americas     Brazil 100840058
+## 7   Americas     Brazil 114313951
+## 8   Americas     Brazil 128962939
+## 9   Americas     Brazil 142938076
+## 10  Americas     Brazil 155975974
+## # ... with 67 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## adding a new column
+gapminder %&amp;gt;% 
+  mutate(total_gdp = pop * gdpPercap)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 × 7
+##        country continent  year lifeExp      pop gdpPercap   total_gdp
+##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1  Afghanistan      Asia  1952  28.801  8425333  779.4453  6567086330
+## 2  Afghanistan      Asia  1957  30.332  9240934  820.8530  7585448670
+## 3  Afghanistan      Asia  1962  31.997 10267083  853.1007  8758855797
+## 4  Afghanistan      Asia  1967  34.020 11537966  836.1971  9648014150
+## 5  Afghanistan      Asia  1972  36.088 13079460  739.9811  9678553274
+## 6  Afghanistan      Asia  1977  38.438 14880372  786.1134 11697659231
+## 7  Afghanistan      Asia  1982  39.854 12881816  978.0114 12598563401
+## 8  Afghanistan      Asia  1987  40.822 13867957  852.3959 11820990309
+## 9  Afghanistan      Asia  1992  41.674 16317921  649.3414 10595901589
+## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414 14121995875
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## summarize
+
+## what is the average population for an Asian country over all the time studied
+
+gapminder %&amp;gt;% 
+  filter(continent == &amp;quot;Asia&amp;quot;) %&amp;gt;% 
+  group_by(country) %&amp;gt;% 
+  summarize(avg_pop = mean(pop))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 33 × 2
+##             country     avg_pop
+##              &amp;lt;fctr&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1       Afghanistan  15823715.4
+## 2           Bahrain    373913.2
+## 3        Bangladesh  90755395.3
+## 4          Cambodia   8510430.7
+## 5             China 958160051.9
+## 6  Hong Kong, China   4792259.3
+## 7             India 701130739.8
+## 8         Indonesia 148322833.3
+## 9              Iran  42301706.8
+## 10             Iraq  14187495.2
+## # ... with 23 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## challenge! 
+## What is the average total GDP across all continents in 1987
+
+continent_means &amp;lt;- gapminder %&amp;gt;%
+  mutate(total_gdp = pop * gdpPercap) %&amp;gt;% 
+  filter(year == 1987) %&amp;gt;% 
+  group_by(continent) %&amp;gt;% 
+  summarise(avg_total_gdp = mean(total_gdp))
+
+continent_means&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 × 2
+##   continent avg_total_gdp
+##      &amp;lt;fctr&amp;gt;         &amp;lt;dbl&amp;gt;
+## 1    Africa   24107264108
+## 2  Americas  439447790357
+## 3      Asia  241784763369
+## 4    Europe  316507473546
+## 5   Oceania  209451563998&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## tidyr
+
+gapminder %&amp;gt;% 
+  select(country, year, pop) %&amp;gt;% 
+  spread(key = year, value = pop)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 142 × 13
+##        country   `1952`   `1957`   `1962`   `1967`   `1972`   `1977`
+## *       &amp;lt;fctr&amp;gt;    &amp;lt;int&amp;gt;    &amp;lt;int&amp;gt;    &amp;lt;int&amp;gt;    &amp;lt;int&amp;gt;    &amp;lt;int&amp;gt;    &amp;lt;int&amp;gt;
+## 1  Afghanistan  8425333  9240934 10267083 11537966 13079460 14880372
+## 2      Albania  1282697  1476505  1728137  1984060  2263554  2509048
+## 3      Algeria  9279525 10270856 11000948 12760499 14760787 17152804
+## 4       Angola  4232095  4561361  4826015  5247469  5894858  6162675
+## 5    Argentina 17876956 19610538 21283783 22934225 24779799 26983828
+## 6    Australia  8691212  9712569 10794968 11872264 13177000 14074100
+## 7      Austria  6927772  6965860  7129864  7376998  7544201  7568430
+## 8      Bahrain   120447   138655   171863   202182   230800   297410
+## 9   Bangladesh 46886859 51365468 56839289 62821884 70759295 80428306
+## 10     Belgium  8730405  8989111  9218400  9556500  9709100  9821800
+## # ... with 132 more rows, and 6 more variables: `1982` &amp;lt;int&amp;gt;,
+## #   `1987` &amp;lt;int&amp;gt;, `1992` &amp;lt;int&amp;gt;, `1997` &amp;lt;int&amp;gt;, `2002` &amp;lt;int&amp;gt;, `2007` &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;year_by_gdp &amp;lt;- gapminder %&amp;gt;% 
+  select(country, year, gdpPercap) %&amp;gt;% 
+  spread(year, value = gdpPercap)
+
+year_by_gdp %&amp;gt;% 
+  gather(key = new_year, value = new_pop, 2:13)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 × 3
+##        country new_year    new_pop
+##         &amp;lt;fctr&amp;gt;    &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
+## 1  Afghanistan     1952   779.4453
+## 2      Albania     1952  1601.0561
+## 3      Algeria     1952  2449.0082
+## 4       Angola     1952  3520.6103
+## 5    Argentina     1952  5911.3151
+## 6    Australia     1952 10039.5956
+## 7      Austria     1952  6137.0765
+## 8      Bahrain     1952  9867.0848
+## 9   Bangladesh     1952   684.2442
+## 10     Belgium     1952  8343.1051
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;year_by_gdp %&amp;gt;% 
+  gather(key = new_year, value = new_pop, `1952`:`2007`)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 × 3
+##        country new_year    new_pop
+##         &amp;lt;fctr&amp;gt;    &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
+## 1  Afghanistan     1952   779.4453
+## 2      Albania     1952  1601.0561
+## 3      Algeria     1952  2449.0082
+## 4       Angola     1952  3520.6103
+## 5    Argentina     1952  5911.3151
+## 6    Australia     1952 10039.5956
+## 7      Austria     1952  6137.0765
+## 8      Bahrain     1952  9867.0848
+## 9   Bangladesh     1952   684.2442
+## 10     Belgium     1952  8343.1051
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;year_by_gdp %&amp;gt;% 
+  gather(key = new_year, value = new_pop, -country)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 × 3
+##        country new_year    new_pop
+##         &amp;lt;fctr&amp;gt;    &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
+## 1  Afghanistan     1952   779.4453
+## 2      Albania     1952  1601.0561
+## 3      Algeria     1952  2449.0082
+## 4       Angola     1952  3520.6103
+## 5    Argentina     1952  5911.3151
+## 6    Australia     1952 10039.5956
+## 7      Austria     1952  6137.0765
+## 8      Bahrain     1952  9867.0848
+## 9   Bangladesh     1952   684.2442
+## 10     Belgium     1952  8343.1051
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## scale pop by subtracting the mean for each country
+gapminder %&amp;gt;%
+  group_by(country) %&amp;gt;% 
+  mutate(scale_pop = pop - mean(pop))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Source: local data frame [1,704 x 7]
+## Groups: country [142]
+## 
+##        country continent  year lifeExp      pop gdpPercap  scale_pop
+##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;
+## 1  Afghanistan      Asia  1952  28.801  8425333  779.4453 -7398382.4
+## 2  Afghanistan      Asia  1957  30.332  9240934  820.8530 -6582781.4
+## 3  Afghanistan      Asia  1962  31.997 10267083  853.1007 -5556632.4
+## 4  Afghanistan      Asia  1967  34.020 11537966  836.1971 -4285749.4
+## 5  Afghanistan      Asia  1972  36.088 13079460  739.9811 -2744255.4
+## 6  Afghanistan      Asia  1977  38.438 14880372  786.1134  -943343.4
+## 7  Afghanistan      Asia  1982  39.854 12881816  978.0114 -2941899.4
+## 8  Afghanistan      Asia  1987  40.822 13867957  852.3959 -1955758.4
+## 9  Afghanistan      Asia  1992  41.674 16317921  649.3414   494205.6
+## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414  6403699.6
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;!-- BLOGDOWN-HEAD
+
+
+
+
+/BLOGDOWN-HEAD --&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Metadata</title>
       <link>/page/07_metadata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2130,67 +2467,6 @@ I like that. This way, they can have ownership of this repository: they could ev
 &lt;li&gt;live demonstration of online repository use!&lt;/li&gt;
 &lt;li&gt;getting started on peer reviews/ homework&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Peer Review 2</title>
-      <link>/page/06_PeerReview_2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/06_PeerReview_2/</guid>
-      <description>&lt;p&gt;The goal of this Peer Review is to help our colleagues to write &lt;em&gt;clear, readable code&lt;/em&gt; which creates &lt;em&gt;tidy data&lt;/em&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;tip: suggest new code to your reviewee by typing three backticks before and after your suggestion&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;tip: you can &lt;a href=&#34;http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github&#34;&gt;link to specific lines of code&lt;/a&gt; on GitHub by clicking on them and using the new URL&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;em&gt;Please don&amp;rsquo;t keep a copy of your reviewee&amp;rsquo;s data!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is a template for Peer Review 2. &lt;strong&gt;Copy and paste this in response to the GitHub Issue that announces your review&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;## organization
-
-Did your reviewee follow the directory naming convention that we are using? Was it easy to find the data cleaning script?
-
-YOUR WORDS HERE
-
-## reproducible
-
-Open the data cleaning script and run it all, either by sourcing or by highlighting and click Run all
-
-What happened? Did the final data file recreate itself? Why or why not? What changes need to be made to the script to allow it to run on your machine?
-
-YOUR WORDS HERE
-
-## documented
-
-Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?
-
-YOUR WORDS HERE
-
-## efficient
-
-What transformations or manipulations is your reviewee performing? Are any done with more code than is necessary? For example, are they using their own code to solve a problem that is already handled in `dplyr` or `tidyr`? **suggest something they could do differently**
-
-YOUR WORDS HERE
-
-
-## output is tidy
-
-Tidy data has one observation in each row, and one variable in each column. Does that appear to be true of your reviewee&#39;s dataset? Is there another form you could suggest?
-
-YOUR WORDS HERE
-
-## output is correct
-
-check either on Github or via a real CSV validator such as [csvlint.io](http://csvlint.io/) and/or [CSVfingerprint](http://setosa.io/csv-fingerprint/)
-
-YOUR WORDS HERE
-
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

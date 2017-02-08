@@ -1,0 +1,109 @@
+---
+title: "Tidy data"
+subtitle: "structuring datasets to make analysis easy"
+author: "Andrew MacDonald"
+date: "07 Feb 2017"
+output:
+  xaringan::moon_reader:
+    seal: yes
+    nature:
+      highlightStyle: github
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# What is "tidy data"
+
+> Happy families are all alike; every unhappy family is unhappy in its own way — Leo Tolstoy
+
+--
+
+1. Each variable forms a column.
+
+--
+
+1. Each observation forms a row.
+
+--
+
+1. Each type of observational unit forms a table.
+
+--
+
+see [the tidy data vignette](ftp://cran.r-project.org/pub/R/web/packages/tidyr/vignettes/tidy-data.html)
+
+---
+
+# an example
+
+```{r comment='#'}
+library(gapminder)
+head(gapminder)
+```
+
+--
+</br>
+</br>
+</br>
+
+
+**The `data.frame` is a fundamental part of any "tidy" workflow**
+
+---
+class: center
+# Key principle
+</br>
+--
+<font size = 20> raw data should stay </br> <strong>exactly the way it is</strong> </font>
+--
+</br>
+</br>
+this suggests that we will need to rearrange data _automatically_
+
+---
+
+class: center, middle
+
+# Introducing: the most controversial symbol in modern R
+
+---
+
+class: center, middle
+</br>
+`%>%`
+---
+# the pipe
+
+```{r eval=FALSE}
+foo_foo <- little_bunny()
+
+## orthodox R style
+bop_on(scoop_up(hop_through(foo_foo, forest), field_mouse), head)
+```
+--
+```{r eval=FALSE}
+## novel pipe syntax
+foo_foo %>%
+  hop_through(forest) %>%
+  scoop_up(field_mouse) %>%
+  bop_on(head)
+```
+
+---
+## dplyr & tidyr
+
+1. `select()`
+2. `filter()`
+3. `group_by()`
+4. `summarize()`
+5. `mutate()`
+
+and from `tidyr`
+1. `gather`
+2. `spread`
+3. `separate`
+4. `unite`
+
+

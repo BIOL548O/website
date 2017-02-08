@@ -1,0 +1,134 @@
+---
+title: "Introduction to the manipulation of tidy data"
+author: "andrew"
+date: "February 7, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First, we load the packages that we need via `library`: 
+
+```{r pkgs}
+library(gapminder)
+library(dplyr)
+library(tidyr)
+```
+
+We can use some handy R functions to view this dataset:
+
+```{r eval=FALSE}
+head(gapminder)
+View(gapminder)
+```
+
+> small tip: you can create handy "sections" in your R code within R studio by clicking `Code > Insert section`. That only works when you are in a `.R` file
+
+There are **Five basic functions** for manipulating datasets. These are the five "verbs" of dplyr, and together you can express very sophisticated data transformations with them.
+
+## Reordering data: `arrange`
+
+The simplest operation we can do to a dataset is to change the sequence of the rows. We can do this easily with `arrange` from dplyr.
+
+```{r}
+arrange(gapminder, year)
+```
+
+
+## Reducing rows and columns: `select()` and `filter()`
+
+You can select columns based on their names. You can also indicate which columns you do **not** want. You can even select by names.
+```{r}
+select(gapminder, continent, year, lifeExp)
+## remove with -
+select(gapminder, -continent)
+## remove by range
+select(gapminder, lifeExp:gdpPercap)
+```
+
+There are other ways of selecting columns. See a complete list at `?select`
+
+Just as `select()` reduces the number of columns, `filter()` reduces the number of rows:
+
+```{r}
+filter(gapminder, year > 1983)
+## before 1970
+filter(gapminder, year < 1970)
+filter(gapminder, year > 1970, year < 1990)
+```
+
+## Introducing the pipe operator!
+
+`%>%`
+
+Perhaps no recent development in the world of R is as useful, or as controversial, as these four characters. The pipe allows us to "rephrase" the way we write R code. Usually, we write R from the "inside out": 
+
+```r
+mean(abs(rnorm(30)))
+```
+
+Here, the first function (`rnorm(30)`) is on the inside, while the subsequent functions are outside each set of parentheses. This is difficult to read, because it is not like any human language.
+
+The pipe, however, lets us write this sequentially:
+
+```r
+rnorm(30) %>% abs %>% mean
+```
+
+### from data unto data
+
+All the dplyr functions we just looked at share one common trait: they all take a `data.frame` as their first argument, and they all return a data.frame as well. This means we can chain them together with the pipe: 
+
+```{r}
+gapminder %>% 
+  select(continent, country, pop) %>% 
+  filter(pop > 1e8)
+
+## adding a new column
+gapminder %>% 
+  mutate(total_gdp = pop * gdpPercap)
+
+## summarize
+
+## what is the average population for an Asian country over all the time studied
+
+gapminder %>% 
+  filter(continent == "Asia") %>% 
+  group_by(country) %>% 
+  summarize(avg_pop = mean(pop))
+
+## challenge! 
+## What is the average total GDP across all continents in 1987
+
+continent_means <- gapminder %>%
+  mutate(total_gdp = pop * gdpPercap) %>% 
+  filter(year == 1987) %>% 
+  group_by(continent) %>% 
+  summarise(avg_total_gdp = mean(total_gdp))
+
+continent_means
+
+## tidyr
+
+gapminder %>% 
+  select(country, year, pop) %>% 
+  spread(key = year, value = pop)
+
+year_by_gdp <- gapminder %>% 
+  select(country, year, gdpPercap) %>% 
+  spread(year, value = gdpPercap)
+
+year_by_gdp %>% 
+  gather(key = new_year, value = new_pop, 2:13)
+year_by_gdp %>% 
+  gather(key = new_year, value = new_pop, `1952`:`2007`)
+year_by_gdp %>% 
+  gather(key = new_year, value = new_pop, -country)
+
+## scale pop by subtracting the mean for each country
+gapminder %>%
+  group_by(country) %>% 
+  mutate(scale_pop = pop - mean(pop))
+```
