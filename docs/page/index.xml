@@ -452,6 +452,67 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     
     <item>
       <title></title>
+      <link>/page/04_reading/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/04_reading/</guid>
+      <description>
+
+&lt;h2 id=&#34;reading-in-data&#34;&gt;reading in data&lt;/h2&gt;
+
+&lt;p&gt;If you have spreadsheet-based data, the two easiest ways to read in data are&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;read directly from excel&lt;/li&gt;
+&lt;li&gt;read from a csv file&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I suggest you choose the first option if you want to keep your .xls file (e.g. perhaps you are not able to capture &lt;strong&gt;all&lt;/strong&gt; the information with a CSV.) This might happen if not all the data in your excel file &lt;em&gt;can&lt;/em&gt; be represented in a CSV &amp;ndash; for example, you might have some data represented not as values in a cell, but as the colour of the cell.&lt;/p&gt;
+
+&lt;p&gt;Here is an example of reading in an excel file (from the &lt;a href=&#34;https://github.com/BIOL548O/lecture_4_exercises/&#34;&gt;lecture_4_exercises&lt;/a&gt; repo):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(readxl)
+
+germin &amp;lt;- readxl::read_excel(&amp;quot;data-raw/Schiz germination record.xlsx&amp;quot;, sheet = 2)
+head(germin)
+View(germin)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;reading-in-a-csv&#34;&gt;reading in a csv&lt;/h3&gt;
+
+&lt;p&gt;You may be familiar with the base functions &lt;code&gt;read.csv&lt;/code&gt; and &lt;code&gt;read.delim&lt;/code&gt;. These are flexible, handy functions. However it has been my experience that, especially with &amp;ldquo;untidy&amp;rdquo; data, there are advantages to using a more modern version of the same functions, from the package &lt;code&gt;readr&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;read_csv(&amp;quot;data/gapminder_wide.csv&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;readr::read_csv&lt;/code&gt; has several useful behaviours: it never creates factors (it leaves text as text) and it doesn&amp;rsquo;t add rownames. It also doesn&amp;rsquo;t complain if you give it unconventional column names. I find that all of these traits come in handy when the data needs to be reorganized. Read more about readr &lt;a href=&#34;https://github.com/tidyverse/readr&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;writing-out-data&#34;&gt;Writing out data&lt;/h2&gt;
+
+&lt;p&gt;Write your data out to a clean and tidy CSV in in your &lt;code&gt;data/&lt;/code&gt; folder. Again, I find that using &lt;code&gt;write_csv&lt;/code&gt; from the &lt;code&gt;readr&lt;/code&gt; package makes things simple:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(readr)
+write_csv(germin, path = &amp;quot;data/germin.csv&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;a-word-about-relative-paths&#34;&gt;A word about relative paths&lt;/h2&gt;
+
+&lt;p&gt;Note that in the above R scripts, I was reading an writing files using &amp;ldquo;relative paths&amp;rdquo;. This means that you write the name of the folder(s) containing the file you want before the filename itself, separated with a &lt;code&gt;/&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data/file_name_of_data.csv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will work automatically if your Rstudio project is set up the way we discussed: with a &lt;code&gt;data/&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;Why don&amp;rsquo;t you have to write the complete path? Something like (for a Mac) &lt;code&gt;/Users/amacdonald/Documents/Projects/BIOL548O/BIOL548O.github.io&lt;/code&gt; or on a PC &lt;code&gt;c:\\amacdonald\Desktop\files\thesis_chapter\&lt;/code&gt; etc? Both of these paths start at the &amp;ldquo;home folder&amp;rdquo; of your computer. But if we are working in an Rstudio project, such precision is not necessary. All we need to do is direct the computer to the &lt;code&gt;data&lt;/code&gt; folder in &lt;em&gt;this&lt;/em&gt; project.&lt;/p&gt;
+
+&lt;p&gt;One way to think of relative paths is to read them as saying: &amp;ldquo;from here, go into the data folder&amp;rdquo;, where &amp;ldquo;here&amp;rdquo; is assumed to be your project folder (i.e., wherever your &lt;code&gt;.Rproj&lt;/code&gt; file lives).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/page/exercises/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -2635,222 +2696,6 @@ gapminder %&amp;gt;%
 &lt;/ol&gt;
 
 &lt;p&gt;Add your responses to &lt;a href=&#34;https://etherpad.wikimedia.org/p/BIO548O&#34;&gt;This Etherpad Document&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Notes on running a class on github</title>
-      <link>/page/github_howto/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/github_howto/</guid>
-      <description>
-
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;The first run of BIOL548O (&amp;ldquo;Dealing with Data&amp;rdquo;) is being taught entirely through GitHub. This is an approach inspired by STAT545/547. In both courses, the intention is that students will get practical experience in creating and managing their projects via git. It also has the potential to help the course instructor manage assignments and grades, etc.&lt;/p&gt;
-
-&lt;p&gt;This document is for notes that I am taking about using GitHub in the classroom. I mean it mostly as a personal reference, but also as a place to discuss with instructors of other courses. It will eventually serve as a guide for whoever takes this course over from me, should they wish to apply the same approach in the future.&lt;/p&gt;
-
-&lt;h2 id=&#34;organization-setup&#34;&gt;organization setup&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;created the organization on github, added other course Instructor (there are two this year, myself and Diane) as owners.&lt;/li&gt;
-&lt;li&gt;applied for the GitHub educational discount for the course. asked for a large number of private repositories (more than i would need, 30 or 50 i forget exactly how many)&lt;/li&gt;
-&lt;li&gt;How can you find out how many private repositories you have? You go to &lt;code&gt;Settings &amp;gt; Billing&lt;/code&gt;. As of 2016, GitHub granted BIOL548O a &amp;ldquo;Gold&amp;rdquo; plan, giving us 50 private repositories.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;adding-people-to-the-github-organization&#34;&gt;adding people to the github organization&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;In STAT545, data about each student was collected in a Shiny app &amp;ndash; including their GitHub username. I considered doing that here as well, or using a Google Form&lt;/li&gt;
-&lt;li&gt;Instead, I decided on the Human Touch &amp;ndash; on the 2nd lecture, I asked the students to take turns introducing themselves and stating&lt;br /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;their actual name&lt;/li&gt;
-&lt;li&gt;their github username&lt;/li&gt;
-&lt;li&gt;what kind of data they deal with&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;As each student introduced themselves, I manually added them to the organization. This led to me typing on the screen while the student was talking about themselves.&lt;/li&gt;
-&lt;li&gt;Pros and cons of this approach
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;PRO&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;I actually got to meet everyone. Adding the username gave the proceedings a bit of practical significance, instead of the rote &amp;ldquo;name/lab/thesis&amp;rdquo; introduction we are all used to giving.&lt;/li&gt;
-&lt;li&gt;other students got to hear their peer&amp;rsquo;s usernames. Since online collaboration is an important part of this course, its important that they know who they are dealing with.&lt;/li&gt;
-&lt;li&gt;So easy! it allowed me to defer studying the GitHub API&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;CON&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Would scale TERRIBLY. This was only possible because about 20 people are involved.&lt;/li&gt;
-&lt;li&gt;Weird typos, either in original usernames or in my typing of them, slowed down that process.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;I added &lt;em&gt;everybody&lt;/em&gt; to this course. Literally everybody. Students and Instructors, of course, but also auditors, unofficial auditors, friendly postdocs, interested grad students, and one colleague in another country.
-
-&lt;ul&gt;
-&lt;li&gt;my motivation for liberal course membership: Keeping track of &lt;em&gt;all&lt;/em&gt; interested parties, to spare myself having to coordinate things through &amp;ldquo;connect&amp;rdquo; (the UBC course management thing). This list is incomplete (ie doesn&amp;rsquo;t catch those impermanent groups). Also I find the UI for Connect a little stressful (why are there so many menus! v distressing)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;github-api-stuff-permissions-teams&#34;&gt;Github API stuff &amp;ndash; permissions, teams&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;I started trying to learn the &lt;a href=&#34;https://developer.github.com/v3/&#34;&gt;github API&lt;/a&gt;, especially as expressed in R by &lt;a href=&#34;https://github.com/gaborcsardi/gh&#34;&gt;Gabor Csardi&amp;rsquo;s R package &lt;code&gt;gh&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;I quickly realized that decisions about the entire course organization need to be taken before you start organizing people. That&amp;rsquo;s why i wanted to write everything down now: to record those decisions.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here is a running list of all the Clicky Business you need to do to set up an organization like this:
-    * Get yourself &lt;a href=&#34;https://github.com/settings/tokens&#34;&gt;a very permissive and powerful github API token&lt;/a&gt;. The only thing I left off of my token was &amp;ldquo;Delete&amp;rdquo;, because Future Andrew is an imperfect fellow.
-    * Manually add students to the organization: go to the &lt;a href=&#34;https://github.com/orgs/BIOL548O/people&#34;&gt;people tab&lt;/a&gt; of the organization and click &amp;ldquo;Invite member&amp;rdquo;
-    * &lt;em&gt;this is the stage where they created their own repositories&lt;/em&gt;
-    * Go to &lt;code&gt;BIOL548O &amp;gt; Settings &amp;gt; Member Privileges&lt;/code&gt; and under &lt;code&gt;Default repository permission&lt;/code&gt; set it to &lt;strong&gt;&amp;ldquo;None&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;how-to-see-what-is-going-on&#34;&gt;how to see what is going on&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;who can see this repo&lt;/em&gt;: go to a repo, click &lt;code&gt;Settings &amp;gt; Collaborators &amp;amp; teams&lt;/code&gt; and it shows up there.&lt;/p&gt;
-
-&lt;p&gt;In the setup I described above, you end up with (at least at the beginning) students having Admin access for one repo only: the one they created. Presumably they can also Read any public repository (just as anyone could) but they can&amp;rsquo;t push commits anywhere else.&lt;br /&gt;
-I like that. This way, they can have ownership of this repository: they could even (i think?) add an outside person (supervisor, friend) if they wanted.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;what can this individual see&lt;/em&gt;: go to &amp;ldquo;People&amp;rdquo; and click &amp;ldquo;manage access&amp;rdquo; next to their name. You can see here what repositories they have access to. You can also click on the (very confusingly named) &amp;ldquo;manage access&amp;rdquo; button (how far does this rabbithole go?) to see &lt;em&gt;why&lt;/em&gt; they have access to it. I like that, too.&lt;/p&gt;
-
-&lt;h3 id=&#34;private-repositories-student-created&#34;&gt;Private repositories &amp;ndash; student created&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;I wanted each student to create their own private repository. I felt it was important that they experience the workflow (rather than have a repository handed to them). That happened in Lecture 2&lt;/li&gt;
-&lt;li&gt;Well, it &lt;em&gt;seemed&lt;/em&gt; OK. But there were Problems:
-
-&lt;ul&gt;
-&lt;li&gt;I asked students to keep their repositories in a standard format: &lt;code&gt;lastname_firstname&lt;/code&gt;. In a room of 20 people at least one person wrote their name down as &lt;code&gt;lastname-firstname&lt;/code&gt;. Potentially a snag for later when I am using R to process course stuff (the worse because at least one student has a hyphenated last name, so splitting repos base on &lt;code&gt;-&lt;/code&gt; OR &lt;code&gt;_&lt;/code&gt; will give the wrong answer). Will report back here.
-
-&lt;ul&gt;
-&lt;li&gt;What should I do when students give their repos inconsistent names? Ask the student to correct their error? That &lt;em&gt;might&lt;/em&gt; work, but would cause headaches. Because of our workflow, the student would need to modify the name of their repository, the name of the folder and the RStudio project file name, too. Then Rstudio would get confused, and the student would get confused..&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;When we looked at the MIT Licence after cloning our repositories, it said (to my dismay) that the copyright was to the Organization name (&amp;ldquo;BIOL548O&amp;rdquo;). I had hoped that it would be the student&amp;rsquo;s name. However, only &lt;em&gt;teams&lt;/em&gt; can own repos in GitHub. That brings me to my next point:&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;teams-and-permissions&#34;&gt;Teams and permissions&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;When i added the students to the organization, and asked them to create private repositories, I noticed later that the default setting is that all members can see all private repos.
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;why that&amp;rsquo;s bad&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Compromises privacy quite a bit (it is one thing for students to review each other&amp;rsquo;s work, but perhaps too much for all students to see all work all the time)&lt;/li&gt;
-&lt;li&gt;Enables copying and plagiarism (not, of course, that I think this is possible/probable in a course of about a dozen close colleagues. But if this were to scale it would be a problem)&lt;/li&gt;
-&lt;li&gt;no privacy for Instructors! for those things that an Instructor would like to have in private. Like their kludgy GitHub API code manipulation. Or, idk, minor things like &lt;strong&gt;&lt;em&gt;student marks&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;why its sort of OK&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;It looks a bit more like how a lab would organize itself. I mean within a lab it makes sense that everyone should be able to read (and perhaps even modify) all projects. Enabling collaboration even within private repos. So if we&amp;rsquo;re teaching practical skills, why not teach them practically?&lt;/li&gt;
-&lt;li&gt;It would certainly be easier to organize peer reviews!&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Despite the (considerable!) convenience to myself, I decided that it was necessary to shut down access to all private repos.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;organizational-teams&#34;&gt;Organizational teams&lt;/h4&gt;
-
-&lt;p&gt;There are a few teams and things I know for sure I want:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;all&lt;/code&gt; : a team for absolutely everybody. To be used in broadcast announcements.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;students&lt;/code&gt;: just the students, for announcements that pertain only to actual work.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;auditors&lt;/code&gt;: just because it seems polite to include em. Even though technically an instructor is not required to actually &lt;em&gt;do&lt;/em&gt; anything with auditors, so I guess there is no official need to interact with them as a group.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;instructors&lt;/code&gt;: for access to the student grades / &amp;ldquo;instructorsonly&amp;rdquo; repository&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;student-teams&#34;&gt;Student teams&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;in STAT545, each student was on a singleton team, just for them. That team was the owner of their own repo. I want to try to import this system here:&lt;/li&gt;
-&lt;li&gt;I &lt;em&gt;think&lt;/em&gt; that marking proceeded like this:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;STUDENT&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Student does homework, pushes to their repo (owned by their team. they have push access)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Instructor&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Peer reviewer is selected by random process: &lt;code&gt;combn(students, 2)&lt;/code&gt; etc, with perhaps some finesse to make sure that duplicates are impossible&lt;/li&gt;
-&lt;li&gt;peer reviewer&amp;rsquo;s team is added to repository (or rather, that repository is added to reviewer&amp;rsquo;s team)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Issue is opened on &lt;em&gt;student&amp;rsquo;s&lt;/em&gt; repo: &amp;ldquo;Peer review of &lt;code&gt;&amp;lt;student&amp;gt;&lt;/code&gt; by &lt;code&gt;&amp;lt;reviewer&amp;gt;&lt;/code&gt;&amp;rdquo;, and reviewer is assigned.  This issue contains:
-
-&lt;ul&gt;
-&lt;li&gt;Hi (reviwer name) (maybe reviwer github handle)&lt;/li&gt;
-&lt;li&gt;link to general rubric + general rules for review (be nice, don&amp;rsquo;t plagarize, etc)&lt;/li&gt;
-&lt;li&gt;specific information about what this review should be&lt;/li&gt;
-&lt;li&gt;due date&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Issue given tags &amp;ldquo;homework&amp;rdquo; with number and &amp;ldquo;peer review&amp;rdquo; with number?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;REVIEWER&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;reviewer submits marks and feedback &amp;ndash; on the issue? in a google form? if the former then should be in som standard format. If the latter, should be also communicated to student somehow (could be simply in an unstructured form on the issue)&lt;/li&gt;
-&lt;li&gt;both issue and form feedback need to be done by the due date.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;INSTRUCTOR AGAIN&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;closes issue.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Alternatively:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;STUDENT&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;students push a branch containing their changes since last homework was completed&lt;/li&gt;
-&lt;li&gt;students open a PR. that counts as their &amp;ldquo;submission&amp;rdquo; of the homework.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;INSTRUCTOR&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;reviewr randomly assigned (as above) and assigned to issue.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;REVIEWER&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;reviewer submits comments as both comments on the issue and inline comments on the diff.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;STUDENT (possibly optional)&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;student responds to those comments&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;INSTRUCTOR&lt;/em&gt;
-
-&lt;ul&gt;
-&lt;li&gt;instructor confirms that
-
-&lt;ol&gt;
-&lt;li&gt;reviewer comments are done&lt;/li&gt;
-&lt;li&gt;reviewer grade is registered on a form.&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;creates comment, acknowledging review is complete and informing student they can merge
-
-&lt;ul&gt;
-&lt;li&gt;make sure you merge before next assignment.&lt;/li&gt;
-&lt;li&gt;delete your branches&lt;/li&gt;
-&lt;li&gt;reviewer, remember to delete your clone (if any).&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

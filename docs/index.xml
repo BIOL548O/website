@@ -476,6 +476,67 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     
     <item>
       <title></title>
+      <link>/page/04_reading/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/04_reading/</guid>
+      <description>
+
+&lt;h2 id=&#34;reading-in-data&#34;&gt;reading in data&lt;/h2&gt;
+
+&lt;p&gt;If you have spreadsheet-based data, the two easiest ways to read in data are&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;read directly from excel&lt;/li&gt;
+&lt;li&gt;read from a csv file&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I suggest you choose the first option if you want to keep your .xls file (e.g. perhaps you are not able to capture &lt;strong&gt;all&lt;/strong&gt; the information with a CSV.) This might happen if not all the data in your excel file &lt;em&gt;can&lt;/em&gt; be represented in a CSV &amp;ndash; for example, you might have some data represented not as values in a cell, but as the colour of the cell.&lt;/p&gt;
+
+&lt;p&gt;Here is an example of reading in an excel file (from the &lt;a href=&#34;https://github.com/BIOL548O/lecture_4_exercises/&#34;&gt;lecture_4_exercises&lt;/a&gt; repo):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(readxl)
+
+germin &amp;lt;- readxl::read_excel(&amp;quot;data-raw/Schiz germination record.xlsx&amp;quot;, sheet = 2)
+head(germin)
+View(germin)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;reading-in-a-csv&#34;&gt;reading in a csv&lt;/h3&gt;
+
+&lt;p&gt;You may be familiar with the base functions &lt;code&gt;read.csv&lt;/code&gt; and &lt;code&gt;read.delim&lt;/code&gt;. These are flexible, handy functions. However it has been my experience that, especially with &amp;ldquo;untidy&amp;rdquo; data, there are advantages to using a more modern version of the same functions, from the package &lt;code&gt;readr&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;read_csv(&amp;quot;data/gapminder_wide.csv&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;readr::read_csv&lt;/code&gt; has several useful behaviours: it never creates factors (it leaves text as text) and it doesn&amp;rsquo;t add rownames. It also doesn&amp;rsquo;t complain if you give it unconventional column names. I find that all of these traits come in handy when the data needs to be reorganized. Read more about readr &lt;a href=&#34;https://github.com/tidyverse/readr&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;writing-out-data&#34;&gt;Writing out data&lt;/h2&gt;
+
+&lt;p&gt;Write your data out to a clean and tidy CSV in in your &lt;code&gt;data/&lt;/code&gt; folder. Again, I find that using &lt;code&gt;write_csv&lt;/code&gt; from the &lt;code&gt;readr&lt;/code&gt; package makes things simple:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(readr)
+write_csv(germin, path = &amp;quot;data/germin.csv&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;a-word-about-relative-paths&#34;&gt;A word about relative paths&lt;/h2&gt;
+
+&lt;p&gt;Note that in the above R scripts, I was reading an writing files using &amp;ldquo;relative paths&amp;rdquo;. This means that you write the name of the folder(s) containing the file you want before the filename itself, separated with a &lt;code&gt;/&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data/file_name_of_data.csv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will work automatically if your Rstudio project is set up the way we discussed: with a &lt;code&gt;data/&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;Why don&amp;rsquo;t you have to write the complete path? Something like (for a Mac) &lt;code&gt;/Users/amacdonald/Documents/Projects/BIOL548O/BIOL548O.github.io&lt;/code&gt; or on a PC &lt;code&gt;c:\\amacdonald\Desktop\files\thesis_chapter\&lt;/code&gt; etc? Both of these paths start at the &amp;ldquo;home folder&amp;rdquo; of your computer. But if we are working in an Rstudio project, such precision is not necessary. All we need to do is direct the computer to the &lt;code&gt;data&lt;/code&gt; folder in &lt;em&gt;this&lt;/em&gt; project.&lt;/p&gt;
+
+&lt;p&gt;One way to think of relative paths is to read them as saying: &amp;ldquo;from here, go into the data folder&amp;rdquo;, where &amp;ldquo;here&amp;rdquo; is assumed to be your project folder (i.e., wherever your &lt;code&gt;.Rproj&lt;/code&gt; file lives).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/page/exercises/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -2629,36 +2690,6 @@ gapminder %&amp;gt;%
 
 
 /BLOGDOWN-HEAD --&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Metadata</title>
-      <link>/page/07_metadata/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/07_metadata/</guid>
-      <description>
-
-&lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Some very quick [slides about metadata]()&lt;/li&gt;
-&lt;li&gt;Group discussion activity&lt;/li&gt;
-&lt;li&gt;an &lt;a href=&#34;writing_metadata&#34;&gt;Introduction to writing metadata&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Description of &lt;a href=&#34;Homework_3&#34;&gt;Homework 3: the Final Project&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;let-s-begin-with-an-exercise&#34;&gt;Let&amp;rsquo;s begin with an exercise!&lt;/h4&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Break into evenly distributed groups of 3 people. &lt;em&gt;(2 mins)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Identify one volunteer to be the “Researcher” and describe their research data for this exercise.  This person will need to be fairly familiar with how and why the data was collected. &lt;em&gt;(2 mins)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Identify a note taker to record responses to questions from the group about the data set. &lt;em&gt;(1 min)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;members of the group ask questions of the “Researcher” about her or his data set while the note taker records responses.  (The note taker can ask questions, too!)  As you ask questions, think about how you would (if you could) respond to a similar question for your data set. &lt;em&gt;(15 mins)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Add your responses to &lt;a href=&#34;https://etherpad.wikimedia.org/p/BIO548O&#34;&gt;This Etherpad Document&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

@@ -47,6 +47,7 @@ Based on this, how do you think it works?
 * Notes on [using tidyr](../04_munge02)
 * My notes on [basic data cleaning](../tidyr)
 * exercises on [manipulating data with dplyr and tidyr](../exercises)
+* quick notes on [reading in data](../04_reading)
 
 
 ## recommended reading 
