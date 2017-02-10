@@ -452,6 +452,317 @@ Let’s check this data before we combine it with the official dataset:&lt;/p&gt
     
     <item>
       <title></title>
+      <link>/page/exercises/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/exercises/</guid>
+      <description>
+
+&lt;h1 id=&#34;exercises-for-lecture-4&#34;&gt;Exercises for lecture 4&lt;/h1&gt;
+
+&lt;p&gt;In this class we are going to spend some time practicing using dplyr and
+tidyr&lt;/p&gt;
+
+&lt;p&gt;We begin by loading &lt;code&gt;gapminder&lt;/code&gt; and the &lt;code&gt;tidyverse&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(gapminder)
+library(tidyverse)
+
+## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr
+
+## Conflicts with tidy packages ----------------------------------------------
+
+## filter(): dplyr, stats
+## lag():    dplyr, stats
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;if you cannot load &lt;code&gt;tidyverse&lt;/code&gt;, please try loading just &lt;code&gt;dplyr&lt;/code&gt; and
+&lt;code&gt;tidyr&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;challenge-1&#34;&gt;Challenge 1&lt;/h2&gt;
+
+&lt;p&gt;calculate the mean life expectancy, population, and gdpPercap for each
+continent. Hint: use the group_by() and summarize() functions we
+learned in the dplyr lesson&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gapminder %&amp;gt;% 
+  group_by(continent) %&amp;gt;% 
+  summarize(mean_life = mean(lifeExp),
+            meanpop   = mean(pop),
+            meanGDP   = mean(gdpPercap))
+
+## # A tibble: 5 × 4
+##   continent mean_life  meanpop   meanGDP
+##      &amp;lt;fctr&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1    Africa  48.86533  9916003  2193.755
+## 2  Americas  64.65874 24504795  7136.110
+## 3      Asia  60.06490 77038722  7902.150
+## 4    Europe  71.90369 17169765 14469.476
+## 5   Oceania  74.32621  8874672 18621.609
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;challenge-1h-1&#34;&gt;Challenge 1h.1&lt;/h3&gt;
+
+&lt;p&gt;Rewrite the code above, but this time try using &lt;code&gt;tidyr::gather()&lt;/code&gt;. HINT:
+First, gather all of the variables (lifeExp, pop and gdpPercap) into a
+new column called &amp;ldquo;variable_name&amp;rdquo;. Then, group by both continent and
+variable_name&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gapminder %&amp;gt;% 
+  gather(key = &amp;quot;variable&amp;quot;, value = &amp;quot;value&amp;quot;, lifeExp:gdpPercap) %&amp;gt;% 
+  group_by(continent, variable) %&amp;gt;% 
+  summarize(mean_value = mean(value))
+
+## Source: local data frame [15 x 3]
+## Groups: continent [?]
+## 
+##    continent  variable   mean_value
+##       &amp;lt;fctr&amp;gt;     &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1     Africa gdpPercap 2.193755e+03
+## 2     Africa   lifeExp 4.886533e+01
+## 3     Africa       pop 9.916003e+06
+## 4   Americas gdpPercap 7.136110e+03
+## 5   Americas   lifeExp 6.465874e+01
+## 6   Americas       pop 2.450479e+07
+## 7       Asia gdpPercap 7.902150e+03
+## 8       Asia   lifeExp 6.006490e+01
+## 9       Asia       pop 7.703872e+07
+## 10    Europe gdpPercap 1.446948e+04
+## 11    Europe   lifeExp 7.190369e+01
+## 12    Europe       pop 1.716976e+07
+## 13   Oceania gdpPercap 1.862161e+04
+## 14   Oceania   lifeExp 7.432621e+01
+## 15   Oceania       pop 8.874672e+06
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;challenge-1h-2&#34;&gt;Challenge 1h.2&lt;/h3&gt;
+
+&lt;p&gt;Rewrite the code above, using &lt;code&gt;summarize_each&lt;/code&gt; and/or &lt;code&gt;summarize_all&lt;/code&gt;.
+To do so you might want to read the help file: &lt;code&gt;?summarize_each&lt;/code&gt; ###
+Challenge 2.1&lt;/p&gt;
+
+&lt;p&gt;Begin by reading in a &amp;ldquo;wide&amp;rdquo; version of the dataset&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gap_wide &amp;lt;- read.csv(&amp;quot;data/gapminder_wide.csv&amp;quot;, stringsAsFactors = FALSE)
+str(gap_wide)
+
+## &#39;data.frame&#39;:    142 obs. of  38 variables:
+##  $ continent     : chr  &amp;quot;Africa&amp;quot; &amp;quot;Africa&amp;quot; &amp;quot;Africa&amp;quot; &amp;quot;Africa&amp;quot; ...
+##  $ country       : chr  &amp;quot;Algeria&amp;quot; &amp;quot;Angola&amp;quot; &amp;quot;Benin&amp;quot; &amp;quot;Botswana&amp;quot; ...
+##  $ gdpPercap_1952: num  2449 3521 1063 851 543 ...
+##  $ gdpPercap_1957: num  3014 3828 960 918 617 ...
+##  $ gdpPercap_1962: num  2551 4269 949 984 723 ...
+##  $ gdpPercap_1967: num  3247 5523 1036 1215 795 ...
+##  $ gdpPercap_1972: num  4183 5473 1086 2264 855 ...
+##  $ gdpPercap_1977: num  4910 3009 1029 3215 743 ...
+##  $ gdpPercap_1982: num  5745 2757 1278 4551 807 ...
+##  $ gdpPercap_1987: num  5681 2430 1226 6206 912 ...
+##  $ gdpPercap_1992: num  5023 2628 1191 7954 932 ...
+##  $ gdpPercap_1997: num  4797 2277 1233 8647 946 ...
+##  $ gdpPercap_2002: num  5288 2773 1373 11004 1038 ...
+##  $ gdpPercap_2007: num  6223 4797 1441 12570 1217 ...
+##  $ lifeExp_1952  : num  43.1 30 38.2 47.6 32 ...
+##  $ lifeExp_1957  : num  45.7 32 40.4 49.6 34.9 ...
+##  $ lifeExp_1962  : num  48.3 34 42.6 51.5 37.8 ...
+##  $ lifeExp_1967  : num  51.4 36 44.9 53.3 40.7 ...
+##  $ lifeExp_1972  : num  54.5 37.9 47 56 43.6 ...
+##  $ lifeExp_1977  : num  58 39.5 49.2 59.3 46.1 ...
+##  $ lifeExp_1982  : num  61.4 39.9 50.9 61.5 48.1 ...
+##  $ lifeExp_1987  : num  65.8 39.9 52.3 63.6 49.6 ...
+##  $ lifeExp_1992  : num  67.7 40.6 53.9 62.7 50.3 ...
+##  $ lifeExp_1997  : num  69.2 41 54.8 52.6 50.3 ...
+##  $ lifeExp_2002  : num  71 41 54.4 46.6 50.6 ...
+##  $ lifeExp_2007  : num  72.3 42.7 56.7 50.7 52.3 ...
+##  $ pop_1952      : num  9279525 4232095 1738315 442308 4469979 ...
+##  $ pop_1957      : num  10270856 4561361 1925173 474639 4713416 ...
+##  $ pop_1962      : num  11000948 4826015 2151895 512764 4919632 ...
+##  $ pop_1967      : num  12760499 5247469 2427334 553541 5127935 ...
+##  $ pop_1972      : num  14760787 5894858 2761407 619351 5433886 ...
+##  $ pop_1977      : num  17152804 6162675 3168267 781472 5889574 ...
+##  $ pop_1982      : num  20033753 7016384 3641603 970347 6634596 ...
+##  $ pop_1987      : num  23254956 7874230 4243788 1151184 7586551 ...
+##  $ pop_1992      : num  26298373 8735988 4981671 1342614 8878303 ...
+##  $ pop_1997      : num  29072015 9875024 6066080 1536536 10352843 ...
+##  $ pop_2002      : int  31287142 10866106 7026113 1630347 12251209 7021078 15929988 4048013 8835739 614382 ...
+##  $ pop_2007      : int  33333216 12420476 8078314 1639131 14326203 8390505 17696293 4369038 10238807 710960 ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What is different about this organization of the dataset? What, if
+anything, is &lt;em&gt;easier&lt;/em&gt; to do in this format? what would be harder?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gap_wide %&amp;gt;% 
+  select(-continent, -country) %&amp;gt;% 
+  colMeans
+
+## gdpPercap_1952 gdpPercap_1957 gdpPercap_1962 gdpPercap_1967 gdpPercap_1972 
+##   3.725276e+03   4.299408e+03   4.725812e+03   5.483653e+03   6.770083e+03 
+## gdpPercap_1977 gdpPercap_1982 gdpPercap_1987 gdpPercap_1992 gdpPercap_1997 
+##   7.313166e+03   7.518902e+03   7.900920e+03   8.158609e+03   9.090175e+03 
+## gdpPercap_2002 gdpPercap_2007   lifeExp_1952   lifeExp_1957   lifeExp_1962 
+##   9.917848e+03   1.168007e+04   4.905762e+01   5.150740e+01   5.360925e+01 
+##   lifeExp_1967   lifeExp_1972   lifeExp_1977   lifeExp_1982   lifeExp_1987 
+##   5.567829e+01   5.764739e+01   5.957016e+01   6.153320e+01   6.321261e+01 
+##   lifeExp_1992   lifeExp_1997   lifeExp_2002   lifeExp_2007       pop_1952 
+##   6.416034e+01   6.501468e+01   6.569492e+01   6.700742e+01   1.695040e+07 
+##       pop_1957       pop_1962       pop_1967       pop_1972       pop_1977 
+##   1.876341e+07   2.042101e+07   2.265830e+07   2.518998e+07   2.767638e+07 
+##       pop_1982       pop_1987       pop_1992       pop_1997       pop_2002 
+##   3.020730e+07   3.303857e+07   3.599092e+07   3.883947e+07   4.145759e+07 
+##       pop_2007 
+##   4.402122e+07
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;challenge-2-2&#34;&gt;Challenge 2.2&lt;/h3&gt;
+
+&lt;p&gt;Reformat this data into &amp;ldquo;long&amp;rdquo; format, using &lt;code&gt;tidyr::gather&lt;/code&gt;. Your new
+dataset should have four columns: * Continent * Country *
+observation_type * observation_value&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gap_wide %&amp;gt;% 
+  gather(key = &amp;quot;observation_type&amp;quot;, value = &amp;quot;observation_value&amp;quot;, 3:38) %&amp;gt;% 
+  head
+
+##   continent      country observation_type observation_value
+## 1    Africa      Algeria   gdpPercap_1952         2449.0082
+## 2    Africa       Angola   gdpPercap_1952         3520.6103
+## 3    Africa        Benin   gdpPercap_1952         1062.7522
+## 4    Africa     Botswana   gdpPercap_1952          851.2411
+## 5    Africa Burkina Faso   gdpPercap_1952          543.2552
+## 6    Africa      Burundi   gdpPercap_1952          339.2965
+
+gap_wide %&amp;gt;% 
+  gather(key = &amp;quot;observation_type&amp;quot;, value = &amp;quot;observation_value&amp;quot;, gdpPercap_1952:pop_2007) %&amp;gt;% 
+  head
+
+##   continent      country observation_type observation_value
+## 1    Africa      Algeria   gdpPercap_1952         2449.0082
+## 2    Africa       Angola   gdpPercap_1952         3520.6103
+## 3    Africa        Benin   gdpPercap_1952         1062.7522
+## 4    Africa     Botswana   gdpPercap_1952          851.2411
+## 5    Africa Burkina Faso   gdpPercap_1952          543.2552
+## 6    Africa      Burundi   gdpPercap_1952          339.2965
+
+gap_wide %&amp;gt;% 
+  gather(key = &amp;quot;observation_type&amp;quot;, value = &amp;quot;observation_value&amp;quot;, -continent, -country) %&amp;gt;% 
+  head
+
+##   continent      country observation_type observation_value
+## 1    Africa      Algeria   gdpPercap_1952         2449.0082
+## 2    Africa       Angola   gdpPercap_1952         3520.6103
+## 3    Africa        Benin   gdpPercap_1952         1062.7522
+## 4    Africa     Botswana   gdpPercap_1952          851.2411
+## 5    Africa Burkina Faso   gdpPercap_1952          543.2552
+## 6    Africa      Burundi   gdpPercap_1952          339.2965
+
+gap_wide %&amp;gt;% 
+  gather(key = &amp;quot;observation_type&amp;quot;, value = &amp;quot;observation_value&amp;quot;, -continent, -country) %&amp;gt;% 
+  head
+
+##   continent      country observation_type observation_value
+## 1    Africa      Algeria   gdpPercap_1952         2449.0082
+## 2    Africa       Angola   gdpPercap_1952         3520.6103
+## 3    Africa        Benin   gdpPercap_1952         1062.7522
+## 4    Africa     Botswana   gdpPercap_1952          851.2411
+## 5    Africa Burkina Faso   gdpPercap_1952          543.2552
+## 6    Africa      Burundi   gdpPercap_1952          339.2965
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;challenge-2-3&#34;&gt;Challenge 2.3&lt;/h3&gt;
+
+&lt;p&gt;The variable &lt;code&gt;observation_type&lt;/code&gt; is really two variables combined
+together. Use the function &lt;code&gt;separate&lt;/code&gt; to split these into different
+values. You may want to consult &lt;code&gt;?separate()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gap_long_separated &amp;lt;- gap_wide %&amp;gt;% 
+  gather(key = &amp;quot;variable_name&amp;quot;, value = &amp;quot;Value&amp;quot;, gdpPercap_1952:pop_2007) %&amp;gt;% 
+  separate(variable_name, c(&amp;quot;variable&amp;quot;, &amp;quot;years&amp;quot;), sep = &amp;quot;_&amp;quot;)
+head(gap_long_separated)
+
+##   continent      country  variable years     Value
+## 1    Africa      Algeria gdpPercap  1952 2449.0082
+## 2    Africa       Angola gdpPercap  1952 3520.6103
+## 3    Africa        Benin gdpPercap  1952 1062.7522
+## 4    Africa     Botswana gdpPercap  1952  851.2411
+## 5    Africa Burkina Faso gdpPercap  1952  543.2552
+## 6    Africa      Burundi gdpPercap  1952  339.2965
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;challenge-2-4&#34;&gt;Challenge 2.4&lt;/h3&gt;
+
+&lt;p&gt;Now, practice reversing this process &amp;ndash; i.e., combine two columns into
+one &amp;ndash; using &lt;code&gt;tidyr::unite&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gap_long_separated %&amp;gt;% 
+  unite(col = &amp;quot;new_variable&amp;quot;, country, years) %&amp;gt;% 
+  head
+
+##   continent      new_variable  variable     Value
+## 1    Africa      Algeria_1952 gdpPercap 2449.0082
+## 2    Africa       Angola_1952 gdpPercap 3520.6103
+## 3    Africa        Benin_1952 gdpPercap 1062.7522
+## 4    Africa     Botswana_1952 gdpPercap  851.2411
+## 5    Africa Burkina Faso_1952 gdpPercap  543.2552
+## 6    Africa      Burundi_1952 gdpPercap  339.2965
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;challenge-2h-1&#34;&gt;Challenge 2h.1&lt;/h3&gt;
+
+&lt;p&gt;Take this 1 step further and create a gap_ludicrously_wide format data
+by spreading over countries, year and the 3 metrics? Hint this new
+dataframe should only have 5 rows.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gap_long_separated %&amp;gt;% 
+  unite(col = &amp;quot;new_variable&amp;quot;, country, years) %&amp;gt;% 
+  head
+
+##   continent      new_variable  variable     Value
+## 1    Africa      Algeria_1952 gdpPercap 2449.0082
+## 2    Africa       Angola_1952 gdpPercap 3520.6103
+## 3    Africa        Benin_1952 gdpPercap 1062.7522
+## 4    Africa     Botswana_1952 gdpPercap  851.2411
+## 5    Africa Burkina Faso_1952 gdpPercap  543.2552
+## 6    Africa      Burundi_1952 gdpPercap  339.2965
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;challenge-3-1&#34;&gt;Challenge 3.1&lt;/h3&gt;
+
+&lt;p&gt;Calculate the average life expectancy per country. Which has the longest
+average life expectancy and which has the shortest average life
+expectancy? ### Challenge 3.1h&lt;/p&gt;
+
+&lt;p&gt;Rank all the countries by their life expenctancy. Use one of the &amp;ldquo;window
+functions&amp;rdquo; for calculating rank&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ranked_by_life &amp;lt;- gapminder %&amp;gt;% 
+  group_by(country) %&amp;gt;% 
+  summarise(meanlife = mean(lifeExp)) %&amp;gt;% 
+  mutate(rank_life_exp = dense_rank(desc(meanlife)))
+
+ranked_by_life %&amp;gt;% 
+  filter(rank_life_exp %in% range(rank_life_exp))
+
+## # A tibble: 2 × 3
+##        country meanlife rank_life_exp
+##         &amp;lt;fctr&amp;gt;    &amp;lt;dbl&amp;gt;         &amp;lt;int&amp;gt;
+## 1      Iceland 76.51142             1
+## 2 Sierra Leone 36.76917           142
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;data-cleaning&#34;&gt;Data cleaning!&lt;/h2&gt;
+
+&lt;p&gt;Data are not always in good condition. We will talk about how to use
+these same skills for cleaning data.
+&lt;a href=&#34;http://www.zoology.ubc.ca/~krebs/downloads/monitor.xlsx&#34;&gt;http://www.zoology.ubc.ca/~krebs/downloads/monitor.xlsx&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/page/nextPRsheet/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1599,6 +1910,123 @@ SOFTWARE.
     </item>
     
     <item>
+      <title>Homework 2</title>
+      <link>/page/04_Homework_2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/04_Homework_2/</guid>
+      <description>
+
+&lt;p&gt;The goal of this week&amp;rsquo;s homework is take your raw data and produce some &lt;strong&gt;tidy&lt;/strong&gt; data, using only R to perform any manipulations. Remember:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Tidy data has one variable per column, and one observation per row.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You will begin with your original data file, in the most raw and untouched form available to you. Here are some steps to follow.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;create the following directory structure in your project:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;lastname_firstname
+ |
+ |--data/
+ |--data-raw/
+ |--Rscripts/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Put your raw data file into your &lt;code&gt;data-raw&lt;/code&gt; directory. (e.g. &lt;code&gt;2015 Field Season.xls&lt;/code&gt;). You may choose to rename it to remove spaces in the filenames (&lt;code&gt;2015_Field_season.xls&lt;/code&gt;). &lt;strong&gt;this is the only modification to this file you get to make&lt;/strong&gt;. Some people will even modify the file permissions to make it &amp;ldquo;write only&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Start an R script in the &lt;code&gt;Rscripts/&lt;/code&gt; directory. Call it something intuitive (like &lt;code&gt;01_data_preparation.R&lt;/code&gt;). I like prefacing my &lt;code&gt;.R&lt;/code&gt; files with numbers, expressing the order in which they are meant to be run. &lt;strong&gt;don&amp;rsquo;t forget to commit and push as you are writing this file!&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;read your data in, modify it to make it tidy, then write it out into the &lt;code&gt;data/&lt;/code&gt; folder. Give it a meaningful name: &lt;code&gt;data/bromeliad_nitrogen_experiment_2015.csv&lt;/code&gt; for example.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;commit and push your tidy data file.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;what-kind-of-things-should-i-do&#34;&gt;What kind of things should I do?&lt;/h2&gt;
+
+&lt;p&gt;Here are a few ideas for you to think of while you tidy your data up:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Do I have any repetitive variables? Were some of these variables calculated from others? use &lt;code&gt;dplyr::select()&lt;/code&gt; to drop any columns that do not represent actual measurements &amp;ndash; these can be re-calculated later&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Are my variable names sensible? Good variable names are expressive but brief. something like &lt;code&gt;mass_mg&lt;/code&gt; or &lt;code&gt;body_mass&lt;/code&gt; is good, something like &lt;code&gt;total_dry_mass_of_animal&lt;/code&gt; or &lt;code&gt;m&lt;/code&gt; is bad.  Check out &lt;code&gt;dplyr::rename()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Are my column titles actually variables? It&amp;rsquo;s not uncommon to see one (or more!) variables stored in column names:&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;male_junvenile&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;male_adult&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;female_juvenile&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;female_adult&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;use &lt;code&gt;tidyr::gather()&lt;/code&gt; and &lt;code&gt;separate&lt;/code&gt; to fix this&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do I have too many repeated rows? You might find that your data would make more sense separated into more than one table, which you could then combine with &lt;code&gt;dplyr::left_join()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are many ways in which a dataset can be untidy. Feel free to ask an Instructor or to confer with each other as you are making these decisions!&lt;/p&gt;
+
+&lt;h2 id=&#34;peer-review&#34;&gt;Peer Review&lt;/h2&gt;
+
+&lt;p&gt;This work will be graded in much the same way &amp;ndash; by a randomly assigned person from the class. They will clone your repository to their computer, read and run all your code, and examine your tidy data. Here are some things they&amp;rsquo;ll be on the lookout for:&lt;/p&gt;
+
+&lt;h4 id=&#34;well-commented&#34;&gt;well commented&lt;/h4&gt;
+
+&lt;p&gt;Write lots of comments. What are you doing, when and why should all be easy to understand by reading your &lt;code&gt;.R&lt;/code&gt; files. You can also use the project&amp;rsquo;s README to direct your reviewer to the necessary files!&lt;/p&gt;
+
+&lt;h4 id=&#34;reproducible&#34;&gt;reproducible&lt;/h4&gt;
+
+&lt;p&gt;You peer reviewer will re-runs your script, to see if they get the same result (i.e. the csv file in &lt;code&gt;/data&lt;/code&gt; should be writtin anew). They should find that it is recreated &lt;strong&gt;just as it was before&lt;/strong&gt; (i.e. git thinks that the file is unchanged.)&lt;/p&gt;
+
+&lt;p&gt;In order for this to happen, the paths you use must be &lt;em&gt;relative&lt;/em&gt;: that is, they should start from the project working directory. That means where the rstudio project file lives. e.g. for a folder setup like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;lastname_firstname
+ |
+ | lastname_firstname.Rproj
+ |--/data
+ |--/data-raw
+ |--/Rscripts
+            |
+            |--01_tidying.R
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the file &lt;code&gt;01_tidying.R&lt;/code&gt; starts with reading in data: a relative path like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;treedata &amp;lt;- read.csv(&amp;quot;data-raw/rawdata.csv&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;tidy&#34;&gt;tidy&lt;/h4&gt;
+
+&lt;p&gt;What &lt;em&gt;exactly&lt;/em&gt; that means for your dataset will partly depend on your definitions &amp;ldquo;observation&amp;rdquo; and &amp;ldquo;variable&amp;rdquo; for your purposes. When in doubt, describe your choices in comments in the data-cleaning file, in the projects README.md or in a README inside &lt;code&gt;data&lt;/code&gt;. You can never have too much documentation.&lt;/p&gt;
+
+&lt;h4 id=&#34;correct&#34;&gt;correct&lt;/h4&gt;
+
+&lt;p&gt;One simple way of validating your CSV file is to show that it displays nicely on github.&lt;/p&gt;
+
+&lt;p&gt;If you CSV is very large, that approach might not work. In such cases you (and your reviewer) can check your CSV on sites such as &lt;a href=&#34;http://csvlint.io/&#34;&gt;csvlint.io&lt;/a&gt; and/or &lt;a href=&#34;http://setosa.io/csv-fingerprint/&#34;&gt;CSVfingerprint&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Homework 3</title>
       <link>/page/07_Homework_3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2423,87 +2851,6 @@ I like that. This way, they can have ownership of this repository: they could ev
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Online Repositories</title>
-      <link>/page/08_Repositories/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/08_Repositories/</guid>
-      <description>
-
-&lt;h2 id=&#34;outline-for-today&#34;&gt;Outline for today&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A review of different metadata techniques, using examples from class.&lt;/li&gt;
-&lt;li&gt;some &lt;a href=&#34;slides/review_slides.html&#34;&gt;Review Slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Introduction to a three online data repositories&lt;/li&gt;
-&lt;li&gt;live demonstration of online repository use!&lt;/li&gt;
-&lt;li&gt;getting started on peer reviews/ homework&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Peer Review 2</title>
-      <link>/page/06_PeerReview_2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/page/06_PeerReview_2/</guid>
-      <description>&lt;p&gt;The goal of this Peer Review is to help our colleagues to write &lt;em&gt;clear, readable code&lt;/em&gt; which creates &lt;em&gt;tidy data&lt;/em&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;tip: suggest new code to your reviewee by typing three backticks before and after your suggestion&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;tip: you can &lt;a href=&#34;http://stackoverflow.com/questions/23821235/how-to-link-to-specific-line-number-on-github&#34;&gt;link to specific lines of code&lt;/a&gt; on GitHub by clicking on them and using the new URL&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;em&gt;Please don&amp;rsquo;t keep a copy of your reviewee&amp;rsquo;s data!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is a template for Peer Review 2. &lt;strong&gt;Copy and paste this in response to the GitHub Issue that announces your review&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;## organization
-
-Did your reviewee follow the directory naming convention that we are using? Was it easy to find the data cleaning script?
-
-YOUR WORDS HERE
-
-## reproducible
-
-Open the data cleaning script and run it all, either by sourcing or by highlighting and click Run all
-
-What happened? Did the final data file recreate itself? Why or why not? What changes need to be made to the script to allow it to run on your machine?
-
-YOUR WORDS HERE
-
-## documented
-
-Are the comments in the code readable? Are there any lines of code that appear without any description of what they are doing?
-
-YOUR WORDS HERE
-
-## efficient
-
-What transformations or manipulations is your reviewee performing? Are any done with more code than is necessary? For example, are they using their own code to solve a problem that is already handled in `dplyr` or `tidyr`? **suggest something they could do differently**
-
-YOUR WORDS HERE
-
-
-## output is tidy
-
-Tidy data has one observation in each row, and one variable in each column. Does that appear to be true of your reviewee&#39;s dataset? Is there another form you could suggest?
-
-YOUR WORDS HERE
-
-## output is correct
-
-check either on Github or via a real CSV validator such as [csvlint.io](http://csvlint.io/) and/or [CSVfingerprint](http://setosa.io/csv-fingerprint/)
-
-YOUR WORDS HERE
-
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

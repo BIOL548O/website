@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> &middot; Dealing with Data</title>
+
+  
+  <link rel="stylesheet" href="../../css/poole.css">
+  <link rel="stylesheet" href="../../css/hyde.css">
+  <link rel="stylesheet" href="../../css/poole-overrides.css">
+  <link rel="stylesheet" href="../../css/hyde-overrides.css">
+  <link rel="stylesheet" href="../../css/hyde-x.css">
+  <link rel="stylesheet" href="../../css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../touch-icon-144-precomposed.png">
+  <link href="../../favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Dealing with Data</h1>
+      <p class="lead">BIOL548O</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="../../">About this course</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_one/">Week 1: Version control</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_two/">Week 2: Tidy data</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/04_Homework_2/">Homework 2</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/week_three/">Week 3: Assertions &amp; Metadata</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/07_Homework_3/">Homework 3</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_Repositories/">Online Repositories</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_PeerReview_3/">Peer Review 3</a></li>
+      
+      <li class="sidebar-nav-item"><a href="../../page/08_final/">filling up the corners</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2017 <a href="../../license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title"></h1>
+    
+
+<h1 id="exercises-for-lecture-4">Exercises for lecture 4</h1>
+
+<p>In this class we are going to spend some time practicing using dplyr and
+tidyr</p>
+
+<p>We begin by loading <code>gapminder</code> and the <code>tidyverse</code></p>
+
+<pre><code>library(gapminder)
+library(tidyverse)
+
+## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr
+
+## Conflicts with tidy packages ----------------------------------------------
+
+## filter(): dplyr, stats
+## lag():    dplyr, stats
+</code></pre>
+
+<p>if you cannot load <code>tidyverse</code>, please try loading just <code>dplyr</code> and
+<code>tidyr</code></p>
+
+<h2 id="challenge-1">Challenge 1</h2>
+
+<p>calculate the mean life expectancy, population, and gdpPercap for each
+continent. Hint: use the group_by() and summarize() functions we
+learned in the dplyr lesson</p>
+
+<pre><code>gapminder %&gt;% 
+  group_by(continent) %&gt;% 
+  summarize(mean_life = mean(lifeExp),
+            meanpop   = mean(pop),
+            meanGDP   = mean(gdpPercap))
+
+## # A tibble: 5 × 4
+##   continent mean_life  meanpop   meanGDP
+##      &lt;fctr&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1    Africa  48.86533  9916003  2193.755
+## 2  Americas  64.65874 24504795  7136.110
+## 3      Asia  60.06490 77038722  7902.150
+## 4    Europe  71.90369 17169765 14469.476
+## 5   Oceania  74.32621  8874672 18621.609
+</code></pre>
+
+<h3 id="challenge-1h-1">Challenge 1h.1</h3>
+
+<p>Rewrite the code above, but this time try using <code>tidyr::gather()</code>. HINT:
+First, gather all of the variables (lifeExp, pop and gdpPercap) into a
+new column called &ldquo;variable_name&rdquo;. Then, group by both continent and
+variable_name</p>
+
+<pre><code>gapminder %&gt;% 
+  gather(key = &quot;variable&quot;, value = &quot;value&quot;, lifeExp:gdpPercap) %&gt;% 
+  group_by(continent, variable) %&gt;% 
+  summarize(mean_value = mean(value))
+
+## Source: local data frame [15 x 3]
+## Groups: continent [?]
+## 
+##    continent  variable   mean_value
+##       &lt;fctr&gt;     &lt;chr&gt;        &lt;dbl&gt;
+## 1     Africa gdpPercap 2.193755e+03
+## 2     Africa   lifeExp 4.886533e+01
+## 3     Africa       pop 9.916003e+06
+## 4   Americas gdpPercap 7.136110e+03
+## 5   Americas   lifeExp 6.465874e+01
+## 6   Americas       pop 2.450479e+07
+## 7       Asia gdpPercap 7.902150e+03
+## 8       Asia   lifeExp 6.006490e+01
+## 9       Asia       pop 7.703872e+07
+## 10    Europe gdpPercap 1.446948e+04
+## 11    Europe   lifeExp 7.190369e+01
+## 12    Europe       pop 1.716976e+07
+## 13   Oceania gdpPercap 1.862161e+04
+## 14   Oceania   lifeExp 7.432621e+01
+## 15   Oceania       pop 8.874672e+06
+</code></pre>
+
+<h3 id="challenge-1h-2">Challenge 1h.2</h3>
+
+<p>Rewrite the code above, using <code>summarize_each</code> and/or <code>summarize_all</code>.
+To do so you might want to read the help file: <code>?summarize_each</code> ###
+Challenge 2.1</p>
+
+<p>Begin by reading in a &ldquo;wide&rdquo; version of the dataset</p>
+
+<pre><code>gap_wide &lt;- read.csv(&quot;data/gapminder_wide.csv&quot;, stringsAsFactors = FALSE)
+str(gap_wide)
+
+## 'data.frame':    142 obs. of  38 variables:
+##  $ continent     : chr  &quot;Africa&quot; &quot;Africa&quot; &quot;Africa&quot; &quot;Africa&quot; ...
+##  $ country       : chr  &quot;Algeria&quot; &quot;Angola&quot; &quot;Benin&quot; &quot;Botswana&quot; ...
+##  $ gdpPercap_1952: num  2449 3521 1063 851 543 ...
+##  $ gdpPercap_1957: num  3014 3828 960 918 617 ...
+##  $ gdpPercap_1962: num  2551 4269 949 984 723 ...
+##  $ gdpPercap_1967: num  3247 5523 1036 1215 795 ...
+##  $ gdpPercap_1972: num  4183 5473 1086 2264 855 ...
+##  $ gdpPercap_1977: num  4910 3009 1029 3215 743 ...
+##  $ gdpPercap_1982: num  5745 2757 1278 4551 807 ...
+##  $ gdpPercap_1987: num  5681 2430 1226 6206 912 ...
+##  $ gdpPercap_1992: num  5023 2628 1191 7954 932 ...
+##  $ gdpPercap_1997: num  4797 2277 1233 8647 946 ...
+##  $ gdpPercap_2002: num  5288 2773 1373 11004 1038 ...
+##  $ gdpPercap_2007: num  6223 4797 1441 12570 1217 ...
+##  $ lifeExp_1952  : num  43.1 30 38.2 47.6 32 ...
+##  $ lifeExp_1957  : num  45.7 32 40.4 49.6 34.9 ...
+##  $ lifeExp_1962  : num  48.3 34 42.6 51.5 37.8 ...
+##  $ lifeExp_1967  : num  51.4 36 44.9 53.3 40.7 ...
+##  $ lifeExp_1972  : num  54.5 37.9 47 56 43.6 ...
+##  $ lifeExp_1977  : num  58 39.5 49.2 59.3 46.1 ...
+##  $ lifeExp_1982  : num  61.4 39.9 50.9 61.5 48.1 ...
+##  $ lifeExp_1987  : num  65.8 39.9 52.3 63.6 49.6 ...
+##  $ lifeExp_1992  : num  67.7 40.6 53.9 62.7 50.3 ...
+##  $ lifeExp_1997  : num  69.2 41 54.8 52.6 50.3 ...
+##  $ lifeExp_2002  : num  71 41 54.4 46.6 50.6 ...
+##  $ lifeExp_2007  : num  72.3 42.7 56.7 50.7 52.3 ...
+##  $ pop_1952      : num  9279525 4232095 1738315 442308 4469979 ...
+##  $ pop_1957      : num  10270856 4561361 1925173 474639 4713416 ...
+##  $ pop_1962      : num  11000948 4826015 2151895 512764 4919632 ...
+##  $ pop_1967      : num  12760499 5247469 2427334 553541 5127935 ...
+##  $ pop_1972      : num  14760787 5894858 2761407 619351 5433886 ...
+##  $ pop_1977      : num  17152804 6162675 3168267 781472 5889574 ...
+##  $ pop_1982      : num  20033753 7016384 3641603 970347 6634596 ...
+##  $ pop_1987      : num  23254956 7874230 4243788 1151184 7586551 ...
+##  $ pop_1992      : num  26298373 8735988 4981671 1342614 8878303 ...
+##  $ pop_1997      : num  29072015 9875024 6066080 1536536 10352843 ...
+##  $ pop_2002      : int  31287142 10866106 7026113 1630347 12251209 7021078 15929988 4048013 8835739 614382 ...
+##  $ pop_2007      : int  33333216 12420476 8078314 1639131 14326203 8390505 17696293 4369038 10238807 710960 ...
+</code></pre>
+
+<p>What is different about this organization of the dataset? What, if
+anything, is <em>easier</em> to do in this format? what would be harder?</p>
+
+<pre><code>gap_wide %&gt;% 
+  select(-continent, -country) %&gt;% 
+  colMeans
+
+## gdpPercap_1952 gdpPercap_1957 gdpPercap_1962 gdpPercap_1967 gdpPercap_1972 
+##   3.725276e+03   4.299408e+03   4.725812e+03   5.483653e+03   6.770083e+03 
+## gdpPercap_1977 gdpPercap_1982 gdpPercap_1987 gdpPercap_1992 gdpPercap_1997 
+##   7.313166e+03   7.518902e+03   7.900920e+03   8.158609e+03   9.090175e+03 
+## gdpPercap_2002 gdpPercap_2007   lifeExp_1952   lifeExp_1957   lifeExp_1962 
+##   9.917848e+03   1.168007e+04   4.905762e+01   5.150740e+01   5.360925e+01 
+##   lifeExp_1967   lifeExp_1972   lifeExp_1977   lifeExp_1982   lifeExp_1987 
+##   5.567829e+01   5.764739e+01   5.957016e+01   6.153320e+01   6.321261e+01 
+##   lifeExp_1992   lifeExp_1997   lifeExp_2002   lifeExp_2007       pop_1952 
+##   6.416034e+01   6.501468e+01   6.569492e+01   6.700742e+01   1.695040e+07 
+##       pop_1957       pop_1962       pop_1967       pop_1972       pop_1977 
+##   1.876341e+07   2.042101e+07   2.265830e+07   2.518998e+07   2.767638e+07 
+##       pop_1982       pop_1987       pop_1992       pop_1997       pop_2002 
+##   3.020730e+07   3.303857e+07   3.599092e+07   3.883947e+07   4.145759e+07 
+##       pop_2007 
+##   4.402122e+07
+</code></pre>
+
+<h3 id="challenge-2-2">Challenge 2.2</h3>
+
+<p>Reformat this data into &ldquo;long&rdquo; format, using <code>tidyr::gather</code>. Your new
+dataset should have four columns: * Continent * Country *
+observation_type * observation_value</p>
+
+<pre><code>gap_wide %&gt;% 
+  gather(key = &quot;observation_type&quot;, value = &quot;observation_value&quot;, 3:38) %&gt;% 
+  head
+
+##   continent      country observation_type observation_value
+## 1    Africa      Algeria   gdpPercap_1952         2449.0082
+## 2    Africa       Angola   gdpPercap_1952         3520.6103
+## 3    Africa        Benin   gdpPercap_1952         1062.7522
+## 4    Africa     Botswana   gdpPercap_1952          851.2411
+## 5    Africa Burkina Faso   gdpPercap_1952          543.2552
+## 6    Africa      Burundi   gdpPercap_1952          339.2965
+
+gap_wide %&gt;% 
+  gather(key = &quot;observation_type&quot;, value = &quot;observation_value&quot;, gdpPercap_1952:pop_2007) %&gt;% 
+  head
+
+##   continent      country observation_type observation_value
+## 1    Africa      Algeria   gdpPercap_1952         2449.0082
+## 2    Africa       Angola   gdpPercap_1952         3520.6103
+## 3    Africa        Benin   gdpPercap_1952         1062.7522
+## 4    Africa     Botswana   gdpPercap_1952          851.2411
+## 5    Africa Burkina Faso   gdpPercap_1952          543.2552
+## 6    Africa      Burundi   gdpPercap_1952          339.2965
+
+gap_wide %&gt;% 
+  gather(key = &quot;observation_type&quot;, value = &quot;observation_value&quot;, -continent, -country) %&gt;% 
+  head
+
+##   continent      country observation_type observation_value
+## 1    Africa      Algeria   gdpPercap_1952         2449.0082
+## 2    Africa       Angola   gdpPercap_1952         3520.6103
+## 3    Africa        Benin   gdpPercap_1952         1062.7522
+## 4    Africa     Botswana   gdpPercap_1952          851.2411
+## 5    Africa Burkina Faso   gdpPercap_1952          543.2552
+## 6    Africa      Burundi   gdpPercap_1952          339.2965
+
+gap_wide %&gt;% 
+  gather(key = &quot;observation_type&quot;, value = &quot;observation_value&quot;, -continent, -country) %&gt;% 
+  head
+
+##   continent      country observation_type observation_value
+## 1    Africa      Algeria   gdpPercap_1952         2449.0082
+## 2    Africa       Angola   gdpPercap_1952         3520.6103
+## 3    Africa        Benin   gdpPercap_1952         1062.7522
+## 4    Africa     Botswana   gdpPercap_1952          851.2411
+## 5    Africa Burkina Faso   gdpPercap_1952          543.2552
+## 6    Africa      Burundi   gdpPercap_1952          339.2965
+</code></pre>
+
+<h3 id="challenge-2-3">Challenge 2.3</h3>
+
+<p>The variable <code>observation_type</code> is really two variables combined
+together. Use the function <code>separate</code> to split these into different
+values. You may want to consult <code>?separate()</code>.</p>
+
+<pre><code>gap_long_separated &lt;- gap_wide %&gt;% 
+  gather(key = &quot;variable_name&quot;, value = &quot;Value&quot;, gdpPercap_1952:pop_2007) %&gt;% 
+  separate(variable_name, c(&quot;variable&quot;, &quot;years&quot;), sep = &quot;_&quot;)
+head(gap_long_separated)
+
+##   continent      country  variable years     Value
+## 1    Africa      Algeria gdpPercap  1952 2449.0082
+## 2    Africa       Angola gdpPercap  1952 3520.6103
+## 3    Africa        Benin gdpPercap  1952 1062.7522
+## 4    Africa     Botswana gdpPercap  1952  851.2411
+## 5    Africa Burkina Faso gdpPercap  1952  543.2552
+## 6    Africa      Burundi gdpPercap  1952  339.2965
+</code></pre>
+
+<h3 id="challenge-2-4">Challenge 2.4</h3>
+
+<p>Now, practice reversing this process &ndash; i.e., combine two columns into
+one &ndash; using <code>tidyr::unite</code></p>
+
+<pre><code>gap_long_separated %&gt;% 
+  unite(col = &quot;new_variable&quot;, country, years) %&gt;% 
+  head
+
+##   continent      new_variable  variable     Value
+## 1    Africa      Algeria_1952 gdpPercap 2449.0082
+## 2    Africa       Angola_1952 gdpPercap 3520.6103
+## 3    Africa        Benin_1952 gdpPercap 1062.7522
+## 4    Africa     Botswana_1952 gdpPercap  851.2411
+## 5    Africa Burkina Faso_1952 gdpPercap  543.2552
+## 6    Africa      Burundi_1952 gdpPercap  339.2965
+</code></pre>
+
+<h3 id="challenge-2h-1">Challenge 2h.1</h3>
+
+<p>Take this 1 step further and create a gap_ludicrously_wide format data
+by spreading over countries, year and the 3 metrics? Hint this new
+dataframe should only have 5 rows.</p>
+
+<pre><code>gap_long_separated %&gt;% 
+  unite(col = &quot;new_variable&quot;, country, years) %&gt;% 
+  head
+
+##   continent      new_variable  variable     Value
+## 1    Africa      Algeria_1952 gdpPercap 2449.0082
+## 2    Africa       Angola_1952 gdpPercap 3520.6103
+## 3    Africa        Benin_1952 gdpPercap 1062.7522
+## 4    Africa     Botswana_1952 gdpPercap  851.2411
+## 5    Africa Burkina Faso_1952 gdpPercap  543.2552
+## 6    Africa      Burundi_1952 gdpPercap  339.2965
+</code></pre>
+
+<h3 id="challenge-3-1">Challenge 3.1</h3>
+
+<p>Calculate the average life expectancy per country. Which has the longest
+average life expectancy and which has the shortest average life
+expectancy? ### Challenge 3.1h</p>
+
+<p>Rank all the countries by their life expenctancy. Use one of the &ldquo;window
+functions&rdquo; for calculating rank</p>
+
+<pre><code>ranked_by_life &lt;- gapminder %&gt;% 
+  group_by(country) %&gt;% 
+  summarise(meanlife = mean(lifeExp)) %&gt;% 
+  mutate(rank_life_exp = dense_rank(desc(meanlife)))
+
+ranked_by_life %&gt;% 
+  filter(rank_life_exp %in% range(rank_life_exp))
+
+## # A tibble: 2 × 3
+##        country meanlife rank_life_exp
+##         &lt;fctr&gt;    &lt;dbl&gt;         &lt;int&gt;
+## 1      Iceland 76.51142             1
+## 2 Sierra Leone 36.76917           142
+</code></pre>
+
+<h2 id="data-cleaning">Data cleaning!</h2>
+
+<p>Data are not always in good condition. We will talk about how to use
+these same skills for cleaning data.
+<a href="http://www.zoology.ubc.ca/~krebs/downloads/monitor.xlsx">http://www.zoology.ubc.ca/~krebs/downloads/monitor.xlsx</a></p>
+
+  </div>
+</div>
+<script src="../../js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
+
