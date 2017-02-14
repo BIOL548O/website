@@ -10,12 +10,6 @@ menu:
 * [Today's slides](/slides/munging_presentation.html)  
 * [What Andrew typed in today](../03_demo)
 
-
-### Intro to tidy data
-*step 1* download [this data](https://www.dropbox.com/s/5ncuacnd3arjitc/survey_data_tabs.xls?dl=0)  
-*step 2* "tidy it up"  
-_courtesy of Data Carpentry_
-
 ### Intro to R
 
 I'm assuming that you have had some exposure to R already. However, let's review some of the particular tools that we're going to be using
