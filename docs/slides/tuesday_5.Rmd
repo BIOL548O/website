@@ -1,0 +1,81 @@
+---
+title: "The Beastiary of Data"
+author: "Andrew MacDonald"
+date: "14 Feb 2016"
+output: ioslides_presentation
+---
+
+# first: an apology
+
+## bad news
+
+<img src="../img/img_1.png" height="500px"></img>
+
+## good news
+
+<img src="../img/img.png" height="500px"></img>
+
+# Now what
+
+## Immediate plan
+
+* Continuing with "Homework 2"
+* Thursday lecture: assertions, metadata, data entry
+
+# An approach to data cleaning
+
+## What we talk about when we talk about data {.build}
+
+We need to think about what we do when we do data cleaning. We're going to follow a simple procedure:
+
+1. Looking at the data
+1. Thinking about "what is this data good for" -- what will you _make_ with it
+1. thinking about the steps needed to transform one into another (pseudocode)
+1. exploring the tidyverse
+
+# An in-class exercise
+
+## how to clean up a dataset? 
+
+form groups with your neighbours.   
+
+Consider a dataset from `lecture_4_exercises` -- from the point of view of step **1 through 3** that is, what kind of rearrangement is necessary.
+
+
+## Data workout
+
+<img src="../img/steven_workout.gif" height="500px"></img>
+
+# Blank values & one-to-many
+
+
+## One-to-many relationships are important in biology
+
+cells / slides / bats
+
+plants / half-sib fams / 
+
+
+# not a rectangle
+
+## irregularly-shaped data
+(more like a snowflake)
+
+* bird names
+
+* Rhea's data
+
+* Jasmin's data
+
+the high vs the low approach
+
+# Repeated measures in columns
+
+
+
+## Alternate hw2
+
+* what are you doing and why -- what calculations do you want to make later
+* what columns should your new data have
+* write some pseudocode to get there
+

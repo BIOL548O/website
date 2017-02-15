@@ -2,6 +2,11 @@
 title: "Peer Review 2"
 ---
 
+
+Below, you will find a template for Peer Review 2. **Copy and paste this in response to the GitHub Issue that announces your review**
+
+### overview and some tips
+
 The goal of this Peer Review is to help our colleagues to write *clear, readable code* which creates *tidy data*.
 
 > _tip: suggest new code to your reviewee by typing three backticks before and after your suggestion_
@@ -11,8 +16,7 @@ The goal of this Peer Review is to help our colleagues to write *clear, readable
 
 *Please don't keep a copy of your reviewee's data!*
 
-
-Here is a template for Peer Review 2. **Copy and paste this in response to the GitHub Issue that announces your review**
+Peer review template (copy and paste into the GitHub Issue):
 
 ```
 ## organization

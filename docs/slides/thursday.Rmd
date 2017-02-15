@@ -1,0 +1,27 @@
+---
+title: "Presentation Ninja"
+subtitle: "⚔<br/>with xaringan"
+author: "Yihui Xie"
+date: "2016/11/28"
+output:
+  xaringan::moon_reader:
+    seal: yes
+    nature:
+      highlightStyle: github
+---
+
+
+I want to cover three aspects of "making sure the data is true".
+
+Right things going in -- Google forms and google sheets
+
+right things going out -- assertr
+
+what are these things even -- Metadata
+
+
+slides --- make a slide for your project? I mean forms. make a form that is about your project? as if those data would be entered into it?
+
+
+what validation would you use? what would be the types of questions -- mutliple choice, radio button
+
