@@ -25,7 +25,7 @@
 &lt;h2&gt;hand-made artisanal metadata&lt;/h2&gt;
 &lt;p&gt;You can also do this simply by simple text (&lt;code&gt;.txt&lt;/code&gt; or &lt;code&gt;.rtf&lt;/code&gt;) with your own hands:&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/bromeliad_metadata.png&#34; alt=&#34;brom&#34; /&gt;
+&lt;img src=&#34;../img/bromeliad_metadata.png&#34; alt=&#34;brom&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;brom&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Alternatively, you could write it in a CSV format:&lt;/p&gt;
@@ -37,8 +37,8 @@ lifeExp,&amp;quot;lifeExp in years&amp;quot;
 pop,&amp;quot;population in humans&amp;quot;
 gdpPercap,&amp;quot;gdp per capita, measured in PPP&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This is convenient, but has no standard whatsoever. This makes it difficult for machines to read. An increasing number of scientists are experimenting with new ways of creating metadata that satisfies our “write data for machines” principle.&lt;/p&gt;
-&lt;p&gt;Many of these methods are novel, and rather experimental. We’re going to be using some Very Modern Packages in today’s exercises. We’ll need to install versions of packages that are newer than what is available on CRAN (via &lt;code&gt;install.packages()&lt;/code&gt;). We’ll use a small package called &lt;code&gt;ghit&lt;/code&gt; to do the job:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;ghit&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Many of these methods are novel, and rather experimental. We’re going to be using some Very Modern Packages in today’s exercises. We’ll need to install versions of packages that are newer than what is available on CRAN (via &lt;code&gt;install.packages()&lt;/code&gt;).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;devtools&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As usual, our gapminder dataset will supply some good examples:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(gapminder)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -76,10 +76,8 @@ gdpPercap,&amp;quot;gdp per capita, measured in PPP&amp;quot;&lt;/code&gt;&lt;/p
 &lt;div id=&#34;the-classic-approach-the-ecological-metadata-language-eml&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;the classic approach: the Ecological Metadata Language (&lt;code&gt;EML&lt;/code&gt;)&lt;/h2&gt;
 &lt;p&gt;EML is a classic metadata approach. There is a &lt;a href=&#34;http://im.lternet.edu/sites/im.lternet.edu/files/emlHandbook.pdf&#34;&gt;large amount of documentation&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It is used in the Knowledge Network for Biocomplexity&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;library(ghit)
-install_github(&amp;quot;ropensci/EML&amp;quot;, dependencies=c(&amp;quot;Depends&amp;quot;, &amp;quot;Imports&amp;quot;))
-library(EML)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;See also the resources &lt;a href=&#34;https://ropensci.github.io/EML/&#34;&gt;here on the development website&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;devtools::install_github(&amp;quot;ropensci/EML&amp;quot;, build_vignettes = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dat &amp;lt;- data.frame(river = factor(c(&amp;quot;SAC&amp;quot;,  
                                    &amp;quot;SAC&amp;quot;,   
                                    &amp;quot;AM&amp;quot;)),

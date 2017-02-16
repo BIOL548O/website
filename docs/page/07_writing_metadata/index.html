@@ -99,7 +99,7 @@
 <h2>hand-made artisanal metadata</h2>
 <p>You can also do this simply by simple text (<code>.txt</code> or <code>.rtf</code>) with your own hands:</p>
 <div class="figure">
-<img src="img/bromeliad_metadata.png" alt="brom" />
+<img src="../img/bromeliad_metadata.png" alt="brom" />
 <p class="caption">brom</p>
 </div>
 <p>Alternatively, you could write it in a CSV format:</p>
@@ -111,8 +111,8 @@ lifeExp,&quot;lifeExp in years&quot;
 pop,&quot;population in humans&quot;
 gdpPercap,&quot;gdp per capita, measured in PPP&quot;</code></pre>
 <p>This is convenient, but has no standard whatsoever. This makes it difficult for machines to read. An increasing number of scientists are experimenting with new ways of creating metadata that satisfies our “write data for machines” principle.</p>
-<p>Many of these methods are novel, and rather experimental. We’re going to be using some Very Modern Packages in today’s exercises. We’ll need to install versions of packages that are newer than what is available on CRAN (via <code>install.packages()</code>). We’ll use a small package called <code>ghit</code> to do the job:</p>
-<pre class="r"><code># install.packages(&quot;ghit&quot;)</code></pre>
+<p>Many of these methods are novel, and rather experimental. We’re going to be using some Very Modern Packages in today’s exercises. We’ll need to install versions of packages that are newer than what is available on CRAN (via <code>install.packages()</code>).</p>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)</code></pre>
 <p>As usual, our gapminder dataset will supply some good examples:</p>
 <pre class="r"><code>library(gapminder)</code></pre>
 </div>
@@ -150,10 +150,8 @@ gdpPercap,&quot;gdp per capita, measured in PPP&quot;</code></pre>
 <div id="the-classic-approach-the-ecological-metadata-language-eml" class="section level2">
 <h2>the classic approach: the Ecological Metadata Language (<code>EML</code>)</h2>
 <p>EML is a classic metadata approach. There is a <a href="http://im.lternet.edu/sites/im.lternet.edu/files/emlHandbook.pdf">large amount of documentation</a>.</p>
-<p>It is used in the Knowledge Network for Biocomplexity</p>
-<pre><code>library(ghit)
-install_github(&quot;ropensci/EML&quot;, dependencies=c(&quot;Depends&quot;, &quot;Imports&quot;))
-library(EML)</code></pre>
+<p>See also the resources <a href="https://ropensci.github.io/EML/">here on the development website</a>.</p>
+<pre><code>devtools::install_github(&quot;ropensci/EML&quot;, build_vignettes = TRUE)</code></pre>
 <pre class="r"><code>dat &lt;- data.frame(river = factor(c(&quot;SAC&quot;,  
                                    &quot;SAC&quot;,   
                                    &quot;AM&quot;)),

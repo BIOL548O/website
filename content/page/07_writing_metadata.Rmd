@@ -10,7 +10,7 @@ Metadata is _data about data_
 
 You can also do this simply by simple text (`.txt` or `.rtf`)  with your own hands:
 
-![brom](img/bromeliad_metadata.png)
+![brom](../img/bromeliad_metadata.png)
 
 Alternatively, you could write it in a CSV format:
 
@@ -26,10 +26,9 @@ gdpPercap,"gdp per capita, measured in PPP"
 
 This is convenient, but has no standard whatsoever. This makes it difficult for machines to read. An increasing number of scientists are experimenting with new ways of creating metadata that satisfies our "write data for machines" principle. 
 
-Many of these methods are novel, and rather experimental. We're going to be using some Very Modern Packages in today's exercises. We'll need to install versions of packages that are newer than what is available on CRAN (via `install.packages()`). We'll use a small package called `ghit` to do the job:
-
+Many of these methods are novel, and rather experimental. We're going to be using some Very Modern Packages in today's exercises. We'll need to install versions of packages that are newer than what is available on CRAN (via `install.packages()`). 
 ```{r}
-# install.packages("ghit")
+# install.packages("devtools")
 ```
 
 As usual, our gapminder dataset will supply some good examples:
@@ -83,14 +82,12 @@ order:
 
 ## the classic approach: the Ecological Metadata Language (`EML`)
 
-EML is a classic metadata approach. There is a [large amount of documentation](http://im.lternet.edu/sites/im.lternet.edu/files/emlHandbook.pdf).  
+EML is a classic metadata approach. There is a [large amount of documentation](http://im.lternet.edu/sites/im.lternet.edu/files/emlHandbook.pdf). 
 
-It is used in the Knowledge Network for Biocomplexity
+See also the resources [here on the development website](https://ropensci.github.io/EML/).
 
 ```
-library(ghit)
-install_github("ropensci/EML", dependencies=c("Depends", "Imports"))
-library(EML)
+devtools::install_github("ropensci/EML", build_vignettes = TRUE)
 ```
 
 ```r
