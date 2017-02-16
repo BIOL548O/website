@@ -1,6 +1,5 @@
 ---
 title: "Assertions in R"
-subtitle: "Hey are you sure about that data"
 author: "Andrew MacDonald"
 date: 2017-02-14
 output:
@@ -14,6 +13,9 @@ output:
 
 /BLOGDOWN-BODY-BEFORE -->
 
+<div id="hey-are-you-sure-about-that-data" class="section level3">
+<h3>“Hey, are you sure about that data”</h3>
+</div>
 <div id="outline-for-today" class="section level2">
 <h2>Outline for today</h2>
 <ul>
@@ -33,7 +35,7 @@ output:
 <li>Internet data, from an API or from scraping</li>
 <li>data from a particularly <em>experimental</em> simulation?</li>
 </ul>
-<p>How can you tell if the numbers you have make any sense? (also called “sanity checking”)</p>
+<p>How can you tell if the numbers you have make any sense?</p>
 <p>We’ll try out the practice of asserting data by using the gapminder dataset:</p>
 <pre class="r"><code>library(gapminder)</code></pre>
 <p>And we’ll be using an R package specifically designed to work with data assertions: <code>assertr</code>, by Tony Fischetti (<a href="https://github.com/tonyfischetti/assertr">github page</a> and <a href="https://vimeo.com/141906295">rOpenSci community call with Tony</a>)</p>
@@ -143,9 +145,9 @@ gapminder %&gt;%
 <div id="assert" class="section level3">
 <h3><code>assert</code></h3>
 <p><code>assert</code> evaluates a <em>predicate function</em> on a column of a dataset, and indentifies where the predicate returns <code>FALSE</code>.</p>
-<ul>
-<li>a predicate function is any function that will give you <code>TRUE</code> or <code>FALSE</code> for every element in a vector. <code>is.na()</code> is a common example.</li>
-</ul>
+<blockquote>
+<p>a predicate function is any function that will give you <code>TRUE</code> or <code>FALSE</code> for every element in a vector. <code>is.na()</code> is a common example.</p>
+</blockquote>
 <p>Here, we can’t write <code>pop &gt; 0</code>, we need to write this in terms of a function. Fortunately, <code>assertr</code> supplies some flexible predicates for us:</p>
 <pre class="r"><code>gm2 &lt;- gapminder %&gt;% 
   assert(within_bounds(0,Inf), pop)</code></pre>
@@ -171,9 +173,10 @@ all_continents</code></pre>
 
 gm_fac &lt;- gapminder %&gt;% 
   assert(is_factor, country, continent)</code></pre>
-<blockquote>
-<p><em>challenge!</em> write a function to test if population is an integer. (Note that it is probably not stored as an integer in your present data.frame)</p>
-</blockquote>
+</div>
+<div id="challenge" class="section level3">
+<h3>challenge!</h3>
+<p>write a function to test if any numbers in population have a decimal place.</p>
 </div>
 </div>
 <div id="final-exercise" class="section level2">
@@ -181,7 +184,7 @@ gm_fac &lt;- gapminder %&gt;%
 <p><em>Announcement: some new 2016 data has been recorded for gapminder!</em><br />
 Let’s check this data before we combine it with the official dataset:</p>
 <p><strong>Step 1</strong>: write down some assertions which pass for all of gapminder</p>
-<p><strong>Step 2</strong>: download <a href="SuppMatt/gapminder_2016.csv">this file</a> and see if you can find all the errors!</p>
+<p><strong>Step 2</strong>: download <a href="supporting_info/gapminder_2016.csv">this file</a> and see if you can find all the errors!</p>
 </div>
 
 

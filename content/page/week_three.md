@@ -24,7 +24,7 @@ What does your data say? How can you write down exactly what is in your dataset,
 1. total strangers
 1. even computers!
 
-The answer is to use a machine-readable [Metadata](../07_metadata) format. In this lecture we will practice writing several types of machine-readable [writing metadata](../07_writing_metadata).
+The answer is to use a machine-readable **metadata** format. Metadata is "data about data", and in this lecture we will practice writing several types of machine-readable [metadata](../07_writing_metadata).
 
 ### Homework 3
 

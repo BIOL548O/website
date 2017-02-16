@@ -225,6 +225,9 @@ datapackage_init(df = gapminder, meta = meta_list)
 
 /BLOGDOWN-BODY-BEFORE --&gt;
 
+&lt;div id=&#34;hey-are-you-sure-about-that-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;“Hey, are you sure about that data”&lt;/h3&gt;
+&lt;/div&gt;
 &lt;div id=&#34;outline-for-today&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Outline for today&lt;/h2&gt;
 &lt;ul&gt;
@@ -244,7 +247,7 @@ datapackage_init(df = gapminder, meta = meta_list)
 &lt;li&gt;Internet data, from an API or from scraping&lt;/li&gt;
 &lt;li&gt;data from a particularly &lt;em&gt;experimental&lt;/em&gt; simulation?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;How can you tell if the numbers you have make any sense? (also called “sanity checking”)&lt;/p&gt;
+&lt;p&gt;How can you tell if the numbers you have make any sense?&lt;/p&gt;
 &lt;p&gt;We’ll try out the practice of asserting data by using the gapminder dataset:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(gapminder)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And we’ll be using an R package specifically designed to work with data assertions: &lt;code&gt;assertr&lt;/code&gt;, by Tony Fischetti (&lt;a href=&#34;https://github.com/tonyfischetti/assertr&#34;&gt;github page&lt;/a&gt; and &lt;a href=&#34;https://vimeo.com/141906295&#34;&gt;rOpenSci community call with Tony&lt;/a&gt;)&lt;/p&gt;
@@ -354,9 +357,9 @@ gapminder %&amp;gt;%
 &lt;div id=&#34;assert&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;&lt;code&gt;assert&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;assert&lt;/code&gt; evaluates a &lt;em&gt;predicate function&lt;/em&gt; on a column of a dataset, and indentifies where the predicate returns &lt;code&gt;FALSE&lt;/code&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;a predicate function is any function that will give you &lt;code&gt;TRUE&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt; for every element in a vector. &lt;code&gt;is.na()&lt;/code&gt; is a common example.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;a predicate function is any function that will give you &lt;code&gt;TRUE&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt; for every element in a vector. &lt;code&gt;is.na()&lt;/code&gt; is a common example.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Here, we can’t write &lt;code&gt;pop &amp;gt; 0&lt;/code&gt;, we need to write this in terms of a function. Fortunately, &lt;code&gt;assertr&lt;/code&gt; supplies some flexible predicates for us:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gm2 &amp;lt;- gapminder %&amp;gt;% 
   assert(within_bounds(0,Inf), pop)&lt;/code&gt;&lt;/pre&gt;
@@ -382,9 +385,10 @@ all_continents&lt;/code&gt;&lt;/pre&gt;
 
 gm_fac &amp;lt;- gapminder %&amp;gt;% 
   assert(is_factor, country, continent)&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;challenge!&lt;/em&gt; write a function to test if population is an integer. (Note that it is probably not stored as an integer in your present data.frame)&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;challenge&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;challenge!&lt;/h3&gt;
+&lt;p&gt;write a function to test if any numbers in population have a decimal place.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;final-exercise&#34; class=&#34;section level2&#34;&gt;
@@ -392,7 +396,7 @@ gm_fac &amp;lt;- gapminder %&amp;gt;%
 &lt;p&gt;&lt;em&gt;Announcement: some new 2016 data has been recorded for gapminder!&lt;/em&gt;&lt;br /&gt;
 Let’s check this data before we combine it with the official dataset:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Step 1&lt;/strong&gt;: write down some assertions which pass for all of gapminder&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 2&lt;/strong&gt;: download &lt;a href=&#34;SuppMatt/gapminder_2016.csv&#34;&gt;this file&lt;/a&gt; and see if you can find all the errors!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 2&lt;/strong&gt;: download &lt;a href=&#34;supporting_info/gapminder_2016.csv&#34;&gt;this file&lt;/a&gt; and see if you can find all the errors!&lt;/p&gt;
 &lt;/div&gt;
 
 
@@ -2685,17 +2689,6 @@ gapminder %&amp;gt;%
 &lt;li&gt;an &lt;a href=&#34;writing_metadata&#34;&gt;Introduction to writing metadata&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Description of &lt;a href=&#34;Homework_3&#34;&gt;Homework 3: the Final Project&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h4 id=&#34;let-s-begin-with-an-exercise&#34;&gt;Let&amp;rsquo;s begin with an exercise!&lt;/h4&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Break into evenly distributed groups of 3 people. &lt;em&gt;(2 mins)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Identify one volunteer to be the “Researcher” and describe their research data for this exercise.  This person will need to be fairly familiar with how and why the data was collected. &lt;em&gt;(2 mins)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Identify a note taker to record responses to questions from the group about the data set. &lt;em&gt;(1 min)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;members of the group ask questions of the “Researcher” about her or his data set while the note taker records responses.  (The note taker can ask questions, too!)  As you ask questions, think about how you would (if you could) respond to a similar question for your data set. &lt;em&gt;(15 mins)&lt;/em&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Add your responses to &lt;a href=&#34;https://etherpad.wikimedia.org/p/BIO548O&#34;&gt;This Etherpad Document&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
