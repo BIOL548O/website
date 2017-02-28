@@ -1,0 +1,62 @@
+### Ecological metadata language
+
+Ecological Metadata Language is a very rigorous, and very complete, format for writing metadata. Because it is more specialized than the other two formats we have considered. As a result there is definitely more to know. But i think the effort is worth it, for two reasons.
+
+1. Because it is so specific to ecological/environmental applications, you can be very explicit about your metadata
+1. Because it is supported by the [Knowledge Network for Biocomplexity](https://knb.ecoinformatics.org/) which will host your data for free if it is documented this way.
+
+## writing EML
+
+There are at least two ways of writing metadata. One is via [Morpho](https://knb.ecoinformatics.org/#tools) which is a Java-based application. To run this, you will need Java installed on your machine. Another way is via R, which is the means that we will use (because I am sure that we all already have R installed!)
+
+We will use the R package `EML`. See the [ROpenSci tutorial here](https://ropensci.github.io/EML/).  
+
+```r
+devtools::install_github("ropensci/EML")
+library(EML)
+```
+
+
+## Components of EML
+
+EML is based on XML, and therefore has a nested structure. This is useful, because nested information is useful for describing a dataset. For example, if you have a column in your dataset that represents a factor (e.g. the factor "Nutrient addition") this factor may contain several levels (e.g. "low" "medium" and "high").
+
+However, the nested structure of EML also imposes a small cost -- it can be a little fiddley to set up. I think it might be helpful to divide the task up into some key components:
+
+* the `dataTable`
+* the contact information
+* coverage
+
+### the `dataTable`
+
+This part of the metadata is the most involved, so I am subdividitng this part into two halves:
+
+#### attributes
+
+This is a dataframe that contains **one row per column in the `.csv`** file. In other words, imagine the `.csv` file you are documenting as being _sideways_, and give each column a row in this new dataframe. 
+
+IN this example I am going to use a function from `dplyr` which you might not have seen, so I will describe it in a bit more detail. Normally, we create a data.frame in R in one of two ways: by reading a file directly in (e.g. via `read.csv`) and 
+```{r}
+library(dplyr)
+library(EML)
+library(gapminder)
+
+
+# attributes --------------------------------------------------------------
+
+attributes <- frame_data(
+  ~attributeName, ~formatString,  ~definition       ,  ~unit, ~numberType, ~attributeDefinition,
+  "country"     ,            NA,           "country",     NA,          NA,  "name of country",
+  "continent"   ,            NA,         "continent",     NA,          NA,  "name of continent",
+  "year"        ,        "YYYY",                  NA,     NA,          NA,  "year of sample",
+  "lifeExp"     ,            NA,                  NA,     "number",   "real",  "life expentency at birth",
+  "pop"         ,            NA,                  NA,     "number",   "real",  "total population",
+  "gdpPercap"   ,            NA,                  NA,     "number",   "real",  "GDP per capita"
+) 
+
+```
+
+
+#### physical
+
+This is the physical file to which the attributes are referring

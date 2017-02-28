@@ -55,7 +55,7 @@
       
       <li class="sidebar-nav-item"><a href="../../page/07_Homework_3/">Homework 3</a></li>
       
-      <li class="sidebar-nav-item"><a href="../../page/08_Repositories/">Online Repositories</a></li>
+      <li class="sidebar-nav-item"><a href="../../page/week_four/">Week 4: Repositories &amp; Licences</a></li>
       
       <li class="sidebar-nav-item"><a href="../../page/08_PeerReview_3/">Peer Review 3</a></li>
       
@@ -90,15 +90,75 @@
     <h1 class="post-title">Online Repositories</h1>
     
 
-<h2 id="outline-for-today">Outline for today</h2>
+<h3 id="sharing-your-data-with-the-world">Sharing your data with the world!</h3>
+
+<p>There are several important online data repositories. Some are specialized for certain domains, others are for any and all data types. Here we&rsquo;re going to take a look at several different online repositories.</p>
+
+<p>Excellent resources</p>
 
 <ul>
-<li>A review of different metadata techniques, using examples from class.</li>
-<li>some <a href="slides/review_slides.html">Review Slides</a></li>
-<li>Introduction to a three online data repositories</li>
-<li>live demonstration of online repository use!</li>
-<li>getting started on peer reviews/ homework</li>
+<li><a href="http://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf">British Ecological Society guide to data management</a></li>
+<li><a href="http://ojs.library.queensu.ca/index.php/IEE/article/view/4608/4898">Nine simple ways to make it easier to (re) use your data</a> White <em>et al</em> 2013</li>
 </ul>
+
+<h2 id="before-we-start-ropensci">Before we start: ROpenSci</h2>
+
+<p>Before we begin looking at data repositories, I wanted to show you an amazing organization called <a href="http://ropensci.org/">ROpenSci</a>. For years the programmers and scientists at ROpenSci have worked to make R packages to get data <em>off the internet</em>. Their packages are extremely useful and</p>
+
+<p>Data is often made public by websites, using a technique called an <strong>API</strong> (an Application Programming Interface). These are ways of transmitting information between computer programs. Some of the most useful ROpenSci packages will obtain public data in this way, reformat it, and present it directly into R for you! We will meet <em>some</em> of these today, but there are so many more! I strongly encourage you to check out Ropensci for yourself, to see what is the most useful for you!</p>
+
+<h4 id="dois">DOIs</h4>
+
+<p>a DOI is a Digital Object Identifier. They indicate unique things on the internet &ndash; you have probably seen them on published scientific papers. Anything with a DOI can be cited &ndash; it is stable and persistent over time. When data is given a DOI, multiple authors or users can reference it. The major source of DOIs for data is <a href="https://www.datacite.org/">DataCite</a></p>
+
+<h2 id="a-few-data-repositories">a few data repositories</h2>
+
+<ul>
+<li><a href="https://figshare.com">Figshare</a></li>
+<li><a href="http://datadryad.org">Dryad</a></li>
+<li><a href="https://knb.ecoinformatics.org/">Knowledge Network of Biocomplexity</a></li>
+</ul>
+
+<h3 id="activity-searching-for-useful-data">Activity: searching for useful data!</h3>
+
+<p>As an in-class exercise, use Figshare, Dryad, Zenodo and/or the KNB to find some data that relevant to your personal data project. This could be a collaborator, coauthor or stranger. If you yourself have used one of these repositories, try out a different one and see what you can find!</p>
+
+<p>Step2: see if you can download this data into R.</p>
+
+<table>
+<thead>
+<tr>
+<th>repository</th>
+<th>r package</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Knowledge Network for Biocomplexity</td>
+<td><code>rdataone</code></td>
+</tr>
+
+<tr>
+<td>figshare</td>
+<td><code>rfigshare</code></td>
+</tr>
+
+<tr>
+<td>Dryad</td>
+<td><code>rdryad</code></td>
+</tr>
+
+<tr>
+<td>Zenodo</td>
+<td><code>zenodo</code> (?)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="final-thought-re-archiving-data">Final thought: re-archiving data</h2>
+
+<p>What happens when you have been using <em>published</em> data, and you want to document your process? Do you re-publish what was originally sombody else&rsquo;s data? While this might seem useful &ndash; this is after all the data for your paper, and it might be a bit different from its original format. It also has an undesirable side-effect, in that you have created a second &ldquo;version&rdquo; of the data &ndash; one that might divert citations away from the original! To avoid this, publish your code only (which reads and, if necessary, modifies the data), and cite the original data in your work.</p>
 
   </div>
 </div>

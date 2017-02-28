@@ -1,0 +1,76 @@
+
+
+<!-- BLOGDOWN-BODY-BEFORE
+
+/BLOGDOWN-BODY-BEFORE -->
+
+<div id="ecological-metadata-language" class="section level3">
+<h3>Ecological metadata language</h3>
+<p>Ecological Metadata Language is a very rigorous, and very complete, format for writing metadata. Because it is more specialized than the other two formats we have considered. As a result there is definitely more to know. But i think the effort is worth it, for two reasons.</p>
+<ol style="list-style-type: decimal">
+<li>Because it is so specific to ecological/environmental applications, you can be very explicit about your metadata</li>
+<li>Because it is supported by the <a href="https://knb.ecoinformatics.org/">Knowledge Network for Biocomplexity</a> which will host your data for free if it is documented this way.</li>
+</ol>
+</div>
+<div id="writing-eml" class="section level2">
+<h2>writing EML</h2>
+<p>There are at least two ways of writing metadata. One is via <a href="https://knb.ecoinformatics.org/#tools">Morpho</a> which is a Java-based application. To run this, you will need Java installed on your machine. Another way is via R, which is the means that we will use (because I am sure that we all already have R installed!)</p>
+<p>We will use the R package <code>EML</code>. See the <a href="https://ropensci.github.io/EML/">ROpenSci tutorial here</a>.</p>
+<pre class="r"><code>devtools::install_github(&quot;ropensci/EML&quot;)
+library(EML)</code></pre>
+</div>
+<div id="components-of-eml" class="section level2">
+<h2>Components of EML</h2>
+<p>EML is based on XML, and therefore has a nested structure. This is useful, because nested information is useful for describing a dataset. For example, if you have a column in your dataset that represents a factor (e.g. the factor “Nutrient addition”) this factor may contain several levels (e.g. “low” “medium” and “high”).</p>
+<p>However, the nested structure of EML also imposes a small cost – it can be a little fiddley to set up. I think it might be helpful to divide the task up into some key components:</p>
+<ul>
+<li>the <code>dataTable</code></li>
+<li>the contact information</li>
+<li>coverage</li>
+</ul>
+<div id="the-datatable" class="section level3">
+<h3>the <code>dataTable</code></h3>
+<p>This part of the metadata is the most involved, so I am subdividitng this part into two halves:</p>
+<div id="attributes" class="section level4">
+<h4>attributes</h4>
+<p>This is a dataframe that contains <strong>one row per column in the <code>.csv</code></strong> file. In other words, imagine the <code>.csv</code> file you are documenting as being <em>sideways</em>, and give each column a row in this new dataframe.</p>
+<p>IN this example I am going to use a function from <code>dplyr</code> which you might not have seen, so I will describe it in a bit more detail. Normally, we create a data.frame in R in one of two ways: by reading a file directly in (e.g. via <code>read.csv</code>) and</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(EML)
+library(gapminder)
+
+
+# attributes --------------------------------------------------------------
+
+attributes &lt;- frame_data(
+  ~attributeName, ~formatString,  ~definition       ,  ~unit, ~numberType, ~attributeDefinition,
+  &quot;country&quot;     ,            NA,           &quot;country&quot;,     NA,          NA,  &quot;name of country&quot;,
+  &quot;continent&quot;   ,            NA,         &quot;continent&quot;,     NA,          NA,  &quot;name of continent&quot;,
+  &quot;year&quot;        ,        &quot;YYYY&quot;,                  NA,     NA,          NA,  &quot;year of sample&quot;,
+  &quot;lifeExp&quot;     ,            NA,                  NA,     &quot;number&quot;,   &quot;real&quot;,  &quot;life expentency at birth&quot;,
+  &quot;pop&quot;         ,            NA,                  NA,     &quot;number&quot;,   &quot;real&quot;,  &quot;total population&quot;,
+  &quot;gdpPercap&quot;   ,            NA,                  NA,     &quot;number&quot;,   &quot;real&quot;,  &quot;GDP per capita&quot;
+) </code></pre>
+</div>
+<div id="physical" class="section level4">
+<h4>physical</h4>
+<p>This is the physical file to which the attributes are referring</p>
+</div>
+</div>
+</div>
+
+
+<!-- BLOGDOWN-HEAD
+
+
+
+
+/BLOGDOWN-HEAD -->
